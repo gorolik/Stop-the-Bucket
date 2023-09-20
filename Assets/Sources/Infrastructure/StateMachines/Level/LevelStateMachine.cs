@@ -5,7 +5,7 @@ using Sources.Infrastructure.StateMachines.States;
 
 namespace Sources.Infrastructure.StateMachines.Level
 {
-    public class LevelStateMachine : StateMachine
+    public class LevelStateMachine : StateMachine, ILevelStateMachine
     {
         public LevelStateMachine()
         {

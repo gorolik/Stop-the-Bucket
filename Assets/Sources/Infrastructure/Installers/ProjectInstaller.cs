@@ -1,6 +1,3 @@
-using Sources.Infrastructure.StateMachines;
-using Sources.Infrastructure.StateMachines.Game;
-using Sources.Infrastructure.StateMachines.Level;
 using Sources.Services;
 using Zenject;
 
@@ -12,8 +9,6 @@ namespace Sources.Infrastructure.Installers
         {
             BindCoroutineRunner();
             BindSceneLoader();
-            BindGameStateMachine();
-            BindLevelStateMachine();
             BindInputService();
         }
 
@@ -22,12 +17,6 @@ namespace Sources.Infrastructure.Installers
 
         private void BindSceneLoader() =>
             Container.Bind<SceneLoader>().FromNew().AsSingle();
-
-        private void BindGameStateMachine() => 
-            Container.Bind<IStateMachine>().WithId(StateMachineType.Game).To<GameStateMachine>().FromNew().AsSingle();
-
-        private void BindLevelStateMachine() => 
-            Container.Bind<IStateMachine>().WithId(StateMachineType.Level).To<LevelStateMachine>().FromNew().AsSingle();
 
         private void BindInputService()
         {

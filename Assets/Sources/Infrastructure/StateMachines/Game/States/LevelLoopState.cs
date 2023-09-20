@@ -1,19 +1,18 @@
-﻿using Sources.Infrastructure.StateMachines.Level.States;
+﻿using Sources.Infrastructure.StateMachines.Level;
+using Sources.Infrastructure.StateMachines.Level.States;
 using Sources.Infrastructure.StateMachines.States;
-using Zenject;
 
 namespace Sources.Infrastructure.StateMachines.Game.States
 {
     public class LevelLoopState : IState
     {
-        private readonly IStateMachine _levelStateMachine;
+        private readonly ILevelStateMachine _levelStateMachine;
 
-        public LevelLoopState(
-            [Inject(Id = StateMachineType.Level)] IStateMachine levelStateMachine)
+        public LevelLoopState()
         {
-            _levelStateMachine = levelStateMachine;
+            _levelStateMachine = new LevelStateMachine();
         }
-        
+
         public void Enter()
         {
             _levelStateMachine.Enter<CountingState>();

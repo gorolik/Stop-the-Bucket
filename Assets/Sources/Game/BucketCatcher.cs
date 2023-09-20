@@ -16,11 +16,8 @@ namespace Sources.Game
         private SuccessLine _successLine;
 
         [Inject]
-        public void Construct(
-            [Inject (Id = StateMachineType.Level)] IStateMachine levelStateMachine, 
-            IInputService inputService, Bucket bucket, SuccessLine successLine)
+        public void Construct(IInputService inputService, Bucket bucket, SuccessLine successLine)
         {
-            _levelStateMachine = levelStateMachine;
             _inputService = inputService;
             _bucket = bucket;
             _successLine = successLine;

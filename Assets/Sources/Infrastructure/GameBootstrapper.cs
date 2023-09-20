@@ -1,27 +1,30 @@
-using Sources.Infrastructure.StateMachines;
+using Sources.Infrastructure.StateMachines.Game;
 using Sources.Infrastructure.StateMachines.Game.States;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using Zenject;
 
 namespace Sources.Infrastructure
 {
     public class GameBootstrapper : MonoBehaviour
     {
-        private const string _initialSceneName = "Init";
-        
         private static GameBootstrapper _instance;
+        private GameStateMachine _gameStateMachine;
+        private SceneLoader _sceneLoader;
+
+        [Inject]
+        public void Construct(SceneLoader sceneLoader)
+        {
+            _sceneLoader = sceneLoader;
+        }
         
         private void Awake()
         {
             if (_instance != null) { Destroy(gameObject); return; }
             DontDestroyOnLoad(gameObject);
             _instance = this;
-            
-            if (SceneManager.GetActiveScene().name != _initialSceneName) 
-                SceneManager.LoadScene(_initialSceneName);
-        }
 
-        public void Run(IStateMachine stateMachine) => 
-            stateMachine.Enter<LoadLevelState>();
+            _gameStateMachine = new GameStateMachine(_sceneLoader);
+            _gameStateMachine.Enter<BootstrapState>();
+        }
     }
 }

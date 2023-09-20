@@ -12,7 +12,10 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/../Armored Tanks/Assets/Scripts/UnityAds/UnityAdsInitialize.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Flying Intruders/Assets/Sources/Infrastructure/Bootstrap.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Flying Intruders/Assets/Sources/Infrastructure/GameRunner.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Flying Intruders/Assets/Sources/Infrastructure/GameStateMachine.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Flying Intruders/Assets/Sources/Infrastructure/States/BootstrapState.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/Source/Install/Contexts/SceneContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Sources/Game/Bucket.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Sources/Game/BucketCatcher.cs" root0="FORCE_HIGHLIGHTING" />
@@ -98,7 +101,7 @@
       <workItem from="1695129709424" duration="396000" />
       <workItem from="1695130117851" duration="10053000" />
       <workItem from="1695214941121" duration="4412000" />
-      <workItem from="1695222164644" duration="2227000" />
+      <workItem from="1695222164644" duration="5375000" />
     </task>
     <servers />
   </component>
