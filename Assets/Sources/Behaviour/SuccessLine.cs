@@ -1,19 +1,17 @@
 using UnityEngine;
-using Zenject;
 
-namespace Sources.Game
+namespace Sources.Behaviour
 {
     public class SuccessLine : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer _spriteRenderer;
-    
-        private Camera _camera;
 
-        [Inject]
-        public void Construct(Camera mainCamera) => 
+        private Camera _camera;
+        
+        public void Construct(Camera mainCamera) =>
             _camera = mainCamera;
 
-        private void Start() => 
+        private void Start() =>
             SetWidthByCameraWidth();
 
         private void SetWidthByCameraWidth()

@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using Sources.Infrastructure.StateMachines.Game;
 using Sources.Infrastructure.StateMachines.States;
+using Zenject;
 
 namespace Sources.Infrastructure.StateMachines
 {
-    public class StateMachine : IStateMachine
+    public abstract class StateMachine : IStateMachine
     {
         protected Dictionary<Type, IExitableState> _states;
         private IExitableState _activeState;

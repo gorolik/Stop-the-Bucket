@@ -5,9 +5,9 @@ namespace Sources.Infrastructure.StateMachines.Level.States
 {
     public class CountingState : IState
     {
-        private readonly IStateMachine _levelStateMachine;
+        private readonly ILevelStateMachine _levelStateMachine;
 
-        public CountingState(IStateMachine levelStateMachine)
+        public CountingState(ILevelStateMachine levelStateMachine)
         {
             _levelStateMachine = levelStateMachine;
         }

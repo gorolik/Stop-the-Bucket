@@ -6,21 +6,19 @@ namespace Sources.Infrastructure.StateMachines.Game.States
 {
     public class LevelLoopState : IState
     {
-        private readonly ILevelStateMachine _levelStateMachine;
+        private readonly LevelStateMachine.Factory _levelStateMachineFactory;
+        
+        private ILevelStateMachine _levelStateMachine;
 
-        public LevelLoopState()
-        {
-            _levelStateMachine = new LevelStateMachine();
-        }
+        public LevelLoopState(LevelStateMachine.Factory levelStateMachineFactory) => 
+            _levelStateMachineFactory = levelStateMachineFactory;
 
         public void Enter()
         {
-            _levelStateMachine.Enter<CountingState>();
+            _levelStateMachine = _levelStateMachineFactory.Create();
+            _levelStateMachine.Enter<CreateWorldState>();
         }
 
-        public void Exit()
-        {
-            
-        }
+        public void Exit() {}
     }
 }

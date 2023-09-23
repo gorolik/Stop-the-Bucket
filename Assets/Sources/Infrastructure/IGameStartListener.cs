@@ -1,4 +1,4 @@
-﻿namespace Sources.Game
+﻿namespace Sources.Infrastructure
 {
     public interface IGameStartListener
     {

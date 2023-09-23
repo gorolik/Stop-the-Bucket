@@ -1,25 +1,27 @@
-using Sources.Infrastructure.StateMachines;
+using Sources.Infrastructure;
+using Sources.Infrastructure.StateMachines.Level;
 using Sources.Infrastructure.StateMachines.Level.States;
 using Sources.Services;
 using UnityEngine;
 using Zenject;
 
-namespace Sources.Game
+namespace Sources.Behaviour
 {
     public class BucketCatcher : MonoBehaviour, IGameStartListener
     {
+        [SerializeField] private Bucket _bucket;
+        
         private IInputService _inputService;
     
         private bool _canCatch;
-        private IStateMachine _levelStateMachine;
-        private Bucket _bucket;
+        private ILevelStateMachine _levelStateMachine;
         private SuccessLine _successLine;
 
         [Inject]
-        public void Construct(IInputService inputService, Bucket bucket, SuccessLine successLine)
+        public void Construct(ILevelStateMachine levelStateMachine, IInputService inputService, SuccessLine successLine)
         {
+            _levelStateMachine = levelStateMachine;
             _inputService = inputService;
-            _bucket = bucket;
             _successLine = successLine;
         }
 

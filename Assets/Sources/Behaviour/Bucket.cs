@@ -1,6 +1,7 @@
+using Sources.Infrastructure;
 using UnityEngine;
 
-namespace Sources.Game
+namespace Sources.Behaviour
 {
     public class Bucket : MonoBehaviour, IGameStartListener
     {
@@ -9,10 +10,7 @@ namespace Sources.Game
     
         private bool _isFalling;
         private float _fallVelocity;
-
-        private void Start() => 
-            Invoke(nameof(OnGameStarted), 1);
-
+        
         private void Update()
         {
             if (_isFalling)

@@ -6,12 +6,12 @@ namespace Sources.Infrastructure.StateMachines.Game.States
     {
         private const string _levelSceneName = "Level";
 
-        private readonly IStateMachine _stateMachine;
+        private readonly IGameStateMachine _gameStateMachine;
         private readonly SceneLoader _sceneLoader;
 
-        public LoadLevelState(IStateMachine stateMachine, SceneLoader sceneLoader)
+        public LoadLevelState(IGameStateMachine gameStateMachine, SceneLoader sceneLoader)
         {
-            _stateMachine = stateMachine;
+            _gameStateMachine = gameStateMachine;
             _sceneLoader = sceneLoader;
         }
 
@@ -21,6 +21,6 @@ namespace Sources.Infrastructure.StateMachines.Game.States
         public void Exit() {}
 
         private void OnLevelLoaded() => 
-            _stateMachine.Enter<LevelLoopState>();
+            _gameStateMachine.Enter<LevelLoopState>();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Sources.Infrastructure.StateMachines.States;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Sources.Infrastructure.StateMachines.Game.States
@@ -7,10 +8,10 @@ namespace Sources.Infrastructure.StateMachines.Game.States
     {
         private const string _initialSceneName = "Init";
 
-        private readonly GameStateMachine _gameStateMachine;
+        private readonly IGameStateMachine _gameStateMachine;
         private readonly SceneLoader _sceneLoader;
 
-        public BootstrapState(GameStateMachine gameStateMachine, SceneLoader sceneLoader)
+        public BootstrapState(IGameStateMachine gameStateMachine, SceneLoader sceneLoader)
         {
             _gameStateMachine = gameStateMachine;
             _sceneLoader = sceneLoader;
@@ -19,9 +20,7 @@ namespace Sources.Infrastructure.StateMachines.Game.States
         public void Enter()
         {
             // curtain
-            
-            if (SceneManager.GetActiveScene().name != _initialSceneName)
-                _sceneLoader.Load(_initialSceneName, OnInitSceneLoaded);
+            _sceneLoader.Load(_initialSceneName, OnInitSceneLoaded);
         }
         
         public void Exit() {}
