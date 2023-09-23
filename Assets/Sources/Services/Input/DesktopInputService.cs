@@ -1,10 +1,8 @@
-﻿using UnityEngine;
-
-namespace Sources.Services
+﻿namespace Sources.Services.Input
 {
     public class DesktopInputService : IInputService
     {
         public bool Clicked => 
-            Input.GetMouseButtonDown(0);
+            UnityEngine.Input.GetMouseButtonDown(0);
     }
 }

@@ -3,6 +3,8 @@ using Sources.Infrastructure.Factory;
 using Sources.Infrastructure.StateMachines.Game;
 using Sources.Infrastructure.StateMachines.Level;
 using Sources.Services;
+using Sources.Services.Input;
+using Sources.Services.Timer;
 using Zenject;
 
 namespace Sources.Infrastructure.Installers.GlobalInstallers
@@ -12,6 +14,7 @@ namespace Sources.Infrastructure.Installers.GlobalInstallers
         public override void InstallBindings()
         {
             BindCoroutineRunner();
+            BindTimersHandler();
             BindSceneLoader();
             BindInputService();
             BindAssetProvider();
@@ -23,6 +26,11 @@ namespace Sources.Infrastructure.Installers.GlobalInstallers
         private void BindCoroutineRunner() =>
             Container.Bind<ICoroutineRunner>()
                 .FromInstance(this)
+                .AsSingle();
+
+        private void BindTimersHandler() =>
+            Container.Bind<ITimersHandler>()
+                .To<TimersHandler>()
                 .AsSingle();
 
         private void BindSceneLoader() =>

@@ -1,7 +1,7 @@
 using Sources.Infrastructure;
 using Sources.Infrastructure.StateMachines.Level;
 using Sources.Infrastructure.StateMachines.Level.States;
-using Sources.Services;
+using Sources.Services.Input;
 using UnityEngine;
 using Zenject;
 
@@ -24,9 +24,6 @@ namespace Sources.Behaviour
             _inputService = inputService;
             _successLine = successLine;
         }
-
-        private void Start() =>
-            OnGameStarted();
 
         private void Update()
         {
