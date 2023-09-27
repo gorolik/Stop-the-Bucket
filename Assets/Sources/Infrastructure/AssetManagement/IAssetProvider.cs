@@ -4,6 +4,6 @@ namespace Sources.Infrastructure.AssetManagement
 {
     public interface IAssetProvider
     {
-        Object GetObjectByPath(string path);
+        GameObject GetGameObjectByPath(string path);
     }
 }

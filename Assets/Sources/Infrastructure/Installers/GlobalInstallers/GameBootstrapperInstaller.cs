@@ -8,9 +8,9 @@ namespace Sources.Infrastructure.Installers.GlobalInstallers
         [SerializeField] private GameBootstrapper _gameBootstrapperPrefab;
         
         public override void InstallBindings() => 
-            BindGameBootstrapper();
+            CreateAndBindGameBootstrapper();
 
-        private void BindGameBootstrapper()
+        private void CreateAndBindGameBootstrapper()
         {
             GameBootstrapper gameBootstrapper = Container
                 .InstantiatePrefab(_gameBootstrapperPrefab)

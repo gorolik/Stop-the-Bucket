@@ -93,7 +93,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3289520703826847026}
-  - component: {fileID: -6819459451445802864}
   - component: {fileID: 8812420992472733368}
   - component: {fileID: 6524314666099831287}
   m_Layer: 0
@@ -111,7 +110,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5804390575883102413}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -119,20 +118,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-6819459451445802864
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5804390575883102413}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 669e3424631baec45b030f4e049ab21d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _bucket: {fileID: 8812420992472733368}
-  _bucketCatcher: {fileID: 6524314666099831287}
 --- !u!114 &8812420992472733368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,8 +130,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba2eb5c6dcfab524989f67631dc4e25a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxFallSpeed: 16
-  _fallAcceleration: 4
 --- !u!114 &6524314666099831287
 MonoBehaviour:
   m_ObjectHideFlags: 0

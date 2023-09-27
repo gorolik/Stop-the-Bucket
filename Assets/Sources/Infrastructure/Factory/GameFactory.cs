@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Sources.Behaviour;
 using Sources.Infrastructure.AssetManagement;
+using Sources.Services.StaticData;
 using Unity.Mathematics;
 using UnityEngine;
 using Zenject;
@@ -11,31 +12,50 @@ namespace Sources.Infrastructure.Factory
     {
         private readonly DiContainer _container;
         private readonly IAssetProvider _assets;
-        
+        private readonly IStaticDataService _staticData;
+
         private readonly List<IGameStartListener> _gameStartListeners = new List<IGameStartListener>();
 
         public IEnumerable<IGameStartListener> GameStartListeners => _gameStartListeners;
 
-        public GameFactory(DiContainer container, IAssetProvider assets)
+        public GameFactory(DiContainer container, IAssetProvider assets, IStaticDataService staticData)
         {
             _container = container;
             _assets = assets;
+            _staticData = staticData;
         }
 
-        public void CreateBucket()
+        public void CreateBucket(float maxSpeed, float acceleration)
         {
-            InstantiateObject(AssetsPath.BucketPath, Vector2.zero);
+            float bucketHeight = _staticData.GetGameSettings().BucketHeight;
+            
+            GameObject bucketObject = InstantiateObject(AssetsPath.BucketPath, Vector2.up * bucketHeight);
+            
+            Bucket bucket = bucketObject.GetComponent<Bucket>();
+            bucket.Init(maxSpeed, acceleration);
         }
 
-        public void CreateSuccessLine(Camera camera)
+        public void CreateSuccessLine(Camera camera, float height)
         {
-            GameObject successLineObject = InstantiateObject(AssetsPath.SuccessLinePath, Vector2.zero);
+            float successLineHeight = _staticData.GetGameSettings().PeopleHeight + height;
+            
+            GameObject successLineObject = InstantiateObject(AssetsPath.SuccessLinePath, Vector2.up * successLineHeight);
 
             SuccessLine successLine = successLineObject.GetComponent<SuccessLine>();
             successLine.Construct(camera);
             
             _container.Bind<SuccessLine>().FromInstance(successLine);
         }
+
+        public void CreatePeople()
+        {
+            float peopleHeight = _staticData.GetGameSettings().PeopleHeight;
+
+            InstantiateObject(AssetsPath.PeoplePath, Vector2.up * peopleHeight);
+        }
+
+        public void CreateMainMenuHud() => 
+            InstantiateObject(AssetsPath.MainMenuPath, Vector2.zero);
 
         public void Cleanup()
         {
@@ -44,8 +64,9 @@ namespace Sources.Infrastructure.Factory
         
         private GameObject InstantiateObject(string path, Vector2 position)
         {
-            GameObject createdObject = _container.InstantiatePrefab(_assets.GetObjectByPath(path), position, quaternion.identity, null);
-
+            GameObject createdObject = Object.Instantiate(_assets.GetGameObjectByPath(path), position, quaternion.identity) as GameObject;
+            _container.InjectGameObject(createdObject);
+            
             TryRegisterObject(createdObject);
             
             return createdObject;

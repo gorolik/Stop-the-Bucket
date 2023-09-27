@@ -5,12 +5,17 @@ namespace Sources.Behaviour
 {
     public class Bucket : MonoBehaviour, IGameStartListener
     {
-        [SerializeField] private float _maxFallSpeed;
-        [SerializeField] private float _fallAcceleration;
-    
+        private float _maxFallSpeed;
+        private float _fallAcceleration;
         private bool _isFalling;
         private float _fallVelocity;
-        
+
+        public void Init(float maxSpeed, float acceleration)
+        {
+            _maxFallSpeed = maxSpeed;
+            _fallAcceleration = acceleration;
+        }
+
         private void Update()
         {
             if (_isFalling)

@@ -11,18 +11,29 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/17484a9af6b944dea5cd9be4dbb0da2c171c00/61/bc603102/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Armored Tanks/Assets/Scripts/UnityAds/UnityAdsInitialize.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Flying Intruders/Assets/Sources/Behaviour/UI/Curtain.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Flying Intruders/Assets/Sources/Behaviour/UI/MainMenu/PlayButton.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Flying Intruders/Assets/Sources/Infrastructure/AssetManagement/AssetProvider.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Flying Intruders/Assets/Sources/Infrastructure/Bootstrap.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Flying Intruders/Assets/Sources/Infrastructure/Factory/GameFactory.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Flying Intruders/Assets/Sources/Infrastructure/GameRunner.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Flying Intruders/Assets/Sources/Infrastructure/GameStateMachine.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Flying Intruders/Assets/Sources/Infrastructure/States/BootstrapState.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Flying Intruders/Assets/Sources/Infrastructure/States/LoadLevelState.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Flying Intruders/Assets/Sources/Infrastructure/States/MainMenuState.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Flying Intruders/Assets/Sources/Services/StaticData/StaticDataService.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Flying Intruders/Assets/Sources/StaticData/Enemy/EnemyData.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Flying Intruders/Assets/Sources/UI/Factory/UIFactory.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/Source/Install/Contexts/SceneContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Sources/Behaviour/Bucket.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Sources/Behaviour/BucketCatcher.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Sources/Infrastructure/Installers/GameObjectInstallers/BucketInstaller.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Sources/Behaviour/UI/LevelsMapUIDisplayer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Sources/Behaviour/UI/LoadingProgressIndicator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Sources/Infrastructure/Installers/GlobalInstallers/CurtainInstaller.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Sources/Infrastructure/StateMachines/IStateMachine.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Sources/UI/WindowId.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -44,7 +55,7 @@
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.toDoOptions&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -109,6 +120,12 @@
       <workItem from="1695399415672" duration="2759000" />
       <workItem from="1695450164891" duration="4785000" />
       <workItem from="1695461191630" duration="5927000" />
+      <workItem from="1695472271915" duration="5778000" />
+      <workItem from="1695553791709" duration="3304000" />
+      <workItem from="1695653718644" duration="2677000" />
+      <workItem from="1695733956570" duration="5865000" />
+      <workItem from="1695793924461" duration="5364000" />
+      <workItem from="1695815754811" duration="5069000" />
     </task>
     <servers />
   </component>
@@ -119,5 +136,9 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
