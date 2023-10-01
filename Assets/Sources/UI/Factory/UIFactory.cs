@@ -1,4 +1,5 @@
-﻿using Sources.Infrastructure.AssetManagement;
+﻿using System.Collections.Generic;
+using Sources.Infrastructure.AssetManagement;
 using Sources.Services.StaticData;
 using Sources.UI.Windows;
 using UnityEngine;
@@ -12,6 +13,8 @@ namespace Sources.UI.Factory
         private readonly DiContainer _container;
         private readonly IAssetProvider _assetProvider;
         private readonly IStaticDataService _staticData;
+
+        private readonly List<WindowBase> _createdWindows = new List<WindowBase>();
 
         public Transform UIRoot { get; private set; }
 
@@ -30,11 +33,33 @@ namespace Sources.UI.Factory
 
         public void CreateChooseLevelMenu() => 
             InstantiateByWindowId(WindowId.ChooseLevel);
-        
-        private void InstantiateByWindowId(WindowId id)
+
+        public void CreateWinWindow(int stars)
+        {
+            WinWindow winWindow = InstantiateByWindowId(WindowId.Win) as WinWindow;
+            winWindow.Init(stars);
+        }
+
+        public void Cleanup()
+        {
+            foreach (WindowBase window in _createdWindows) 
+                if(window)
+                    Object.Destroy(window.gameObject);
+
+            _createdWindows.Clear();
+            
+            if(UIRoot)
+                Object.Destroy(UIRoot.gameObject);
+        }
+
+        private WindowBase InstantiateByWindowId(WindowId id)
         {
             WindowBase window = Object.Instantiate(_staticData.GetWindowById(id).Prefab, UIRoot);
+            
             _container.InjectGameObject(window.gameObject);
+            _createdWindows.Add(window);
+
+            return window;
         }
     }
 }

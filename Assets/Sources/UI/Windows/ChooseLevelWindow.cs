@@ -1,9 +1,8 @@
 ﻿using Sources.Behaviour.UI;
 using Sources.Infrastructure.StateMachines.Game;
 using Sources.Infrastructure.StateMachines.Game.States;
-using Sources.Services.StaticData;
+using Sources.Services.LevelsStorage;
 using Sources.StaticData.Levels;
-using Sources.StaticData.Levels.Extensions;
 using UnityEngine;
 using Zenject;
 
@@ -14,14 +13,17 @@ namespace Sources.UI.Windows
         [SerializeField] private LevelsMap _levelsMap;
 
         private IGameStateMachine _gameStateMachine;
-        private IStaticDataService _staticData;
+        private ILevelsStorageService _levelsStorage;
 
         [Inject]
-        public void Construct(IGameStateMachine gameStateMachine, IStaticDataService staticData)
+        public void Construct(IGameStateMachine gameStateMachine, ILevelsStorageService levelsStorage)
         {
             _gameStateMachine = gameStateMachine;
-            _staticData = staticData;
+            _levelsStorage = levelsStorage;
         }
+
+        protected override void OnStart() => 
+            _levelsMap.Display(ClusterType.Beginner);
 
         protected override void SubscribeUpdates() => 
             _levelsMap.LevelSelected += OnLevelSelected;
@@ -29,9 +31,10 @@ namespace Sources.UI.Windows
         protected override void Cleanup() => 
             _levelsMap.LevelSelected -= OnLevelSelected;
 
-        private void OnLevelSelected(ClusterType cluster, int levelId)
+        private void OnLevelSelected(int levelId)
         {
-            LevelData levelData = _staticData.GetLevelsData().GetLevelDataByClusterAndId(cluster, levelId);
+            LevelData levelData = _levelsStorage.LevelsData[levelId];
+            
             _gameStateMachine.Enter<LoadLevelState, LevelData>(levelData);
         }
     }

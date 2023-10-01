@@ -1,5 +1,6 @@
 ﻿using Sources.Behaviour.UI;
 using Sources.Infrastructure.StateMachines.States;
+using Sources.Services.LevelsStorage;
 using Sources.Services.StaticData;
 
 namespace Sources.Infrastructure.StateMachines.Game.States
@@ -12,13 +13,15 @@ namespace Sources.Infrastructure.StateMachines.Game.States
         private readonly SceneLoader _sceneLoader;
         private readonly IStaticDataService _staticData;
         private readonly Curtain _curtain;
+        private readonly ILevelsStorageService _levelsStorage;
 
-        public BootstrapState(IGameStateMachine gameStateMachine, SceneLoader sceneLoader, IStaticDataService staticData, Curtain curtain)
+        public BootstrapState(IGameStateMachine gameStateMachine, SceneLoader sceneLoader, IStaticDataService staticData, Curtain curtain, ILevelsStorageService levelsStorage)
         {
             _gameStateMachine = gameStateMachine;
             _sceneLoader = sceneLoader;
             _staticData = staticData;
             _curtain = curtain;
+            _levelsStorage = levelsStorage;
         }
 
         public void Enter()
@@ -26,6 +29,7 @@ namespace Sources.Infrastructure.StateMachines.Game.States
             _curtain.Show();
             
             _staticData.LoadData();
+            _levelsStorage.Load();
             
             _sceneLoader.Load(_initialSceneName, OnInitSceneLoaded);
         }

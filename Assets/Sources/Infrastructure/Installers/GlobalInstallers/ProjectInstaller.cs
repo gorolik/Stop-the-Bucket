@@ -1,8 +1,10 @@
 using Sources.Infrastructure.AssetManagement;
 using Sources.Infrastructure.Factory;
+using Sources.Infrastructure.PersistentProgress;
 using Sources.Infrastructure.StateMachines.Game;
 using Sources.Infrastructure.StateMachines.Level;
 using Sources.Services.Input;
+using Sources.Services.LevelsStorage;
 using Sources.Services.SceneData;
 using Sources.Services.StaticData;
 using Sources.Services.Timer;
@@ -23,6 +25,9 @@ namespace Sources.Infrastructure.Installers.GlobalInstallers
             BindSceneLoader();
             BindInputService();
             BindAssetProvider();
+            BindSaveLoadService();
+            BindPersistentProgressService();
+            BindLevelsStorageService();
             BindWindowService();
             BindGameFactory();
             BindUIFactory();
@@ -63,6 +68,21 @@ namespace Sources.Infrastructure.Installers.GlobalInstallers
         private void BindAssetProvider() =>
             Container.Bind<IAssetProvider>()
                 .To<AssetProvider>()
+                .AsSingle();
+
+        private void BindSaveLoadService() =>
+            Container.Bind<ISaveLoadService>()
+                .To<SaveLoadService>()
+                .AsSingle();
+
+        private void BindPersistentProgressService() =>
+            Container.Bind<IPersistentProgressService>()
+                .To<PersistentProgressService>()
+                .AsSingle();
+
+        private void BindLevelsStorageService() =>
+            Container.Bind<ILevelsStorageService>()
+                .To<LevelsStorageService>()
                 .AsSingle();
 
         private void BindWindowService() =>

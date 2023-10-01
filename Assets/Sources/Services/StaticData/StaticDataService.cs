@@ -10,19 +10,24 @@ namespace Sources.Services.StaticData
 {
     public class StaticDataService : IStaticDataService
     {
-        private LevelsData _levelsData;
+        private LevelsSettingsStorage _levelsSettingsStorage;
+        private LevelClustersStorage _levelClustersStorage;
         private GameSettings _gameSettings;
         private Dictionary<WindowId, WindowConfig> _windows;
 
         public void LoadData()
         {
-            LoadLevelsData();
+            LoadLevelsSettingsStorage();
+            LoadLevelClustersStorage();
             LoadGameSettings();
             LoadWindowsData();
         }
 
-        public LevelsData GetLevelsData() =>
-            _levelsData;
+        public LevelsSettingsStorage GetLevelsSettingsStorage() =>
+            _levelsSettingsStorage;
+
+        public LevelClustersStorage GetClustersStorage() => 
+            _levelClustersStorage;
 
         public GameSettings GetGameSettings() => 
             _gameSettings;
@@ -30,8 +35,11 @@ namespace Sources.Services.StaticData
         public WindowConfig GetWindowById(WindowId id) => 
             _windows.TryGetValue(id, out WindowConfig data) ? data : null;
 
-        private void LoadLevelsData() => 
-            _levelsData = Resources.Load<LevelsData>("StaticData/Levels/LevelsData");
+        private void LoadLevelsSettingsStorage() => 
+            _levelsSettingsStorage = Resources.Load<LevelsSettingsStorage>("StaticData/Levels/LevelsSettingsStorage");
+
+        private void LoadLevelClustersStorage() => 
+            _levelClustersStorage = Resources.Load<LevelClustersStorage>("StaticData/Levels/LevelClustersStorage");
 
         private void LoadGameSettings() => 
             _gameSettings = Resources.Load<GameSettings>("StaticData/Settings/GameSettings");

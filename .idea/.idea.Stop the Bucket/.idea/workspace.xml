@@ -13,8 +13,10 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/17484a9af6b944dea5cd9be4dbb0da2c171c00/61/bc603102/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Armored Tanks/Assets/Scripts/UnityAds/UnityAdsInitialize.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Flying Intruders/Assets/Sources/Behaviour/UI/BestScore.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Flying Intruders/Assets/Sources/Behaviour/UI/Curtain.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Flying Intruders/Assets/Sources/Behaviour/UI/MainMenu/PlayButton.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Flying Intruders/Assets/Sources/Behaviour/UI/Score.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Flying Intruders/Assets/Sources/Infrastructure/AssetManagement/AssetProvider.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Flying Intruders/Assets/Sources/Infrastructure/Bootstrap.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Flying Intruders/Assets/Sources/Infrastructure/Factory/GameFactory.cs" root0="SKIP_HIGHLIGHTING" />
@@ -29,10 +31,11 @@
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/Source/Install/Contexts/SceneContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Sources/Behaviour/Bucket.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Sources/Behaviour/BucketCatcher.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Sources/Behaviour/UI/LevelsMapUIDisplayer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Sources/Behaviour/UI/LoadingProgressIndicator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Sources/Infrastructure/Installers/GlobalInstallers/CurtainInstaller.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Sources/Infrastructure/PersistentProgress/ISaveLoadService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Sources/Infrastructure/StateMachines/IStateMachine.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Sources/StaticData/Levels/LevelData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Sources/UI/WindowId.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProblemsViewState">
@@ -51,6 +54,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.7543554&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -125,7 +129,12 @@
       <workItem from="1695653718644" duration="2677000" />
       <workItem from="1695733956570" duration="5865000" />
       <workItem from="1695793924461" duration="5364000" />
-      <workItem from="1695815754811" duration="5069000" />
+      <workItem from="1695815754811" duration="6223000" />
+      <workItem from="1695996829408" duration="4427000" />
+      <workItem from="1696001960583" duration="119000" />
+      <workItem from="1696002087734" duration="123000" />
+      <workItem from="1696052620668" duration="11838000" />
+      <workItem from="1696076677894" duration="7194000" />
     </task>
     <servers />
   </component>

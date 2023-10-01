@@ -8,7 +8,8 @@ namespace Sources.Services.StaticData
     public interface IStaticDataService
     {
         void LoadData();
-        LevelsData GetLevelsData();
+        LevelsSettingsStorage GetLevelsSettingsStorage();
+        LevelClustersStorage GetClustersStorage();
         GameSettings GetGameSettings();
         WindowConfig GetWindowById(WindowId id);
     }

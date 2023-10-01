@@ -10,18 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 87241b08df595ad44b3158bd6203fea5, type: 3}
-  m_Name: LevelsData
+  m_Name: LevelsSettingsStorage
   m_EditorClassIdentifier: 
-  _levelsClusters:
-  - _clusterType: 0
-    _levelsData:
-    - _successLineRange: 1
-      _bucketMaxSpeed: 20
-      _bucketAcceleration: 5
-    - _successLineRange: 0.718
-      _bucketMaxSpeed: 20.8
-      _bucketAcceleration: 5.15
-  - _clusterType: 1
-    _levelsData: []
-  - _clusterType: 2
-    _levelsData: []
+  _levelsSettings:
+  - _successLineRange: 0.5
+    _bucketMaxSpeed: 15
+    _bucketAcceleration: 3
+  - _successLineRange: 0.3
+    _bucketMaxSpeed: 15
+    _bucketAcceleration: 3
+  - _successLineRange: 0.15
+    _bucketMaxSpeed: 15
+    _bucketAcceleration: 3

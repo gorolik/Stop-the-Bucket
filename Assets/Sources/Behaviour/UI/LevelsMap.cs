@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Sources.Infrastructure.PersistentProgress;
+using Sources.Services.LevelsStorage;
 using Sources.Services.StaticData;
 using Sources.StaticData.Levels;
 using TMPro;
@@ -15,22 +17,25 @@ namespace Sources.Behaviour.UI
         [SerializeField] private Transform _levelsContainer;
 
         private IStaticDataService _staticData;
-        
+        private IPersistentProgressService _persistentProgress;
+        private ILevelsStorageService _levelsStorage;
+
         private List<LevelButton> _levelButtons = new List<LevelButton>();
 
-        public event Action<ClusterType, int> LevelSelected;
+        public event Action<int> LevelSelected;
 
         [Inject]
-        private void Construct(IStaticDataService staticData) => 
+        private void Construct(IStaticDataService staticData, IPersistentProgressService persistentProgress, ILevelsStorageService levelsStorage)
+        {
+            _levelsStorage = levelsStorage;
             _staticData = staticData;
-
-        private void Start() => 
-            Display(ClusterType.Beginner);
+            _persistentProgress = persistentProgress;
+        }
 
         private void OnDestroy() => 
             Clear();
 
-        private void Display(ClusterType clusterType)
+        public void Display(ClusterType clusterType)
         {
             Clear();
 
@@ -41,32 +46,25 @@ namespace Sources.Behaviour.UI
         private void DisplayClusterName(ClusterType clusterType) => 
             _clusterLabel.text = clusterType.ToString();
 
-        private void OnLevelSelected(ClusterType cluster, int id) =>
-            LevelSelected?.Invoke(cluster, id);
+        private void OnLevelSelected(int id) =>
+            LevelSelected?.Invoke(id);
 
         private void DisplayLevelsList(ClusterType clusterType)
         {
-            int levelNumber = 1;
-            
-            foreach (LevelsCluster cluster in _staticData.GetLevelsData().LevelsClusters)
+            foreach (LevelData levelData in _levelsStorage.LevelsData)
             {
-                if (cluster.ClusterType == clusterType)
-                {
-                    for (int i = 0; i < cluster.LevelsData.Count; i++) 
-                        CreateLevelButton(cluster, i, levelNumber);
-
+                if(levelData.Cluster == clusterType)
+                    CreateLevelButton(levelData.Id);
+                else
                     break;
-                }
-
-                levelNumber += cluster.LevelsData.Count;
             }
         }
 
-        private void CreateLevelButton(LevelsCluster cluster, int id, int levelNumber)
+        private void CreateLevelButton(int id)
         {
             LevelButton levelButton = Instantiate(_levelButtonPrefab, _levelsContainer);
             
-            levelButton.Init(cluster.ClusterType, id, levelNumber);
+            levelButton.Init(id, 2, true); // ТУТ ПОДГРУЗИТЬ ДАННЫЕ С ПРОГРЕССА ИГРОКА
             levelButton.Clicked += OnLevelSelected;
             
             _levelButtons.Add(levelButton);

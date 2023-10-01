@@ -11,7 +11,7 @@ namespace Sources.UI.Windows
         public Action<WindowBase> Closed;
         
         private void Start() => 
-            Init();
+            OnStart();
 
         private void OnEnable()
         {
@@ -35,7 +35,7 @@ namespace Sources.UI.Windows
             Destroy(gameObject);
         }
 
-        protected virtual void Init() {}
+        protected virtual void OnStart() {}
         protected virtual void SubscribeUpdates() {}
         protected virtual void Cleanup() {}
     }

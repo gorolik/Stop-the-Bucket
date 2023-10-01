@@ -2,6 +2,7 @@
 using Sources.Infrastructure.StateMachines.States;
 using Sources.Services.SceneData;
 using Sources.StaticData.Levels;
+using Sources.UI.Factory;
 
 namespace Sources.Infrastructure.StateMachines.Game.States
 {
@@ -12,23 +13,18 @@ namespace Sources.Infrastructure.StateMachines.Game.States
         private readonly IGameStateMachine _gameStateMachine;
         private readonly SceneLoader _sceneLoader;
         private readonly ISceneDataService _sceneData;
-        private readonly IGameFactory _gameFactory;
 
-        private LevelData _loadingLevelData;
-
-        public LoadLevelState(IGameStateMachine gameStateMachine, SceneLoader sceneLoader, ISceneDataService sceneData, IGameFactory gameFactory)
+        public LoadLevelState(IGameStateMachine gameStateMachine, SceneLoader sceneLoader, ISceneDataService sceneData)
         {
             _gameStateMachine = gameStateMachine;
             _sceneLoader = sceneLoader;
             _sceneData = sceneData;
-            _gameFactory = gameFactory;
         }
 
         public void Enter(LevelData levelData)
         {
-            _gameFactory.Cleanup();
+            _sceneData.Init(levelData);
             
-            _loadingLevelData = levelData;
             _sceneLoader.Load(_levelSceneName, OnLevelLoaded);
         }
 
@@ -37,7 +33,7 @@ namespace Sources.Infrastructure.StateMachines.Game.States
         private void OnLevelLoaded()
         {
             _sceneData.Load();
-            _gameStateMachine.Enter<LevelLoopState, LevelData>(_loadingLevelData);
+            _gameStateMachine.Enter<LevelLoopState>();
         }
     }
 }

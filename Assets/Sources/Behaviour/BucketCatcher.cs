@@ -53,7 +53,7 @@ namespace Sources.Behaviour
             if (bucketHeight > successLineHeight)
                 _levelStateMachine.Enter<LoseState>();
             else
-                _levelStateMachine.Enter<WinState>();
+                _levelStateMachine.Enter<WinState, int>(1);
         }
     }
 }
