@@ -14,21 +14,19 @@ namespace Sources.Infrastructure.Factory
         private readonly DiContainer _container;
         private readonly IAssetProvider _assets;
         private readonly IStaticDataService _staticData;
-        
+        private readonly IProgressListenersContainer _progressListenersContainer;
+
         private readonly List<GameObject> _createdObjects = new List<GameObject>();
         private readonly List<IGameStartListener> _gameStartListeners = new List<IGameStartListener>();
-        private readonly List<ISavedProgressReader> _savedProgressReaders = new List<ISavedProgressReader>();
-        private readonly List<ISavedProgressUpdater> _savedProgressUpdaters = new List<ISavedProgressUpdater>();
 
         public IEnumerable<IGameStartListener> GameStartListeners => _gameStartListeners;
-        public IEnumerable<ISavedProgressReader> SavedProgressReaders => _savedProgressReaders;
-        public IEnumerable<ISavedProgressUpdater> SavedProgressUpdaters => _savedProgressUpdaters;
 
-        public GameFactory(DiContainer container, IAssetProvider assets, IStaticDataService staticData)
+        public GameFactory(DiContainer container, IAssetProvider assets, IStaticDataService staticData, IProgressListenersContainer progressListenersContainer)
         {
             _container = container;
             _assets = assets;
             _staticData = staticData;
+            _progressListenersContainer = progressListenersContainer;
         }
 
         public void CreateBucket(float maxSpeed, float acceleration)
@@ -74,10 +72,7 @@ namespace Sources.Infrastructure.Factory
                     Object.Destroy(gameObject);
 
             _createdObjects.Clear();
-
             _gameStartListeners.Clear();
-            _savedProgressReaders.Clear();
-            _savedProgressUpdaters.Clear();
         }
 
         private GameObject InstantiateObject(string path, Vector2 position)
@@ -96,17 +91,10 @@ namespace Sources.Infrastructure.Factory
             _createdObjects.Add(createdObject);
 
             foreach (IGameStartListener gameStartListener in
-                     createdObject.GetComponentsInChildren<IGameStartListener>())
+                     createdObject.GetComponents<IGameStartListener>())
                 _gameStartListeners.Add(gameStartListener);
 
-            foreach (ISavedProgressReader progressReader in
-                     createdObject.GetComponentsInChildren<ISavedProgressReader>())
-            {
-                _savedProgressReaders.Add(progressReader);
-
-                if (progressReader is ISavedProgressUpdater)
-                    _savedProgressUpdaters.Add(progressReader as ISavedProgressUpdater);
-            }
+            _progressListenersContainer.RegisterGameObject(createdObject);
         }
     }
 }

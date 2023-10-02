@@ -23,7 +23,7 @@ namespace Sources.UI.Windows
         }
 
         protected override void OnStart() => 
-            _levelsMap.Display(ClusterType.Beginner);
+            _levelsMap.DisplayCluster(ClusterType.Beginner);
 
         protected override void SubscribeUpdates() => 
             _levelsMap.LevelSelected += OnLevelSelected;

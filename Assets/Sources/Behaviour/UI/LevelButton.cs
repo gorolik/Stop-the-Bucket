@@ -45,9 +45,7 @@ namespace Sources.Behaviour.UI
             _closedLevelObject.SetActive(!opened);
         }
 
-        private void OnSelectLevelButtonClicked()
-        {
+        private void OnSelectLevelButtonClicked() => 
             Clicked?.Invoke(_id);
-        }
     }
 }

@@ -2,9 +2,8 @@
 
 namespace Sources.Infrastructure.PersistentProgress
 {
-    public interface ISaveLoadService
+    public interface IPersistentProgressContainer
     {
-        void SaveProgress();
-        PlayerProgress LoadProgress();
+        PlayerProgress PlayerProgress { get; set; }
     }
 }

@@ -22,3 +22,6 @@ MonoBehaviour:
   - _successLineRange: 0.15
     _bucketMaxSpeed: 15
     _bucketAcceleration: 3
+  - _successLineRange: 1.07
+    _bucketMaxSpeed: 42.4
+    _bucketAcceleration: 16

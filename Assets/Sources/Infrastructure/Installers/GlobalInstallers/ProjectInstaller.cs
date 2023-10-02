@@ -17,16 +17,19 @@ namespace Sources.Infrastructure.Installers.GlobalInstallers
 {
     public class ProjectInstaller : MonoInstaller, ICoroutineRunner
     {
+        private IProgressListenersContainer _progressListenersContainer;
+        
         public override void InstallBindings()
         {
+            BindProgressListenersContainer();
             BindCoroutineRunner();
             BindTimersHandler();
             BindStaticDataService();
             BindSceneLoader();
             BindInputService();
             BindAssetProvider();
-            BindSaveLoadService();
             BindPersistentProgressService();
+            BindPersistentProgressContainer();
             BindLevelsStorageService();
             BindWindowService();
             BindGameFactory();
@@ -34,6 +37,17 @@ namespace Sources.Infrastructure.Installers.GlobalInstallers
             BindSceneDataService();
             BindLevelStateMachineFactory();
             BindGameStateMachineFactory();
+        }
+
+        private void BindProgressListenersContainer()
+        {
+            ProgressListenersContainer progressListenersContainer = new ProgressListenersContainer();
+            _progressListenersContainer = progressListenersContainer;
+
+            Container.Bind<IProgressListenersContainer>()
+                .To<ProgressListenersContainer>()
+                .FromInstance(progressListenersContainer)
+                .AsSingle();
         }
 
         private void BindCoroutineRunner() =>
@@ -70,14 +84,14 @@ namespace Sources.Infrastructure.Installers.GlobalInstallers
                 .To<AssetProvider>()
                 .AsSingle();
 
-        private void BindSaveLoadService() =>
-            Container.Bind<ISaveLoadService>()
-                .To<SaveLoadService>()
-                .AsSingle();
-
         private void BindPersistentProgressService() =>
             Container.Bind<IPersistentProgressService>()
                 .To<PersistentProgressService>()
+                .AsSingle();
+
+        private void BindPersistentProgressContainer() =>
+            Container.Bind<IPersistentProgressContainer>()
+                .To<PersistentProgressContainer>()
                 .AsSingle();
 
         private void BindLevelsStorageService() =>

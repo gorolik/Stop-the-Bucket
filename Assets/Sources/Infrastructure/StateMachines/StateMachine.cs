@@ -34,6 +34,7 @@ namespace Sources.Infrastructure.StateMachines
         }
 
         private TState GetState<TState>() where TState : class, IExitableState =>
+
             _states[typeof(TState)] as TState;
     }
 }

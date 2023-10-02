@@ -18,12 +18,14 @@ namespace Sources.Infrastructure.StateMachines.Game
     {
         public GameStateMachine(LevelStateMachine.Factory levelStateMachineFactory, SceneLoader sceneLoader,
             IGameFactory gameFactory, ISceneDataService sceneData, IStaticDataService staticData, Curtain curtain,
-            IUIFactory uiFactory, IPersistentProgressService persistentProgress, ILevelsStorageService levelsStorage)
+            IUIFactory uiFactory, IPersistentProgressContainer progressContainer, ILevelsStorageService levelsStorage,
+            IPersistentProgressService persistentProgress, IProgressListenersContainer progressListenersContainer)
         {
             _states = new Dictionary<Type, IExitableState>
             {
-                [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, staticData, curtain, levelsStorage),
-                [typeof(MainMenuState)] = new MainMenuState(sceneLoader, uiFactory, gameFactory, persistentProgress, curtain),
+                [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, staticData, curtain, levelsStorage, persistentProgress),
+                [typeof(LoadProgressState)] = new LoadProgressState(this, persistentProgress, progressContainer),
+                [typeof(MainMenuState)] = new MainMenuState(sceneLoader, uiFactory, gameFactory, progressContainer, curtain, progressListenersContainer),
                 [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, sceneData),
                 [typeof(LevelLoopState)] = new LevelLoopState(levelStateMachineFactory, gameFactory, uiFactory),
             };
@@ -39,8 +41,10 @@ namespace Sources.Infrastructure.StateMachines.Game
             private readonly IStaticDataService _staticData;
             private readonly Curtain _curtain;
             private readonly IUIFactory _uiFactory;
-            private readonly IPersistentProgressService _persistentProgress;
+            private readonly IPersistentProgressContainer _progressContainer;
             private readonly ILevelsStorageService _levelsStorage;
+            private readonly IPersistentProgressService _persistentProgress;
+            private readonly IProgressListenersContainer _progressListenersContainer;
 
             public Factory(
                 DiContainer container, 
@@ -49,7 +53,10 @@ namespace Sources.Infrastructure.StateMachines.Game
                 IGameFactory gameFactory, ISceneDataService sceneData, 
                 IStaticDataService staticData, 
                 Curtain curtain, 
-                IUIFactory uiFactory, IPersistentProgressService persistentProgress, ILevelsStorageService levelsStorage)
+                IUIFactory uiFactory, 
+                IPersistentProgressContainer progressContainer, 
+                ILevelsStorageService levelsStorage, 
+                IPersistentProgressService persistentProgress, IProgressListenersContainer progressListenersContainer)
             {
                 _levelStateMachineFactory = levelStateMachineFactory;
                 _container = container;
@@ -59,8 +66,10 @@ namespace Sources.Infrastructure.StateMachines.Game
                 _staticData = staticData;
                 _curtain = curtain;
                 _uiFactory = uiFactory;
-                _persistentProgress = persistentProgress;
+                _progressContainer = progressContainer;
                 _levelsStorage = levelsStorage;
+                _persistentProgress = persistentProgress;
+                _progressListenersContainer = progressListenersContainer;
             }
 
             public GameStateMachine Create()
@@ -73,8 +82,10 @@ namespace Sources.Infrastructure.StateMachines.Game
                     _staticData, 
                     _curtain, 
                     _uiFactory, 
-                    _persistentProgress,
-                    _levelsStorage);
+                    _progressContainer,
+                    _levelsStorage,
+                    _persistentProgress, 
+                    _progressListenersContainer);
                 
                 _container.Bind<IGameStateMachine>()
                     .To<GameStateMachine>()

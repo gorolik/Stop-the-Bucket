@@ -4,6 +4,7 @@ namespace Sources.Infrastructure.PersistentProgress
 {
     public interface IPersistentProgressService
     {
-        PlayerProgress PlayerProgress { get; set; }
+        void SaveProgress();
+        PlayerProgress LoadProgress();
     }
 }

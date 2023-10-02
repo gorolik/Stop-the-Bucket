@@ -14,7 +14,7 @@ namespace Sources.Infrastructure.StateMachines.Level
     public class LevelStateMachine : StateMachine, ILevelStateMachine
     {
         public LevelStateMachine(IGameFactory gameFactory, ITimersHandler timersHandler, ISceneDataService sceneData,
-            ISaveLoadService progressService, IUIFactory uiFactory)
+            IPersistentProgressService progressService, IUIFactory uiFactory)
         {
             _states = new Dictionary<Type, IExitableState>
             {
@@ -32,27 +32,27 @@ namespace Sources.Infrastructure.StateMachines.Level
             private readonly DiContainer _container;
             private readonly ITimersHandler _timersHandler;
             private readonly ISceneDataService _sceneDataService;
-            private readonly ISaveLoadService _progressService;
+            private readonly IPersistentProgressService _persistentProgress;
             private readonly IUIFactory _uiFactory;
             
-            public Factory(DiContainer container, IGameFactory gameFactory, ITimersHandler timersHandler, ISceneDataService sceneDataService, ISaveLoadService progressService, IUIFactory uiFactory)
+            public Factory(DiContainer container, IGameFactory gameFactory, ITimersHandler timersHandler, ISceneDataService sceneDataService, IPersistentProgressService persistentProgress, IUIFactory uiFactory)
             {
                 _container = container;
                 _gameFactory = gameFactory;
                 _timersHandler = timersHandler;
                 _sceneDataService = sceneDataService;
-                _progressService = progressService;
+                _persistentProgress = persistentProgress;
                 _uiFactory = uiFactory;
             }
 
             public LevelStateMachine Create()
             {
-                LevelStateMachine levelStateMachine = new LevelStateMachine(_gameFactory, _timersHandler, _sceneDataService, _progressService, _uiFactory);
+                LevelStateMachine levelStateMachine = new LevelStateMachine(_gameFactory, _timersHandler, _sceneDataService, _persistentProgress, _uiFactory);
                 
                 _container.Bind<ILevelStateMachine>()
                     .To<LevelStateMachine>()
                     .FromInstance(levelStateMachine)
-                    .AsSingle();
+                    .AsCached();
                 
                 return levelStateMachine;
             }

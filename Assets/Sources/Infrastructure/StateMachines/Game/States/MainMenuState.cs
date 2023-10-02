@@ -13,15 +13,19 @@ namespace Sources.Infrastructure.StateMachines.Game.States
         private readonly SceneLoader _sceneLoader;
         private readonly IUIFactory _uiFactory;
         private readonly IGameFactory _gameFactory;
-        private readonly IPersistentProgressService _persistentProgress;
+        private readonly IPersistentProgressContainer _progressContainer;
         private readonly Curtain _curtain;
+        private readonly IProgressListenersContainer _progressListenersContainer;
 
-        public MainMenuState(SceneLoader sceneLoader, IUIFactory uiFactory, IGameFactory gameFactory, IPersistentProgressService persistentProgress, Curtain curtain)
+        public MainMenuState(SceneLoader sceneLoader, IUIFactory uiFactory, IGameFactory gameFactory,
+            IPersistentProgressContainer progressContainer, Curtain curtain,
+            IProgressListenersContainer progressListenersContainer)
         {
             _curtain = curtain;
+            _progressListenersContainer = progressListenersContainer;
             _sceneLoader = sceneLoader;
             _uiFactory = uiFactory;
-            _persistentProgress = persistentProgress;
+            _progressContainer = progressContainer;
             _gameFactory = gameFactory;
         }
 
@@ -49,8 +53,8 @@ namespace Sources.Infrastructure.StateMachines.Game.States
 
         private void InformProgressReaders()
         {
-            foreach (ISavedProgressReader progressReader in _gameFactory.SavedProgressReaders)
-                progressReader.LoadProgress(_persistentProgress.PlayerProgress);
+            foreach (ISavedProgressReader progressReader in _progressListenersContainer.SavedProgressReaders)
+                progressReader.LoadProgress(_progressContainer.PlayerProgress);
         }
     }
 }

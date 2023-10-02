@@ -12,11 +12,12 @@ namespace Sources.Behaviour
         [SerializeField] private Bucket _bucket;
         
         private IInputService _inputService;
-    
         private bool _canCatch;
-        private ILevelStateMachine _levelStateMachine;
+    
         private SuccessLine _successLine;
 
+        private ILevelStateMachine _levelStateMachine;
+        
         [Inject]
         public void Construct(ILevelStateMachine levelStateMachine, IInputService inputService, SuccessLine successLine)
         {

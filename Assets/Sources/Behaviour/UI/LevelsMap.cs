@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using ModestTree;
 using Sources.Infrastructure.PersistentProgress;
+using Sources.Infrastructure.PersistentProgress.Structure;
 using Sources.Services.LevelsStorage;
 using Sources.Services.StaticData;
 using Sources.StaticData.Levels;
@@ -17,7 +20,7 @@ namespace Sources.Behaviour.UI
         [SerializeField] private Transform _levelsContainer;
 
         private IStaticDataService _staticData;
-        private IPersistentProgressService _persistentProgress;
+        private IPersistentProgressContainer _progressContainer;
         private ILevelsStorageService _levelsStorage;
 
         private List<LevelButton> _levelButtons = new List<LevelButton>();
@@ -25,22 +28,30 @@ namespace Sources.Behaviour.UI
         public event Action<int> LevelSelected;
 
         [Inject]
-        private void Construct(IStaticDataService staticData, IPersistentProgressService persistentProgress, ILevelsStorageService levelsStorage)
+        private void Construct(IStaticDataService staticData, IPersistentProgressContainer progressContainer, ILevelsStorageService levelsStorage)
         {
             _levelsStorage = levelsStorage;
             _staticData = staticData;
-            _persistentProgress = persistentProgress;
+            _progressContainer = progressContainer;
         }
 
         private void OnDestroy() => 
             Clear();
 
-        public void Display(ClusterType clusterType)
+        public void DisplayCluster(ClusterType clusterType)
         {
             Clear();
-
+            
+            CompletedLevel[] completedLevels = _progressContainer.PlayerProgress.CompletedLevels.ToArray();
+            int maxCompletedLevelId = 0;
+            
+            Debug.Log(completedLevels.Length);
+            
+            if(completedLevels.Length > 0)
+                maxCompletedLevelId = completedLevels.Max(x=>x.Id);
+            
             DisplayClusterName(clusterType);
-            DisplayLevelsList(clusterType);
+            DisplayLevelsList(clusterType, maxCompletedLevelId);
         }
 
         private void DisplayClusterName(ClusterType clusterType) => 
@@ -49,22 +60,34 @@ namespace Sources.Behaviour.UI
         private void OnLevelSelected(int id) =>
             LevelSelected?.Invoke(id);
 
-        private void DisplayLevelsList(ClusterType clusterType)
+        private void DisplayLevelsList(ClusterType clusterType, int maxCompletedLevelId)
         {
             foreach (LevelData levelData in _levelsStorage.LevelsData)
             {
                 if(levelData.Cluster == clusterType)
-                    CreateLevelButton(levelData.Id);
+                    CreateLevelButton(levelData.Id, maxCompletedLevelId);
                 else
                     break;
             }
         }
 
-        private void CreateLevelButton(int id)
+        private void CreateLevelButton(int id, int maxCompletedLevelId)
         {
+            CompletedLevel[] completedLevels = _progressContainer.PlayerProgress.CompletedLevels.ToArray();
+            CompletedLevel completedLevel = completedLevels.FirstOrDefault(x => x.Id == id);
+
+            int stars = 0;
+            bool opened = true;
+            
+            if (completedLevel != null)
+                stars = completedLevel.Stars;
+            
+            if (id + 1 > maxCompletedLevelId)
+                opened = false;
+            
             LevelButton levelButton = Instantiate(_levelButtonPrefab, _levelsContainer);
             
-            levelButton.Init(id, 2, true); // ТУТ ПОДГРУЗИТЬ ДАННЫЕ С ПРОГРЕССА ИГРОКА
+            levelButton.Init(id, stars, opened);
             levelButton.Clicked += OnLevelSelected;
             
             _levelButtons.Add(levelButton);

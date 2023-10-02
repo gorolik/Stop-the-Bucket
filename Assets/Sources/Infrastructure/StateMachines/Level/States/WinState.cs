@@ -3,21 +3,22 @@ using Sources.Infrastructure.PersistentProgress.Structure;
 using Sources.Infrastructure.StateMachines.States;
 using Sources.Services.SceneData;
 using Sources.UI.Factory;
+using UnityEngine;
 
 namespace Sources.Infrastructure.StateMachines.Level.States
 {
     public class WinState : IPayloadState<int>, ISavedProgressUpdater
     {
         private readonly ISceneDataService _sceneData;
-        private readonly ISaveLoadService _progressService;
+        private readonly IPersistentProgressService _persistentProgress;
         private readonly IUIFactory _uiFactory;
 
         private int _stars;
 
-        public WinState(ISceneDataService sceneData, ISaveLoadService progressService, IUIFactory uiFactory)
+        public WinState(ISceneDataService sceneData, IPersistentProgressService persistentProgress, IUIFactory uiFactory)
         {
             _sceneData = sceneData;
-            _progressService = progressService;
+            _persistentProgress = persistentProgress;
             _uiFactory = uiFactory;
         }
 
@@ -25,7 +26,7 @@ namespace Sources.Infrastructure.StateMachines.Level.States
         {
             _stars = stars;
             
-            _progressService.SaveProgress();
+            _persistentProgress.SaveProgress();
             _uiFactory.CreateWinWindow(_stars);
         }
 
@@ -35,6 +36,8 @@ namespace Sources.Infrastructure.StateMachines.Level.States
 
         public void UpdateProgress(PlayerProgress progress)
         {
+            Debug.Log("Progress updating");
+            
             foreach (CompletedLevel level in progress.CompletedLevels)
             {
                 if (level.Id == _sceneData.LevelData.Id)
@@ -46,8 +49,9 @@ namespace Sources.Infrastructure.StateMachines.Level.States
                 }
             }
             
-            CompletedLevel completedLevel = new CompletedLevel(_sceneData.LevelData.Id, _stars); // количество звёзд
+            CompletedLevel completedLevel = new CompletedLevel(_sceneData.LevelData.Id, _stars);
             progress.CompletedLevels.Add(completedLevel);
+            Debug.Log("Added " + completedLevel.Id);
         }
     }
 }
