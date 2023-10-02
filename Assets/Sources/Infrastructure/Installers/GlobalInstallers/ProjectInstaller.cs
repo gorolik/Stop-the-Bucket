@@ -17,8 +17,6 @@ namespace Sources.Infrastructure.Installers.GlobalInstallers
 {
     public class ProjectInstaller : MonoInstaller, ICoroutineRunner
     {
-        private IProgressListenersContainer _progressListenersContainer;
-        
         public override void InstallBindings()
         {
             BindProgressListenersContainer();
@@ -39,16 +37,10 @@ namespace Sources.Infrastructure.Installers.GlobalInstallers
             BindGameStateMachineFactory();
         }
 
-        private void BindProgressListenersContainer()
-        {
-            ProgressListenersContainer progressListenersContainer = new ProgressListenersContainer();
-            _progressListenersContainer = progressListenersContainer;
-
+        private void BindProgressListenersContainer() =>
             Container.Bind<IProgressListenersContainer>()
                 .To<ProgressListenersContainer>()
-                .FromInstance(progressListenersContainer)
                 .AsSingle();
-        }
 
         private void BindCoroutineRunner() =>
             Container.Bind<ICoroutineRunner>()

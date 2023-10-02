@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c28c51182535b9f4f95c262fb3f7bed0, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  _bucketHeight: 3
+  _bucketHeight: 2.8
+  _peopleHeight: -1.5

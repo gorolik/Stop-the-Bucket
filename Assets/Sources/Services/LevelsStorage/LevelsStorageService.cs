@@ -24,25 +24,46 @@ namespace Sources.Services.LevelsStorage
 
             for (int i = 0; i < levelsSettingsStorage.LevelsSettings.Count; i++)
             {
+                int previousLevels =  GetPreviousLevelsCount(levelClusterId, clustersStorage);
+                int levelNumberInCluster = i - previousLevels + 1;
+                ClusterType cluster = GetCluster(levelNumberInCluster, clustersStorage, ref levelClusterId);
+                
                 LevelSettings settings = levelsSettingsStorage.LevelsSettings[i];
 
-                int previousLevels = 0;
-                for (int j = 0; j < levelClusterId; j++) 
-                    previousLevels += clustersStorage.LevelClusters[j].LevelsCount;
-                int levelNumberInCluster = i - previousLevels + 1;
-
-                if (levelNumberInCluster > clustersStorage.LevelClusters[levelClusterId].LevelsCount)
-                    if(clustersStorage.LevelClusters[levelClusterId + 1] != null)
-                        levelClusterId++;
-
-                ClusterType cluster = clustersStorage.LevelClusters[levelClusterId].Type;
-                
                 LevelData data = new LevelData(settings, cluster, i);
+                
                 _levelsData.Add(data);
             }
         }
 
         public IReadOnlyList<LevelData> LevelsData =>
             _levelsData;
+
+        private ClusterType GetCluster(int levelNumberInCluster, LevelClustersStorage clustersStorage, ref int levelClusterId)
+        {
+            levelClusterId = GetLevelClusterId(levelNumberInCluster, clustersStorage, levelClusterId);
+            ClusterType cluster = clustersStorage.LevelClusters[levelClusterId].Type;
+            
+            return cluster;
+        }
+
+        private int GetLevelClusterId(int levelNumberInCluster, LevelClustersStorage clustersStorage, int levelClusterId)
+        {
+            if (levelNumberInCluster > clustersStorage.LevelClusters[levelClusterId].LevelsCount)
+                if (clustersStorage.LevelClusters[levelClusterId + 1] != null)
+                    levelClusterId++;
+            
+            return levelClusterId;
+        }
+
+        private int GetPreviousLevelsCount(int levelClusterId, LevelClustersStorage clustersStorage)
+        {
+            int previousLevels = 0;
+            
+            for (int j = 0; j < levelClusterId; j++)
+                previousLevels += clustersStorage.LevelClusters[j].LevelsCount;
+            
+            return previousLevels;
+        }
     }
 }

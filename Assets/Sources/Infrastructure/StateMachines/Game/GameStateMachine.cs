@@ -56,7 +56,8 @@ namespace Sources.Infrastructure.StateMachines.Game
                 IUIFactory uiFactory, 
                 IPersistentProgressContainer progressContainer, 
                 ILevelsStorageService levelsStorage, 
-                IPersistentProgressService persistentProgress, IProgressListenersContainer progressListenersContainer)
+                IPersistentProgressService persistentProgress, 
+                IProgressListenersContainer progressListenersContainer)
             {
                 _levelStateMachineFactory = levelStateMachineFactory;
                 _container = container;

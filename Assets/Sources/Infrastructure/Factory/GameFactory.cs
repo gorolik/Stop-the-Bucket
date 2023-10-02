@@ -21,7 +21,8 @@ namespace Sources.Infrastructure.Factory
 
         public IEnumerable<IGameStartListener> GameStartListeners => _gameStartListeners;
 
-        public GameFactory(DiContainer container, IAssetProvider assets, IStaticDataService staticData, IProgressListenersContainer progressListenersContainer)
+        public GameFactory(DiContainer container, IAssetProvider assets, IStaticDataService staticData, 
+            IProgressListenersContainer progressListenersContainer)
         {
             _container = container;
             _assets = assets;
@@ -43,8 +44,7 @@ namespace Sources.Infrastructure.Factory
         {
             float successLineHeight = _staticData.GetGameSettings().PeopleHeight + height;
 
-            GameObject successLineObject =
-                InstantiateObject(AssetsPath.SuccessLinePath, Vector2.up * successLineHeight);
+            GameObject successLineObject = InstantiateObject(AssetsPath.SuccessLinePath, Vector2.up * successLineHeight);
 
             SuccessLine successLine = successLineObject.GetComponent<SuccessLine>();
             successLine.Construct(camera);
@@ -77,8 +77,7 @@ namespace Sources.Infrastructure.Factory
 
         private GameObject InstantiateObject(string path, Vector2 position)
         {
-            GameObject createdObject =
-                Object.Instantiate(_assets.GetGameObjectByPath(path), position, quaternion.identity) as GameObject;
+            GameObject createdObject = Object.Instantiate(_assets.GetGameObjectByPath(path), position, quaternion.identity);
             _container.InjectGameObject(createdObject);
 
             TryRegisterObject(createdObject);
@@ -90,8 +89,7 @@ namespace Sources.Infrastructure.Factory
         {
             _createdObjects.Add(createdObject);
 
-            foreach (IGameStartListener gameStartListener in
-                     createdObject.GetComponents<IGameStartListener>())
+            foreach (IGameStartListener gameStartListener in createdObject.GetComponents<IGameStartListener>())
                 _gameStartListeners.Add(gameStartListener);
 
             _progressListenersContainer.RegisterGameObject(createdObject);

@@ -7,51 +7,49 @@ using UnityEngine;
 
 namespace Sources.Infrastructure.StateMachines.Level.States
 {
-    public class WinState : IPayloadState<int>, ISavedProgressUpdater
+    public class WinState : IPayloadState<int>
     {
         private readonly ISceneDataService _sceneData;
         private readonly IPersistentProgressService _persistentProgress;
         private readonly IUIFactory _uiFactory;
+        private readonly IPersistentProgressContainer _progressContainer;
 
-        private int _stars;
-
-        public WinState(ISceneDataService sceneData, IPersistentProgressService persistentProgress, IUIFactory uiFactory)
+        public WinState(ISceneDataService sceneData, IPersistentProgressService persistentProgress, IUIFactory uiFactory,
+            IPersistentProgressContainer progressContainer)
         {
             _sceneData = sceneData;
             _persistentProgress = persistentProgress;
             _uiFactory = uiFactory;
+            _progressContainer = progressContainer;
         }
 
         public void Enter(int stars)
         {
-            _stars = stars;
-            
-            _persistentProgress.SaveProgress();
-            _uiFactory.CreateWinWindow(_stars);
+            UpdateProgress(_progressContainer.PlayerProgress, stars);
+            _uiFactory.CreateWinWindow(stars);
         }
 
         public void Exit() {}
         
         public void LoadProgress(PlayerProgress progress) {}
 
-        public void UpdateProgress(PlayerProgress progress)
+        public void UpdateProgress(PlayerProgress progress, int stars)
         {
-            Debug.Log("Progress updating");
-            
             foreach (CompletedLevel level in progress.CompletedLevels)
             {
                 if (level.Id == _sceneData.LevelData.Id)
                 {
-                    if(level.Stars < _stars)
-                        level.Stars = _stars;
+                    if(level.Stars < stars)
+                        level.Stars = stars;
                     
                     return;
                 }
             }
             
-            CompletedLevel completedLevel = new CompletedLevel(_sceneData.LevelData.Id, _stars);
+            CompletedLevel completedLevel = new CompletedLevel(_sceneData.LevelData.Id, stars);
             progress.CompletedLevels.Add(completedLevel);
-            Debug.Log("Added " + completedLevel.Id);
+
+            _persistentProgress.SaveProgress();
         }
     }
 }

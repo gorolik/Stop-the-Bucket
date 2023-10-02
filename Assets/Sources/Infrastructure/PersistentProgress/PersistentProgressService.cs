@@ -23,6 +23,7 @@ namespace Sources.Infrastructure.PersistentProgress
                 progressUpdater.UpdateProgress(_progressContainer.PlayerProgress);
 
             PlayerPrefs.SetString(_progressKey, _progressContainer.PlayerProgress.ToJson());
+            PlayerPrefs.Save();
         }
 
         public PlayerProgress LoadProgress() => 

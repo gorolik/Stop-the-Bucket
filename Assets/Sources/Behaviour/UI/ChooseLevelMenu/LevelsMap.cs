@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using ModestTree;
 using Sources.Infrastructure.PersistentProgress;
 using Sources.Infrastructure.PersistentProgress.Structure;
 using Sources.Services.LevelsStorage;
@@ -11,7 +10,7 @@ using TMPro;
 using UnityEngine;
 using Zenject;
 
-namespace Sources.Behaviour.UI
+namespace Sources.Behaviour.UI.ChooseLevelMenu
 {
     public class LevelsMap : MonoBehaviour
     {
@@ -43,13 +42,16 @@ namespace Sources.Behaviour.UI
             Clear();
             
             CompletedLevel[] completedLevels = _progressContainer.PlayerProgress.CompletedLevels.ToArray();
-            int maxCompletedLevelId = 0;
-            
-            Debug.Log(completedLevels.Length);
+            int maxCompletedLevelId = -1;
             
             if(completedLevels.Length > 0)
                 maxCompletedLevelId = completedLevels.Max(x=>x.Id);
-            
+
+            Debug.Log("Completed levels data: " + completedLevels.Length);
+            Debug.Log("Max Completed Level Id: " + maxCompletedLevelId);
+            for (int i = 0; i <  completedLevels.Length; i++)
+                Debug.Log(completedLevels[i].Id + " stars: " + completedLevels[i].Stars);
+
             DisplayClusterName(clusterType);
             DisplayLevelsList(clusterType, maxCompletedLevelId);
         }
@@ -71,26 +73,32 @@ namespace Sources.Behaviour.UI
             }
         }
 
-        private void CreateLevelButton(int id, int maxCompletedLevelId)
+        private void CreateLevelButton(int levelId, int maxCompletedLevelId)
+        {
+            LevelButtonParameters parameters = GetLevelButtonParameters(levelId, maxCompletedLevelId);
+            
+            LevelButton levelButton = Instantiate(_levelButtonPrefab, _levelsContainer);
+            levelButton.Init(parameters.LevelId, parameters.Stars, parameters.Opened);
+            
+            levelButton.Clicked += OnLevelSelected;
+            _levelButtons.Add(levelButton);
+        }
+
+        private LevelButtonParameters GetLevelButtonParameters(int id, int maxCompletedLevelId)
         {
             CompletedLevel[] completedLevels = _progressContainer.PlayerProgress.CompletedLevels.ToArray();
             CompletedLevel completedLevel = completedLevels.FirstOrDefault(x => x.Id == id);
 
             int stars = 0;
             bool opened = true;
-            
+
             if (completedLevel != null)
                 stars = completedLevel.Stars;
-            
-            if (id + 1 > maxCompletedLevelId)
+
+            if (id > maxCompletedLevelId + 1)
                 opened = false;
             
-            LevelButton levelButton = Instantiate(_levelButtonPrefab, _levelsContainer);
-            
-            levelButton.Init(id, stars, opened);
-            levelButton.Clicked += OnLevelSelected;
-            
-            _levelButtons.Add(levelButton);
+            return new LevelButtonParameters(id, stars, opened);
         }
 
         private void Clear()

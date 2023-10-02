@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Sources.Behaviour.UI
+namespace Sources.Behaviour.UI.ChooseLevelMenu
 {
     public class LevelButton : MonoBehaviour
     {

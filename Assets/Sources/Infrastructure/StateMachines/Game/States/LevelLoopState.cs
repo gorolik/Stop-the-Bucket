@@ -31,6 +31,7 @@ namespace Sources.Infrastructure.StateMachines.Game.States
         {
             _gameFactory.Cleanup();
             _uiFactory.Cleanup();
+            
             _levelStateMachine = null;
             _levelStateMachineFactory.Cleanup();
         }
