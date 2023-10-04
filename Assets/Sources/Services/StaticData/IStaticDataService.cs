@@ -12,5 +12,6 @@ namespace Sources.Services.StaticData
         LevelClustersStorage GetClustersStorage();
         GameSettings GetGameSettings();
         WindowConfig GetWindowById(WindowId id);
+        StarsSettings GetStarsSettings();
     }
 }

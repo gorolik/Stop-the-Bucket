@@ -2,6 +2,8 @@ using Sources.Infrastructure;
 using Sources.Infrastructure.StateMachines.Level;
 using Sources.Infrastructure.StateMachines.Level.States;
 using Sources.Services.Input;
+using Sources.Services.LevelResult;
+using Sources.Services.SceneData;
 using UnityEngine;
 using Zenject;
 
@@ -14,16 +16,19 @@ namespace Sources.Behaviour
         private IInputService _inputService;
         private bool _canCatch;
     
-        private SuccessLine _successLine;
+        private ISceneDataService _sceneData;
 
         private ILevelStateMachine _levelStateMachine;
-        
+        private ILevelResultService _levelResult;
+
         [Inject]
-        public void Construct(ILevelStateMachine levelStateMachine, IInputService inputService, SuccessLine successLine)
+        public void Construct(ILevelStateMachine levelStateMachine, IInputService inputService, ISceneDataService sceneData,
+            ILevelResultService levelResult)
         {
             _levelStateMachine = levelStateMachine;
             _inputService = inputService;
-            _successLine = successLine;
+            _sceneData = sceneData;
+            _levelResult = levelResult;
         }
 
         private void Update()
@@ -49,12 +54,11 @@ namespace Sources.Behaviour
         private void DefineCatchResult()
         {
             float bucketHeight = _bucket.transform.position.y;
-            float successLineHeight = _successLine.transform.position.y;
 
-            if (bucketHeight > successLineHeight)
-                _levelStateMachine.Enter<LoseState>();
+            if (_levelResult.IsWin(bucketHeight))
+                _levelStateMachine.Enter<WinState, int>(_levelResult.GetStarsCount(bucketHeight));
             else
-                _levelStateMachine.Enter<WinState, int>(1);
+                _levelStateMachine.Enter<LoseState>();
         }
     }
 }

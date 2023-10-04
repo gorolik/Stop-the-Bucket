@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Sources.Infrastructure.Factory;
 using Sources.Infrastructure.PersistentProgress;
+using Sources.Infrastructure.PersistentProgress.Services;
 using Sources.Infrastructure.StateMachines.Level.States;
 using Sources.Infrastructure.StateMachines.States;
 using Sources.Services.SceneData;

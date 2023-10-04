@@ -25,38 +25,42 @@ namespace Sources.Behaviour.UI.ChooseLevelMenu
         private List<LevelButton> _levelButtons = new List<LevelButton>();
 
         public event Action<int> LevelSelected;
+        public event Action<ClusterType> OnClusterDisplayed;
 
         [Inject]
-        private void Construct(IStaticDataService staticData, IPersistentProgressContainer progressContainer, ILevelsStorageService levelsStorage)
+        private void Construct(IStaticDataService staticData, IPersistentProgressContainer progressContainer,
+            ILevelsStorageService levelsStorage)
         {
             _levelsStorage = levelsStorage;
             _staticData = staticData;
             _progressContainer = progressContainer;
         }
 
-        private void OnDestroy() => 
+        private void OnDestroy() =>
             Clear();
 
         public void DisplayCluster(ClusterType clusterType)
         {
             Clear();
-            
+
             CompletedLevel[] completedLevels = _progressContainer.PlayerProgress.CompletedLevels.ToArray();
             int maxCompletedLevelId = -1;
-            
-            if(completedLevels.Length > 0)
-                maxCompletedLevelId = completedLevels.Max(x=>x.Id);
+
+            if (completedLevels.Length > 0)
+                maxCompletedLevelId = completedLevels.Max(x => x.Id);
 
             Debug.Log("Completed levels data: " + completedLevels.Length);
             Debug.Log("Max Completed Level Id: " + maxCompletedLevelId);
-            for (int i = 0; i <  completedLevels.Length; i++)
+            for (int i = 0; i < completedLevels.Length; i++)
                 Debug.Log(completedLevels[i].Id + " stars: " + completedLevels[i].Stars);
 
             DisplayClusterName(clusterType);
             DisplayLevelsList(clusterType, maxCompletedLevelId);
+
+            OnClusterDisplayed?.Invoke(clusterType);
         }
 
-        private void DisplayClusterName(ClusterType clusterType) => 
+        private void DisplayClusterName(ClusterType clusterType) =>
             _clusterLabel.text = clusterType.ToString();
 
         private void OnLevelSelected(int id) =>
@@ -64,22 +68,19 @@ namespace Sources.Behaviour.UI.ChooseLevelMenu
 
         private void DisplayLevelsList(ClusterType clusterType, int maxCompletedLevelId)
         {
-            foreach (LevelData levelData in _levelsStorage.LevelsData)
-            {
-                if(levelData.Cluster == clusterType)
-                    CreateLevelButton(levelData.Id, maxCompletedLevelId);
-                else
-                    break;
-            }
+            LevelData[] levelsData = _levelsStorage.LevelsData.Where(x => x.Cluster == clusterType).ToArray();
+
+            foreach (LevelData levelData in levelsData)
+                CreateLevelButton(levelData.Id, maxCompletedLevelId);
         }
 
         private void CreateLevelButton(int levelId, int maxCompletedLevelId)
         {
             LevelButtonParameters parameters = GetLevelButtonParameters(levelId, maxCompletedLevelId);
-            
+
             LevelButton levelButton = Instantiate(_levelButtonPrefab, _levelsContainer);
-            levelButton.Init(parameters.LevelId, parameters.Stars, parameters.Opened);
-            
+            levelButton.Init(parameters);
+
             levelButton.Clicked += OnLevelSelected;
             _levelButtons.Add(levelButton);
         }
@@ -97,7 +98,7 @@ namespace Sources.Behaviour.UI.ChooseLevelMenu
 
             if (id > maxCompletedLevelId + 1)
                 opened = false;
-            
+
             return new LevelButtonParameters(id, stars, opened);
         }
 

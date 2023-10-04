@@ -13,6 +13,7 @@ namespace Sources.Services.StaticData
         private LevelsSettingsStorage _levelsSettingsStorage;
         private LevelClustersStorage _levelClustersStorage;
         private GameSettings _gameSettings;
+        private StarsSettings _starsSettings;
         private Dictionary<WindowId, WindowConfig> _windows;
 
         public void LoadData()
@@ -21,6 +22,7 @@ namespace Sources.Services.StaticData
             LoadLevelClustersStorage();
             LoadGameSettings();
             LoadWindowsData();
+            LoadStarsSettings();
         }
 
         public LevelsSettingsStorage GetLevelsSettingsStorage() =>
@@ -34,6 +36,9 @@ namespace Sources.Services.StaticData
 
         public WindowConfig GetWindowById(WindowId id) => 
             _windows.TryGetValue(id, out WindowConfig data) ? data : null;
+
+        public StarsSettings GetStarsSettings() => 
+            _starsSettings;
 
         private void LoadLevelsSettingsStorage() => 
             _levelsSettingsStorage = Resources.Load<LevelsSettingsStorage>("StaticData/Levels/LevelsSettingsStorage");
@@ -51,5 +56,8 @@ namespace Sources.Services.StaticData
                 .Windows
                 .ToDictionary(x => x.WindowId, x => x);
         }
+
+        private void LoadStarsSettings() => 
+            _starsSettings = Resources.Load<StarsSettings>("StaticData/Settings/StarsSettings");
     }
 }

@@ -63,7 +63,9 @@ namespace Sources.UI.Windows
         {
             int currentLevelId = _sceneData.LevelData.Id;
 
-            if (_levelsStorage.LevelsData.Count < currentLevelId + 1)
+            Debug.Log(currentLevelId + 1 < _levelsStorage.LevelsData.Count);
+            
+            if (currentLevelId + 1 < _levelsStorage.LevelsData.Count)
             {
                 LevelData nextLevelData = _levelsStorage.LevelsData[currentLevelId + 1];
                 

@@ -1,4 +1,5 @@
 ﻿using Sources.Infrastructure.PersistentProgress;
+using Sources.Infrastructure.PersistentProgress.Services;
 using Sources.Infrastructure.PersistentProgress.Structure;
 using Sources.Infrastructure.StateMachines.States;
 using Sources.Services.SceneData;
@@ -47,7 +48,7 @@ namespace Sources.Infrastructure.StateMachines.Level.States
             }
             
             CompletedLevel completedLevel = new CompletedLevel(_sceneData.LevelData.Id, stars);
-            progress.CompletedLevels.Add(completedLevel);
+            progress.AddCompletedLevel(completedLevel);
 
             _persistentProgress.SaveProgress();
         }

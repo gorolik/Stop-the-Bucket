@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: LevelsSettingsStorage
   m_EditorClassIdentifier: 
   _levelsSettings:
-  - _successLineRange: 0.5
+  - _successLineRange: 2.3
     _bucketMaxSpeed: 15
-    _bucketAcceleration: 3
-  - _successLineRange: 0.3
+    _bucketAcceleration: 5
+  - _successLineRange: 2.3
+    _bucketMaxSpeed: 17
+    _bucketAcceleration: 6
+  - _successLineRange: 2.3
+    _bucketMaxSpeed: 19
+    _bucketAcceleration: 7
+  - _successLineRange: 1.5
     _bucketMaxSpeed: 15
-    _bucketAcceleration: 3
-  - _successLineRange: 0.15
-    _bucketMaxSpeed: 15
-    _bucketAcceleration: 3
-  - _successLineRange: 1.07
-    _bucketMaxSpeed: 42.4
-    _bucketAcceleration: 16
+    _bucketAcceleration: 6

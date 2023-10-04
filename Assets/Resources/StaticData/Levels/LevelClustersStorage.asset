@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelClusters:
   - _type: 0
-    _levelsCount: 4
+    _levelsCount: 3
     _viewData:
       _background: {fileID: 21300000, guid: f67d97b2f334b9a4da0ea99e3e603fbb, type: 3}
       _people: {fileID: 21300000, guid: 21663e01e9d6cc9489c65e0556d43b29, type: 3}
