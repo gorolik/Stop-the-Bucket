@@ -123,7 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &474253519
+--- !u!1001 &592128509
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -224,10 +224,10 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 270a95118e89da4469d8f8b26424b01b, type: 3}
---- !u!224 &474253520 stripped
+--- !u!224 &592128510 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7639302407482389562, guid: 270a95118e89da4469d8f8b26424b01b, type: 3}
-  m_PrefabInstance: {fileID: 474253519}
+  m_PrefabInstance: {fileID: 592128509}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &618124252
 PrefabInstance:
@@ -329,12 +329,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIRoot
       objectReference: {fileID: 0}
+    - target: {fileID: 7613436818211600601, guid: c0b183a2c80463a4797e0c6576f83aca, type: 3}
+      propertyPath: m_ReferencePixelsPerUnit
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3462800111198683594, guid: c0b183a2c80463a4797e0c6576f83aca, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 474253520}
+      addedObject: {fileID: 592128510}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0b183a2c80463a4797e0c6576f83aca, type: 3}
 --- !u!224 &618124253 stripped

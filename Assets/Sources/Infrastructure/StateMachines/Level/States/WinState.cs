@@ -43,6 +43,8 @@ namespace Sources.Infrastructure.StateMachines.Level.States
                     if(level.Stars < stars)
                         level.Stars = stars;
                     
+                    _persistentProgress.SaveProgress();
+                    
                     return;
                 }
             }

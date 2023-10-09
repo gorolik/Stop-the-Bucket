@@ -1,5 +1,4 @@
-﻿using Sources.Behaviour.UI;
-using Sources.Behaviour.UI.ChooseLevelMenu;
+﻿using Sources.Behaviour.UI.ChooseLevelMenu;
 using Sources.Infrastructure.StateMachines.Game;
 using Sources.Infrastructure.StateMachines.Game.States;
 using Sources.Services.LevelsStorage;
@@ -34,9 +33,15 @@ namespace Sources.UI.Windows
 
         private void OnLevelSelected(int levelId)
         {
+            if(!CanOpenLevel(levelId))
+                return;
+            
             LevelData levelData = _levelsStorage.LevelsData[levelId];
             
             _gameStateMachine.Enter<LoadLevelState, LevelData>(levelData);
         }
+
+        private bool CanOpenLevel(int id) => 
+            true;
     }
 }

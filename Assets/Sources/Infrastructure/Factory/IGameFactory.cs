@@ -9,7 +9,7 @@ namespace Sources.Infrastructure.Factory
         IEnumerable<IGameStartListener> GameStartListeners { get; }
         void CreateBucket(float maxSpeed, float acceleration);
         void CreateSuccessLine(Camera camera, float height);
-        void CreatePeople();
+        void CreatePeople(Sprite sprite);
         void CreateMainMenuHud();
         void Cleanup();
     }

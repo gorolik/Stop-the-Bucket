@@ -11,7 +11,7 @@ using Zenject;
 
 namespace Sources.UI.Windows
 {
-    public class WinWindow : WindowBase
+    public class WinWindow : WindowBase //тут надо выводить кнопку "кластер пройдет" при переходе по ней в меню
     {
         [SerializeField] private Button _restartButton;
         [SerializeField] private Button _continueButton;

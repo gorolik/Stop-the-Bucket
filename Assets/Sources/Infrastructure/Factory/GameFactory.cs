@@ -53,11 +53,14 @@ namespace Sources.Infrastructure.Factory
                 .FromInstance(successLine);
         }
 
-        public void CreatePeople()
+        public void CreatePeople(Sprite sprite)
         {
             float peopleHeight = _staticData.GetGameSettings().PeopleHeight;
 
-            InstantiateObject(AssetsPath.PeoplePath, Vector2.up * peopleHeight);
+            GameObject peopleObject = InstantiateObject(AssetsPath.PeoplePath, Vector2.up * peopleHeight);
+
+            People people = peopleObject.GetComponent<People>();
+            people.Init(sprite);
         }
 
         public void CreateMainMenuHud() =>

@@ -7,6 +7,7 @@ namespace Sources.Services.SceneData
     {
         LevelSceneData LevelSceneData { get; }
         LevelData LevelData { get; }
+        ClusterViewData ClusterViewData { get; }
         void Load();
         void Init(LevelData levelData);
     }

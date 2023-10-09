@@ -27,19 +27,21 @@ namespace Sources.Infrastructure.StateMachines.Level.States
             _gameFactory.Cleanup();
             _uiFactory.Cleanup();
             
-            InitGameWorld(_sceneData.LevelSceneData, _sceneData.LevelData.Settings);
+            InitGameWorld(_sceneData.LevelSceneData, _sceneData.LevelData.Settings, _sceneData.ClusterViewData);
             
             _levelStateMachine.Enter<CountingState>();
         }
 
         public void Exit() {}
 
-        private void InitGameWorld(LevelSceneData sceneData, LevelSettings levelSettings)
+        private void InitGameWorld(LevelSceneData sceneData, LevelSettings levelSettings, ClusterViewData viewData)
         {
             _uiFactory.CreateUIRoot();
             _gameFactory.CreateSuccessLine(sceneData.MainCamera, levelSettings.SuccessLineRange);
             _gameFactory.CreateBucket(levelSettings.BucketMaxSpeed, levelSettings.BucketAcceleration);
-            _gameFactory.CreatePeople();
+            _gameFactory.CreatePeople(viewData.People);
+
+            sceneData.Background.sprite = viewData.Background;
         }
     }
 }

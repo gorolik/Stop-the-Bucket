@@ -17,7 +17,7 @@ namespace Sources.Behaviour.UI.ChooseLevelMenu
         [SerializeField] private TMP_Text _clusterLabel;
         [SerializeField] private LevelButton _levelButtonPrefab;
         [SerializeField] private Transform _levelsContainer;
-
+        
         private IStaticDataService _staticData;
         private IPersistentProgressContainer _progressContainer;
         private ILevelsStorageService _levelsStorage;
@@ -51,7 +51,7 @@ namespace Sources.Behaviour.UI.ChooseLevelMenu
 
             DisplayClusterName(clusterType);
             DisplayLevelsList(clusterType, maxCompletedLevelId);
-
+            
             OnClusterDisplayed?.Invoke(clusterType);
         }
 

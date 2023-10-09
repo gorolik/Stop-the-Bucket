@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mainCamera: {fileID: 519420031}
+  _background: {fileID: 748424555}
 --- !u!4 &450437713
 Transform:
   m_ObjectHideFlags: 0
