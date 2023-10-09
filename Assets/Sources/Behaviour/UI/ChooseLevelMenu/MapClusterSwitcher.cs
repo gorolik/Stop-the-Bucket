@@ -44,7 +44,7 @@ namespace Sources.Behaviour.UI.ChooseLevelMenu
         {
             LevelClusterData clusterData = _clustersStorage.LevelClusters.Find(x => x.Type == cluster);
             _currentClusterId = _clustersStorage.LevelClusters.IndexOf(clusterData);
-            Debug.Log(_currentClusterId);
+
             UpdateArrows();
         }
 

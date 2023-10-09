@@ -31,6 +31,6 @@ namespace Sources.Infrastructure.StateMachines.Game.States
             _progressContainer.PlayerProgress = _persistentProgress.LoadProgress() ?? InitProgress();
 
         private PlayerProgress InitProgress() => 
-            new();
+            new PlayerProgress(new CompletedLevel[0]);
     }
 }

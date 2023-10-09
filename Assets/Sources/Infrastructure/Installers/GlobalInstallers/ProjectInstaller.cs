@@ -2,8 +2,10 @@ using Sources.Infrastructure.AssetManagement;
 using Sources.Infrastructure.Factory;
 using Sources.Infrastructure.PersistentProgress;
 using Sources.Infrastructure.PersistentProgress.Services;
+using Sources.Infrastructure.PersistentProgress.Services.DataSavers;
 using Sources.Infrastructure.StateMachines.Game;
 using Sources.Infrastructure.StateMachines.Level;
+using Sources.Services.DataFormatters;
 using Sources.Services.Input;
 using Sources.Services.LevelResult;
 using Sources.Services.LevelsStorage;
@@ -28,6 +30,8 @@ namespace Sources.Infrastructure.Installers.GlobalInstallers
             BindSceneLoader();
             BindInputService();
             BindAssetProvider();
+            BindDataFormatter();
+            BindDataSaver();
             BindPersistentProgressService();
             BindPersistentProgressContainer();
             BindLevelsStorageService();
@@ -74,6 +78,16 @@ namespace Sources.Infrastructure.Installers.GlobalInstallers
                 Debug.LogError("Not implement mobile input service");
         }
 
+        private void BindDataFormatter() =>
+            Container.Bind<IDataFormatter>()
+                .To<JsonDataFormatter>()
+                .AsSingle();
+
+        private void BindDataSaver() =>
+            Container.Bind<IDataSaver>()
+                .To<FileSaver>()
+                .AsSingle();
+
         private void BindAssetProvider() =>
             Container.Bind<IAssetProvider>()
                 .To<AssetProvider>()
@@ -81,7 +95,7 @@ namespace Sources.Infrastructure.Installers.GlobalInstallers
 
         private void BindPersistentProgressService() =>
             Container.Bind<IPersistentProgressService>()
-                .To<FileProgressService>()
+                .To<PersistentProgressService>()
                 .AsSingle();
 
         private void BindPersistentProgressContainer() =>

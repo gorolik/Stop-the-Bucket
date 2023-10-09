@@ -62,8 +62,6 @@ namespace Sources.UI.Windows
         private void OnContinueButtonClicked()
         {
             int currentLevelId = _sceneData.LevelData.Id;
-
-            Debug.Log(currentLevelId + 1 < _levelsStorage.LevelsData.Count);
             
             if (currentLevelId + 1 < _levelsStorage.LevelsData.Count)
             {

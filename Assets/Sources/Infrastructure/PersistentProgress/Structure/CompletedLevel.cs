@@ -1,5 +1,8 @@
-﻿namespace Sources.Infrastructure.PersistentProgress.Structure
+﻿using System;
+
+namespace Sources.Infrastructure.PersistentProgress.Structure
 {
+    [Serializable]
     public class CompletedLevel
     {
         public int Id;

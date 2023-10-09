@@ -1,30 +1,35 @@
-﻿using Sources.Infrastructure.PersistentProgress.Structure;
-using UnityEngine;
+﻿using Sources.Infrastructure.PersistentProgress.Services.DataSavers;
+using Sources.Infrastructure.PersistentProgress.Structure;
+using Sources.Services.DataFormatters;
 
 namespace Sources.Infrastructure.PersistentProgress.Services
 {
-    public abstract class PersistentProgressService : IPersistentProgressService
+    public class PersistentProgressService : IPersistentProgressService
     {
-        protected readonly IPersistentProgressContainer ProgressContainer;
-        protected readonly IProgressListenersContainer ProgressListenersContainer;
+        private readonly IPersistentProgressContainer _progressContainer;
+        private readonly IProgressListenersContainer _progressListenersContainer;
+        private readonly IDataFormatter _dataFormatter;
+        private readonly IDataSaver _dataSaver;
 
         public PersistentProgressService(IPersistentProgressContainer progressContainer,
-            IProgressListenersContainer progressListenersContainer)
+            IProgressListenersContainer progressListenersContainer, IDataFormatter dataFormatter, IDataSaver dataSaver)
         {
-            ProgressContainer = progressContainer;
-            ProgressListenersContainer = progressListenersContainer;
+            _progressContainer = progressContainer;
+            _progressListenersContainer = progressListenersContainer;
+            _dataFormatter = dataFormatter;
+            _dataSaver = dataSaver;
         }
 
         public void SaveProgress()
         {
-            foreach (ISavedProgressUpdater progressUpdater in ProgressListenersContainer.SavedProgressUpdaters)
-                progressUpdater.UpdateProgress(ProgressContainer.PlayerProgress);
-            Debug.Log("saving");
-            Save();
+            foreach (ISavedProgressUpdater progressUpdater in _progressListenersContainer.SavedProgressUpdaters)
+                progressUpdater.UpdateProgress(_progressContainer.PlayerProgress);
+
+            string data = _dataFormatter.Serialize(_progressContainer.PlayerProgress);
+            _dataSaver.Save(data);
         }
 
-        public abstract PlayerProgress LoadProgress();
-
-        protected abstract void Save();
+        public PlayerProgress LoadProgress() => 
+            _dataFormatter.Deserialize<PlayerProgress>(_dataSaver.GetData());
     }
 }

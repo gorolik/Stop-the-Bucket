@@ -15,19 +15,16 @@ namespace Sources.Behaviour
         
         private IInputService _inputService;
         private bool _canCatch;
-    
-        private ISceneDataService _sceneData;
 
         private ILevelStateMachine _levelStateMachine;
         private ILevelResultService _levelResult;
 
         [Inject]
-        public void Construct(ILevelStateMachine levelStateMachine, IInputService inputService, ISceneDataService sceneData,
+        public void Construct(ILevelStateMachine levelStateMachine, IInputService inputService,
             ILevelResultService levelResult)
         {
             _levelStateMachine = levelStateMachine;
             _inputService = inputService;
-            _sceneData = sceneData;
             _levelResult = levelResult;
         }
 

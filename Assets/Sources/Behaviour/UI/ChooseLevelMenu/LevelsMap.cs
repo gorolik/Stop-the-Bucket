@@ -49,11 +49,6 @@ namespace Sources.Behaviour.UI.ChooseLevelMenu
             if (completedLevels.Length > 0)
                 maxCompletedLevelId = completedLevels.Max(x => x.Id);
 
-            Debug.Log("Completed levels data: " + completedLevels.Length);
-            Debug.Log("Max Completed Level Id: " + maxCompletedLevelId);
-            for (int i = 0; i < completedLevels.Length; i++)
-                Debug.Log(completedLevels[i].Id + " stars: " + completedLevels[i].Stars);
-
             DisplayClusterName(clusterType);
             DisplayLevelsList(clusterType, maxCompletedLevelId);
 

@@ -8,9 +8,9 @@ namespace Sources.Infrastructure.PersistentProgress.Structure
     {
         public CompletedLevel[] CompletedLevels;
 
-        public PlayerProgress()
+        public PlayerProgress(CompletedLevel[] completedLevels)
         {
-            CompletedLevels = Array.Empty<CompletedLevel>();
+            CompletedLevels = completedLevels;
         }
 
         public void AddCompletedLevel(CompletedLevel level)
