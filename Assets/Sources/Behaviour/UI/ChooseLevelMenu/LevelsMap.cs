@@ -6,6 +6,7 @@ using Sources.Infrastructure.PersistentProgress.Structure;
 using Sources.Services.LevelsStorage;
 using Sources.Services.StaticData;
 using Sources.StaticData.Levels;
+using Sources.UI.Factory;
 using TMPro;
 using UnityEngine;
 using Zenject;
@@ -21,7 +22,8 @@ namespace Sources.Behaviour.UI.ChooseLevelMenu
         private IStaticDataService _staticData;
         private IPersistentProgressContainer _progressContainer;
         private ILevelsStorageService _levelsStorage;
-
+        private IUIFactory _uiFactory;
+        
         private List<LevelButton> _levelButtons = new List<LevelButton>();
 
         public event Action<int> LevelSelected;
@@ -29,11 +31,12 @@ namespace Sources.Behaviour.UI.ChooseLevelMenu
 
         [Inject]
         private void Construct(IStaticDataService staticData, IPersistentProgressContainer progressContainer,
-            ILevelsStorageService levelsStorage)
+            ILevelsStorageService levelsStorage, IUIFactory uiFactory)
         {
             _levelsStorage = levelsStorage;
             _staticData = staticData;
             _progressContainer = progressContainer;
+            _uiFactory = uiFactory;
         }
 
         private void OnDestroy() =>
@@ -72,9 +75,8 @@ namespace Sources.Behaviour.UI.ChooseLevelMenu
         private void CreateLevelButton(int levelId, int maxCompletedLevelId)
         {
             LevelButtonParameters parameters = GetLevelButtonParameters(levelId, maxCompletedLevelId);
-
-            LevelButton levelButton = Instantiate(_levelButtonPrefab, _levelsContainer);
-            levelButton.Init(parameters);
+            
+            LevelButton levelButton = _uiFactory.CreateLevelButton(_levelButtonPrefab, _levelsContainer, parameters);
 
             levelButton.Clicked += OnLevelSelected;
             _levelButtons.Add(levelButton);

@@ -29,7 +29,7 @@ namespace Sources.UI.Windows
                 _closeButton.onClick.RemoveListener(Close);
         }
 
-        private void Close()
+        public void Close()
         {
             Closed?.Invoke(this);
             Destroy(gameObject);

@@ -3,6 +3,7 @@ using Sources.Infrastructure.Factory;
 using Sources.Infrastructure.PersistentProgress;
 using Sources.Infrastructure.StateMachines.States;
 using Sources.UI.Factory;
+using UnityEngine;
 
 namespace Sources.Infrastructure.StateMachines.Game.States
 {
@@ -16,6 +17,8 @@ namespace Sources.Infrastructure.StateMachines.Game.States
         private readonly IPersistentProgressContainer _progressContainer;
         private readonly Curtain _curtain;
         private readonly IProgressListenersContainer _progressListenersContainer;
+
+        private bool _firstOpen = true;
 
         public MainMenuState(SceneLoader sceneLoader, IUIFactory uiFactory, IGameFactory gameFactory,
             IPersistentProgressContainer progressContainer, Curtain curtain,
@@ -48,7 +51,16 @@ namespace Sources.Infrastructure.StateMachines.Game.States
         {
             _gameFactory.CreateMainMenuHud();
             _uiFactory.CreateUIRoot();
-            _uiFactory.CreateMainMenu();
+            
+            if (_firstOpen)
+            {
+                _uiFactory.CreateMainMenu();
+                _firstOpen = false;
+            }
+            else
+            {
+                _uiFactory.CreateChooseLevelMenu();
+            }
         }
 
         private void InformProgressReaders()

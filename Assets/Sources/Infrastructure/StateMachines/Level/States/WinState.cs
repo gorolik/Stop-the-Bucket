@@ -1,4 +1,8 @@
-﻿using Sources.Infrastructure.PersistentProgress;
+﻿using System.Collections;
+using System.Linq;
+using Sources.Extensions;
+using Sources.Infrastructure.Factory;
+using Sources.Infrastructure.PersistentProgress;
 using Sources.Infrastructure.PersistentProgress.Services;
 using Sources.Infrastructure.PersistentProgress.Structure;
 using Sources.Infrastructure.StateMachines.States;
@@ -10,31 +14,46 @@ namespace Sources.Infrastructure.StateMachines.Level.States
 {
     public class WinState : IPayloadState<int>
     {
+        private const float _windowOpenDelay = 0.4f;
+        
         private readonly ISceneDataService _sceneData;
         private readonly IPersistentProgressService _persistentProgress;
         private readonly IUIFactory _uiFactory;
         private readonly IPersistentProgressContainer _progressContainer;
+        private readonly ICoroutineRunner _coroutineRunner;
+        private readonly IGameFactory _gameFactory;
+
 
         public WinState(ISceneDataService sceneData, IPersistentProgressService persistentProgress, IUIFactory uiFactory,
-            IPersistentProgressContainer progressContainer)
+            IPersistentProgressContainer progressContainer, ICoroutineRunner coroutineRunner, IGameFactory gameFactory)
         {
             _sceneData = sceneData;
             _persistentProgress = persistentProgress;
             _uiFactory = uiFactory;
             _progressContainer = progressContainer;
+            _coroutineRunner = coroutineRunner;
+            _gameFactory = gameFactory;
         }
 
         public void Enter(int stars)
         {
+            _gameFactory.GameEndListeners.ToArray().NotifyGameEndListeners();
+            
             UpdateProgress(_progressContainer.PlayerProgress, stars);
-            _uiFactory.CreateWinWindow(stars);
+            
+            _coroutineRunner.StartCoroutine(OpenWindow(stars));
         }
 
         public void Exit() {}
         
-        public void LoadProgress(PlayerProgress progress) {}
+        private IEnumerator OpenWindow(int stars)
+        {
+            yield return new WaitForSeconds(_windowOpenDelay);
+            
+            _uiFactory.CreateWinWindow(stars);
+        }
 
-        public void UpdateProgress(PlayerProgress progress, int stars)
+        private void UpdateProgress(PlayerProgress progress, int stars)
         {
             foreach (CompletedLevel level in progress.CompletedLevels)
             {

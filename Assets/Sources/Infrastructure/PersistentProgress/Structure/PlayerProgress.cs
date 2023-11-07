@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Sources.StaticData.Levels;
 
 namespace Sources.Infrastructure.PersistentProgress.Structure
 {
@@ -7,9 +8,13 @@ namespace Sources.Infrastructure.PersistentProgress.Structure
     public class PlayerProgress
     {
         public CompletedLevel[] CompletedLevels;
+        public ClusterType SelectedCluster;
 
-        public PlayerProgress(CompletedLevel[] completedLevels) => 
+        public PlayerProgress(CompletedLevel[] completedLevels, ClusterType selectedCluster)
+        {
             CompletedLevels = completedLevels;
+            SelectedCluster = selectedCluster;
+        }
 
         public void AddCompletedLevel(CompletedLevel level)
         {

@@ -29,6 +29,16 @@ namespace Sources.Services.LevelResult
                 return true;
         }
 
+        public bool IsLose(float bucketHeight)
+        {
+            float lowerPoint = GetLowerPoint();
+
+            if (bucketHeight <= lowerPoint)
+                return true;
+            else
+                return false;
+        }
+
         public int GetStarsCount(float bucketHeight)
         {
             float lowerPoint = GetLowerPoint();

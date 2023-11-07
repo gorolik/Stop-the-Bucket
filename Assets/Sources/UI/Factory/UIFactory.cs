@@ -1,6 +1,10 @@
 ﻿using System.Collections.Generic;
+using Sources.Behaviour.UI;
+using Sources.Behaviour.UI.ChooseLevelMenu;
 using Sources.Infrastructure.AssetManagement;
+using Sources.Services.SceneData;
 using Sources.Services.StaticData;
+using Sources.Services.Timer;
 using Sources.UI.Windows;
 using UnityEngine;
 using Zenject;
@@ -13,16 +17,18 @@ namespace Sources.UI.Factory
         private readonly DiContainer _container;
         private readonly IAssetProvider _assetProvider;
         private readonly IStaticDataService _staticData;
+        private readonly ISceneDataService _sceneData;
 
         private readonly List<WindowBase> _createdWindows = new List<WindowBase>();
 
         public Transform UIRoot { get; private set; }
 
-        public UIFactory(DiContainer container, IAssetProvider assetProvider, IStaticDataService staticData)
+        public UIFactory(DiContainer container, IAssetProvider assetProvider, IStaticDataService staticData, ISceneDataService sceneData)
         {
             _container = container;
             _assetProvider = assetProvider;
             _staticData = staticData;
+            _sceneData = sceneData;
         }
 
         public void CreateUIRoot() => 
@@ -40,6 +46,26 @@ namespace Sources.UI.Factory
             winWindow.Init(stars);
         }
 
+        public void CreateLoseWindow() =>
+            InstantiateByWindowId(WindowId.Lose);
+
+        public void CreateCountingWindow(TimersHandler.Timer currentTimer)
+        {
+            CountingWindow countingWindow = InstantiateByWindowId(WindowId.Counting) as CountingWindow;
+            countingWindow.Construct(_sceneData);
+            countingWindow.Init(currentTimer);
+        }
+
+        public LevelButton CreateLevelButton(LevelButton prefab, Transform parent, LevelButtonParameters parameters)
+        {
+            LevelButton levelButton = Object.Instantiate(prefab, parent);
+            levelButton.Init(parameters);
+            
+            _container.InjectGameObject(levelButton.gameObject);
+
+            return levelButton;
+        }
+
         public void Cleanup()
         {
             foreach (WindowBase window in _createdWindows) 
@@ -48,7 +74,7 @@ namespace Sources.UI.Factory
 
             _createdWindows.Clear();
             
-            if(UIRoot)
+            if (UIRoot) 
                 Object.Destroy(UIRoot.gameObject);
         }
 

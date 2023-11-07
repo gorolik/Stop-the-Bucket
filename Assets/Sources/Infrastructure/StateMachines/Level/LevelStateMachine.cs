@@ -16,15 +16,15 @@ namespace Sources.Infrastructure.StateMachines.Level
     {
         public LevelStateMachine(IGameFactory gameFactory, ITimersHandler timersHandler, ISceneDataService sceneData,
             IPersistentProgressService progressService, IUIFactory uiFactory,
-            IPersistentProgressContainer progressContainer)
+            IPersistentProgressContainer progressContainer, ICoroutineRunner coroutineRunner)
         {
             _states = new Dictionary<Type, IExitableState>
             {
                 [typeof(CreateWorldState)] = new CreateWorldState(this, gameFactory, uiFactory, sceneData),
-                [typeof(CountingState)] = new CountingState(this, timersHandler),
+                [typeof(CountingState)] = new CountingState(this, timersHandler, uiFactory),
                 [typeof(CatchingState)] = new CatchingState(gameFactory),
-                [typeof(WinState)] = new WinState(sceneData, progressService, uiFactory, progressContainer),
-                [typeof(LoseState)] = new LoseState(),
+                [typeof(WinState)] = new WinState(sceneData, progressService, uiFactory, progressContainer, coroutineRunner, gameFactory),
+                [typeof(LoseState)] = new LoseState(uiFactory, gameFactory, coroutineRunner),
             };
         }
         
@@ -37,6 +37,7 @@ namespace Sources.Infrastructure.StateMachines.Level
             private readonly IPersistentProgressService _persistentProgress;
             private readonly IUIFactory _uiFactory;
             private readonly IPersistentProgressContainer _progressContainer;
+            private readonly ICoroutineRunner _coroutineRunner;
 
             public Factory(
                 DiContainer container, 
@@ -45,7 +46,7 @@ namespace Sources.Infrastructure.StateMachines.Level
                 ISceneDataService sceneDataService, 
                 IPersistentProgressService persistentProgress, 
                 IUIFactory uiFactory,
-                IPersistentProgressContainer progressContainer)
+                IPersistentProgressContainer progressContainer, ICoroutineRunner coroutineRunner)
             {
                 _container = container;
                 _gameFactory = gameFactory;
@@ -54,6 +55,7 @@ namespace Sources.Infrastructure.StateMachines.Level
                 _persistentProgress = persistentProgress;
                 _uiFactory = uiFactory;
                 _progressContainer = progressContainer;
+                _coroutineRunner = coroutineRunner;
             }
 
             public LevelStateMachine Create()
@@ -64,7 +66,8 @@ namespace Sources.Infrastructure.StateMachines.Level
                     _sceneDataService, 
                     _persistentProgress, 
                     _uiFactory,
-                    _progressContainer);
+                    _progressContainer,
+                    _coroutineRunner);
                 
                 _container.Bind<ILevelStateMachine>()
                     .To<LevelStateMachine>()

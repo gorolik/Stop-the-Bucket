@@ -9,5 +9,31 @@ namespace Sources.StaticData.Levels
         [SerializeField] private List<LevelClusterData> _levelClusters;
         
         public List<LevelClusterData> LevelClusters => _levelClusters;
+
+        public int GetLevelsCountToCluster(ClusterType type)
+        {
+            int count = 0;
+            
+            foreach (LevelClusterData clusterData in _levelClusters)
+            {
+                count += clusterData.LevelsCount;
+                
+                if (type == clusterData.Type)
+                    break;
+            }
+
+            return count;
+        }
+
+        public ClusterType GetNextCluster(ClusterType current)
+        {
+            for (int i = 0; i < _levelClusters.Count; i++)
+            {
+                if (_levelClusters[i].Type == current && i < _levelClusters.Count - 1)
+                    return _levelClusters[i + 1].Type;
+            }
+
+            return ClusterType.Amateur;
+        }
     }
 }

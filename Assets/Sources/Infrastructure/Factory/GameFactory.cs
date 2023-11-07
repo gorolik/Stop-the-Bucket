@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Sources.Behaviour;
+using Sources.Behaviour.Bucket;
 using Sources.Infrastructure.AssetManagement;
 using Sources.Infrastructure.PersistentProgress;
 using Sources.Services.StaticData;
@@ -18,8 +19,10 @@ namespace Sources.Infrastructure.Factory
 
         private readonly List<GameObject> _createdObjects = new List<GameObject>();
         private readonly List<IGameStartListener> _gameStartListeners = new List<IGameStartListener>();
+        private readonly List<IGameEndListener> _gameEndListeners = new List<IGameEndListener>();
 
         public IEnumerable<IGameStartListener> GameStartListeners => _gameStartListeners;
+        public IEnumerable<IGameEndListener> GameEndListeners => _gameEndListeners;
 
         public GameFactory(DiContainer container, IAssetProvider assets, IStaticDataService staticData, 
             IProgressListenersContainer progressListenersContainer)
@@ -94,6 +97,9 @@ namespace Sources.Infrastructure.Factory
 
             foreach (IGameStartListener gameStartListener in createdObject.GetComponents<IGameStartListener>())
                 _gameStartListeners.Add(gameStartListener);
+            
+            foreach (IGameEndListener gameEndListener in createdObject.GetComponents<IGameEndListener>())
+                _gameEndListeners.Add(gameEndListener);
 
             _progressListenersContainer.RegisterGameObject(createdObject);
         }

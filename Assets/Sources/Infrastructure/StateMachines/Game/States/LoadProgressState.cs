@@ -2,6 +2,8 @@
 using Sources.Infrastructure.PersistentProgress.Services;
 using Sources.Infrastructure.PersistentProgress.Structure;
 using Sources.Infrastructure.StateMachines.States;
+using Sources.StaticData.Levels;
+using UnityEngine;
 
 namespace Sources.Infrastructure.StateMachines.Game.States
 {
@@ -31,6 +33,6 @@ namespace Sources.Infrastructure.StateMachines.Game.States
             _progressContainer.PlayerProgress = _persistentProgress.LoadProgress() ?? InitProgress();
 
         private PlayerProgress InitProgress() => 
-            new PlayerProgress(new CompletedLevel[0]);
+            new PlayerProgress(new CompletedLevel[0], ClusterType.Beginner);
     }
 }

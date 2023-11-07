@@ -11,13 +11,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$USER_HOME$/ASSETS/my games/unity/training/Professionals2023FinalPrepare/Assets/Shell/Scripts/ShellConfigParser.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/ASSETS/my games/unity/training/WorldSkills2023_Prepare/Assets/Scripts/JsonHelper.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/ASSETS/my games/unity/training/WorldSkills2023_Prepare/Assets/Scripts/Task/TaskGetter.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/ASSETS/Профессионалы 2023/Региональный этап/Govorkov/Assets/Scripts/DataBase/JsonHelper.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/ASSETS/Профессионалы 2023/Региональный этап/Govorkov/Assets/Scripts/TaskSystem/TaskLoader.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/ASSETS/Профессионалы 2023/Региональный этап/Govorkov/Assets/Scripts/TaskSystem/TaskResults.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/ASSETS/Профессионалы 2023/Региональный этап/Govorkov/Assets/Scripts/TaskSystem/TaskSaver.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/17484a9af6b944dea5cd9be4dbb0da2c171c00/2d/33f266b5/ScriptableObject.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/Source/Install/Contexts/SceneContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Sources/Behaviour/Bucket.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Sources/Behaviour/BucketCatcher.cs" root0="FORCE_HIGHLIGHTING" />
@@ -53,15 +47,23 @@
   },
   &quot;keyToStringList&quot;: {
     &quot;rider.external.source.directories&quot;: [
-      &quot;C:\\Users\\Валентина\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache&quot;,
-      &quot;C:\\Users\\Валентина\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache&quot;,
-      &quot;C:\\Users\\Валентина\\AppData\\Local\\Symbols\\src&quot;
+      &quot;C:\\Users\\gorolik\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\gorolik\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\gorolik\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="$USER_HOME$/Desktop/Point Arrow/Projects/Stop the Bucket/WBuild\Stop the Bucket.exe" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\gorolik\Desktop\Point Arrow\Projects\Stop the Bucket\WBuild" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.4f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="E:\programms\Unity3D versions\2022.3.4f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath &quot;E:\GlobalProjectsMG\Unity\Stop the Bucket&quot; -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="E:\GlobalProjectsMG\Unity\Stop the Bucket" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -69,7 +71,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.4f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="E:\programms\Unity3D versions\2022.3.4f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath &quot;E:\GlobalProjectsMG\Unity\Stop the Bucket&quot; -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="E:\GlobalProjectsMG\Unity\Stop the Bucket" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -145,6 +147,14 @@
       <workItem from="1696844665013" duration="1862000" />
       <workItem from="1696847421410" duration="1573000" />
       <workItem from="1696852040639" duration="574000" />
+      <workItem from="1697016377442" duration="600000" />
+      <workItem from="1697018292487" duration="3802000" />
+      <workItem from="1697691139314" duration="6781000" />
+      <workItem from="1697708416418" duration="68000" />
+      <workItem from="1698316639766" duration="3423000" />
+      <workItem from="1698417651447" duration="3927000" />
+      <workItem from="1698686149070" duration="2870000" />
+      <workItem from="1698689838833" duration="1084000" />
     </task>
     <servers />
   </component>

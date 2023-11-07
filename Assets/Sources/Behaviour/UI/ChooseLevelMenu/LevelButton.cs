@@ -17,12 +17,14 @@ namespace Sources.Behaviour.UI.ChooseLevelMenu
         [SerializeField] private Color _closedStarColor = Color.gray;
         
         private int _id;
+        private bool _opened;
 
         public event Action<int> Clicked;
 
         public void Init(LevelButtonParameters parameters)
         {
             _id = parameters.LevelId;
+            _opened = parameters.Opened;
 
             DisplayState(parameters);
         }
@@ -60,7 +62,10 @@ namespace Sources.Behaviour.UI.ChooseLevelMenu
                 element.SetActive(opened);
         }
 
-        private void OnSelectLevelButtonClicked() => 
-            Clicked?.Invoke(_id);
+        private void OnSelectLevelButtonClicked()
+        {
+            if(_opened)
+                Clicked?.Invoke(_id);
+        }
     }
 }

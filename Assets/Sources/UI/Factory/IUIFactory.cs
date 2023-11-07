@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Sources.Behaviour.UI.ChooseLevelMenu;
+using Sources.Services.Timer;
+using UnityEngine;
 
 namespace Sources.UI.Factory
 {
@@ -8,6 +10,9 @@ namespace Sources.UI.Factory
         void CreateMainMenu();
         void CreateChooseLevelMenu();
         void CreateWinWindow(int stars);
+        void CreateLoseWindow();
+        void CreateCountingWindow(TimersHandler.Timer currentTimer);
+        LevelButton CreateLevelButton(LevelButton prefab, Transform parent, LevelButtonParameters parameters);
         Transform UIRoot { get; }
         void Cleanup();
     }

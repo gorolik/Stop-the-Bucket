@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Sources.Behaviour.UI
@@ -5,9 +6,12 @@ namespace Sources.Behaviour.UI
     public class Curtain : MonoBehaviour
     {
         [SerializeField] private CanvasGroup _canvasGroup;
-        [SerializeField] private float _hideSpeed = 0.1f;
+        [SerializeField] private float _hideSpeed = 3f;
 
         private bool _isHided;
+
+        private void Awake() => 
+            DontDestroyOnLoad(this);
 
         public void Show()
         {

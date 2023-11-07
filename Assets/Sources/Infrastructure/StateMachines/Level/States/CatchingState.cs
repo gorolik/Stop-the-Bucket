@@ -1,6 +1,7 @@
-﻿using Sources.Infrastructure.Factory;
+﻿using System.Linq;
+using Sources.Extensions;
+using Sources.Infrastructure.Factory;
 using Sources.Infrastructure.StateMachines.States;
-using UnityEngine;
 
 namespace Sources.Infrastructure.StateMachines.Level.States
 {
@@ -8,18 +9,11 @@ namespace Sources.Infrastructure.StateMachines.Level.States
     {
         private readonly IGameFactory _gameFactory;
 
-        public CatchingState(IGameFactory gameFactory)
-        {
+        public CatchingState(IGameFactory gameFactory) => 
             _gameFactory = gameFactory;
-        }
 
-        public void Enter()
-        {
-            foreach (IGameStartListener gameStartListener in _gameFactory.GameStartListeners)
-                gameStartListener.OnGameStarted();
-
-            Debug.Log("Game Started!");
-        }
+        public void Enter() => 
+            _gameFactory.GameStartListeners.ToArray().NotifyGameStartListeners();
 
         public void Exit() {}
     }

@@ -17,11 +17,17 @@ MonoBehaviour:
     _starsToOpen: 0
     _levelsCount: 3
     _viewData:
-      _background: {fileID: 21300000, guid: f67d97b2f334b9a4da0ea99e3e603fbb, type: 3}
+      _background: {fileID: 21300000, guid: 3a1c2c39fd03b754fb8a591ac24b070b, type: 3}
       _people: {fileID: 21300000, guid: 21663e01e9d6cc9489c65e0556d43b29, type: 3}
   - _type: 1
     _starsToOpen: 6
     _levelsCount: 6
     _viewData:
-      _background: {fileID: 21300000, guid: 3a1c2c39fd03b754fb8a591ac24b070b, type: 3}
+      _background: {fileID: 21300000, guid: 46cc1aa39e2e02a44a273678fe26bcc1, type: 3}
+      _people: {fileID: 21300000, guid: c85dbbf6f9b43cf4e9b29656042c7729, type: 3}
+  - _type: 2
+    _starsToOpen: 12
+    _levelsCount: 6
+    _viewData:
+      _background: {fileID: 21300000, guid: 63fce9481c0d8ec4b94cc7ee673e3c99, type: 3}
       _people: {fileID: 21300000, guid: 840509f14547fba409fb1d292efba8f7, type: 3}

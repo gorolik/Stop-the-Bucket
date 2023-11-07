@@ -4,6 +4,7 @@ using Sources.Infrastructure.PersistentProgress.Services;
 using Sources.Infrastructure.StateMachines.States;
 using Sources.Services.LevelsStorage;
 using Sources.Services.StaticData;
+using UnityEngine;
 
 namespace Sources.Infrastructure.StateMachines.Game.States
 {

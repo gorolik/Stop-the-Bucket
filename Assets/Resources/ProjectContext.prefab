@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -6936548941449002838}
   - component: {fileID: -8257549217974832419}
   - component: {fileID: 3861220069559615825}
+  - component: {fileID: -7644349544444905336}
   m_Layer: 0
   m_Name: ProjectContext
   m_TagString: Untagged
@@ -52,6 +53,7 @@ MonoBehaviour:
   - {fileID: -6936548941449002838}
   - {fileID: -8257549217974832419}
   - {fileID: 3861220069559615825}
+  - {fileID: -7644349544444905336}
   _installerPrefabs: []
   _parentNewObjectsUnderContext: 0
   _editorReflectionBakingCoverageMode: 0
@@ -90,7 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c69e279b57dea4b4397f225b7a289fff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _curtainPrefab: {fileID: 6229250683267392166, guid: f85da2eee2ae2cd438706e8a302fd913, type: 3}
+  _curtainPrefab: {fileID: 994007878667318232, guid: f85da2eee2ae2cd438706e8a302fd913, type: 3}
 --- !u!114 &3861220069559615825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,3 +106,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameBootstrapperPrefab: {fileID: 8901658158460335591, guid: 8ba049ca77511094d9d7d1e8eb3f42cd, type: 3}
+--- !u!114 &-7644349544444905336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7762167085985969358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4742931f38a792468e10555b5e63150, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _musicPlayerPrefab: {fileID: 8912122142699875551, guid: 01983d3879e6c8d41b15772696c646dd, type: 3}
+  _soundPlayerPrefab: {fileID: 8055220630409303484, guid: 51baf1a5cd8066b4a9c3337b9304895e, type: 3}

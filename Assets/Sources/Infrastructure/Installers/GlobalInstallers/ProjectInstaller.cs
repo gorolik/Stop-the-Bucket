@@ -74,8 +74,12 @@ namespace Sources.Infrastructure.Installers.GlobalInstallers
                 Container.Bind<IInputService>()
                     .To<DesktopInputService>()
                     .AsSingle();
+            else if(SystemInfo.deviceType == DeviceType.Handheld)
+                Container.Bind<IInputService>()
+                    .To<MobileInputService>()
+                    .AsSingle();
             else
-                Debug.LogError("Not implement mobile input service");
+                Debug.LogError("Not implement input service");
         }
 
         private void BindDataFormatter() =>
@@ -85,7 +89,7 @@ namespace Sources.Infrastructure.Installers.GlobalInstallers
 
         private void BindDataSaver() =>
             Container.Bind<IDataSaver>()
-                .To<FileSaver>()
+                .To<PlayerPrefsSaver>()
                 .AsSingle();
 
         private void BindAssetProvider() =>
