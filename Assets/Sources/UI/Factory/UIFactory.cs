@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Sources.Behaviour.UI;
 using Sources.Behaviour.UI.ChooseLevelMenu;
 using Sources.Infrastructure.AssetManagement;
 using Sources.Services.SceneData;
@@ -55,6 +54,9 @@ namespace Sources.UI.Factory
             countingWindow.Construct(_sceneData);
             countingWindow.Init(currentTimer);
         }
+
+        public void CreateTutorialWindow() => 
+            InstantiateByWindowId(WindowId.Tutorial);
 
         public LevelButton CreateLevelButton(LevelButton prefab, Transform parent, LevelButtonParameters parameters)
         {

@@ -9,5 +9,6 @@
         Win = 4,
         Lose = 5,
         Counting = 6,
+        Tutorial = 7,
     }
 }

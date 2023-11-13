@@ -3,6 +3,7 @@ using Sources.Infrastructure.StateMachines.Game;
 using Sources.Infrastructure.StateMachines.Game.States;
 using Sources.Infrastructure.StateMachines.Level;
 using Sources.Infrastructure.StateMachines.Level.States;
+using Sources.Services.Ads;
 using Sources.Services.LevelsStorage;
 using Sources.Services.SceneData;
 using Sources.Services.StaticData;
@@ -26,11 +27,12 @@ namespace Sources.UI.Windows
         private ILevelsStorageService _levelsStorage;
         private LevelClustersStorage _clustersStorage;
         private IPersistentProgressContainer _progressContainer;
+        private IAdsService _adsService;
 
         [Inject]
         public void Construct(ILevelStateMachine levelStateMachine, IGameStateMachine gameStateMachine, 
             ISceneDataService sceneData, ILevelsStorageService levelsStorage, IStaticDataService staticData,
-            IPersistentProgressContainer progressContainer)
+            IPersistentProgressContainer progressContainer, IAdsService adsService)
         {
             _levelStateMachine = levelStateMachine;
             _gameStateMachine = gameStateMachine;
@@ -38,6 +40,7 @@ namespace Sources.UI.Windows
             _levelsStorage = levelsStorage;
             _clustersStorage = staticData.GetClustersStorage();
             _progressContainer = progressContainer;
+            _adsService = adsService;
         }
 
         public void Init(int starsCount)
@@ -67,29 +70,42 @@ namespace Sources.UI.Windows
             _continueButton.onClick.RemoveListener(OnContinueButtonClicked);
         }
 
-        private void OnMenuButtonClicked() => 
+        private void OnMenuButtonClicked()
+        {
+            _adsService.ShowFullscreenAd();
             _gameStateMachine.Enter<MainMenuState>();
+        }
 
-        private void OnRestartButtonClicked() => 
+        private void OnRestartButtonClicked()
+        {
+            _adsService.ShowFullscreenAd();
             _levelStateMachine.Enter<CreateWorldState>();
+        }
 
         private void OnContinueButtonClicked()
         {
+            _adsService.ShowFullscreenAd();
+            NextLevel();
+        }
+
+        private void NextLevel()
+        {
             int currentLevelId = _sceneData.LevelData.Id;
             int levelsCountToCluster = _clustersStorage.GetLevelsCountToCluster(_sceneData.LevelData.Cluster);
-            
+
             if (LevelsRemain(currentLevelId) && CurrentClusterRemain(currentLevelId, levelsCountToCluster))
             {
                 LevelData nextLevelData = _levelsStorage.LevelsData[currentLevelId + 1];
-                
+
                 _sceneData.Init(nextLevelData);
                 _levelStateMachine.Enter<CreateWorldState>();
             }
             else
             {
                 if (!CurrentClusterRemain(currentLevelId, levelsCountToCluster))
-                    _progressContainer.PlayerProgress.SelectedCluster = _clustersStorage.GetNextCluster(_sceneData.LevelData.Cluster);
-                
+                    _progressContainer.PlayerProgress.SelectedCluster =
+                        _clustersStorage.GetNextCluster(_sceneData.LevelData.Cluster);
+
                 _gameStateMachine.Enter<MainMenuState>();
             }
         }

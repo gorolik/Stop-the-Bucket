@@ -12,6 +12,7 @@ namespace Sources.UI.Factory
         void CreateWinWindow(int stars);
         void CreateLoseWindow();
         void CreateCountingWindow(TimersHandler.Timer currentTimer);
+        void CreateTutorialWindow();
         LevelButton CreateLevelButton(LevelButton prefab, Transform parent, LevelButtonParameters parameters);
         Transform UIRoot { get; }
         void Cleanup();

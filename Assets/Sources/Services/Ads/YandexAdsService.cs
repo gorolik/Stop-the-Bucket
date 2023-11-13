@@ -16,7 +16,7 @@ namespace Sources.Services.Ads
         public void ShowFullscreenAd() => 
             YandexGame.FullscreenShow();
 
-        public void OnFullscreenAdError() => 
+        private void OnFullscreenAdError() => 
             Debug.Log("Yandex fullscreen ad error");
     }
 }

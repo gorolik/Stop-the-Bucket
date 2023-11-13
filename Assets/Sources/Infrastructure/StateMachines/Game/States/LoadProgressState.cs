@@ -33,6 +33,6 @@ namespace Sources.Infrastructure.StateMachines.Game.States
             _progressContainer.PlayerProgress = _persistentProgress.LoadProgress() ?? InitProgress();
 
         private PlayerProgress InitProgress() => 
-            new PlayerProgress(new CompletedLevel[0], ClusterType.Beginner);
+            new PlayerProgress(new CompletedLevel[0], ClusterType.Beginner, false);
     }
 }

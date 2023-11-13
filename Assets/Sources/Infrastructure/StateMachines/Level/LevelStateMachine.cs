@@ -20,7 +20,8 @@ namespace Sources.Infrastructure.StateMachines.Level
         {
             _states = new Dictionary<Type, IExitableState>
             {
-                [typeof(CreateWorldState)] = new CreateWorldState(this, gameFactory, uiFactory, sceneData),
+                [typeof(CreateWorldState)] = new CreateWorldState(this, gameFactory, uiFactory, sceneData, progressContainer),
+                [typeof(TutorialState)] = new TutorialState(uiFactory, progressContainer),
                 [typeof(CountingState)] = new CountingState(this, timersHandler, uiFactory),
                 [typeof(CatchingState)] = new CatchingState(gameFactory),
                 [typeof(WinState)] = new WinState(sceneData, progressService, uiFactory, progressContainer, coroutineRunner, gameFactory),

@@ -155,6 +155,10 @@ namespace Sources.Infrastructure.Installers.GlobalInstallers
                 Container.Bind<IAdsService>()
                     .To<YandexAdsService>()
                     .AsSingle();
+            else
+                Container.Bind<IAdsService>()
+                    .To<NoAdsService>()
+                    .AsSingle();
         }
 
         private void BindLevelStateMachineFactory() =>

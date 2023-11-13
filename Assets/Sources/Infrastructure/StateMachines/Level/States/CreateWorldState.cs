@@ -1,5 +1,6 @@
 ﻿using Sources.Behaviour;
 using Sources.Infrastructure.Factory;
+using Sources.Infrastructure.PersistentProgress;
 using Sources.Infrastructure.StateMachines.States;
 using Sources.Services.SceneData;
 using Sources.StaticData.Levels;
@@ -13,13 +14,15 @@ namespace Sources.Infrastructure.StateMachines.Level.States
         private readonly IGameFactory _gameFactory;
         private readonly IUIFactory _uiFactory;
         private readonly ISceneDataService _sceneData;
+        private readonly IPersistentProgressContainer _progressContainer;
 
-        public CreateWorldState(ILevelStateMachine levelStateMachine, IGameFactory gameFactory, IUIFactory uiFactory, ISceneDataService sceneData)
+        public CreateWorldState(ILevelStateMachine levelStateMachine, IGameFactory gameFactory, IUIFactory uiFactory, ISceneDataService sceneData, IPersistentProgressContainer progressContainer)
         {
             _levelStateMachine = levelStateMachine;
             _gameFactory = gameFactory;
             _uiFactory = uiFactory;
             _sceneData = sceneData;
+            _progressContainer = progressContainer;
         }
 
         public void Enter()
@@ -29,7 +32,10 @@ namespace Sources.Infrastructure.StateMachines.Level.States
             
             InitGameWorld(_sceneData.LevelSceneData, _sceneData.LevelData.Settings, _sceneData.ClusterViewData);
             
-            _levelStateMachine.Enter<CountingState>();
+            if(_progressContainer.PlayerProgress.TutorialComplete)
+                _levelStateMachine.Enter<CountingState>();
+            else
+                _levelStateMachine.Enter<TutorialState>();
         }
 
         public void Exit() {}

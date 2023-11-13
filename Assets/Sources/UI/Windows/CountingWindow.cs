@@ -23,7 +23,7 @@ namespace Sources.UI.Windows
         }
 
         protected override void OnStart() => 
-            _label.text = "Cluster: " + _sceneData.LevelData.Cluster + "\nLevel: " + (_sceneData.LevelData.Id + 1);
+            _label.text = _sceneData.LevelData.Cluster + " - " + (_sceneData.LevelData.Id + 1);
 
         private void OnTimeUpdated(float time) => 
             _counting.text = Mathf.Round(time + 1).ToString();

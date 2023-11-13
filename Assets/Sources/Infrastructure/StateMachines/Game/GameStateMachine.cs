@@ -7,6 +7,7 @@ using Sources.Infrastructure.PersistentProgress.Services;
 using Sources.Infrastructure.StateMachines.Game.States;
 using Sources.Infrastructure.StateMachines.Level;
 using Sources.Infrastructure.StateMachines.States;
+using Sources.Services.Ads;
 using Sources.Services.LevelsStorage;
 using Sources.Services.SceneData;
 using Sources.Services.StaticData;
@@ -20,11 +21,11 @@ namespace Sources.Infrastructure.StateMachines.Game
         public GameStateMachine(LevelStateMachine.Factory levelStateMachineFactory, SceneLoader sceneLoader,
             IGameFactory gameFactory, ISceneDataService sceneData, IStaticDataService staticData, Curtain curtain,
             IUIFactory uiFactory, IPersistentProgressContainer progressContainer, ILevelsStorageService levelsStorage,
-            IPersistentProgressService persistentProgress, IProgressListenersContainer progressListenersContainer)
+            IPersistentProgressService persistentProgress, IProgressListenersContainer progressListenersContainer, IAdsService adsService)
         {
             _states = new Dictionary<Type, IExitableState>
             {
-                [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, staticData, curtain, levelsStorage, persistentProgress),
+                [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, staticData, curtain, levelsStorage, persistentProgress, adsService),
                 [typeof(LoadProgressState)] = new LoadProgressState(this, persistentProgress, progressContainer),
                 [typeof(MainMenuState)] = new MainMenuState(sceneLoader, uiFactory, gameFactory, progressContainer, curtain, progressListenersContainer),
                 [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, sceneData),
@@ -46,6 +47,7 @@ namespace Sources.Infrastructure.StateMachines.Game
             private readonly ILevelsStorageService _levelsStorage;
             private readonly IPersistentProgressService _persistentProgress;
             private readonly IProgressListenersContainer _progressListenersContainer;
+            private readonly IAdsService _adsService;
 
             public Factory(
                 DiContainer container, 
@@ -58,7 +60,7 @@ namespace Sources.Infrastructure.StateMachines.Game
                 IPersistentProgressContainer progressContainer, 
                 ILevelsStorageService levelsStorage, 
                 IPersistentProgressService persistentProgress, 
-                IProgressListenersContainer progressListenersContainer)
+                IProgressListenersContainer progressListenersContainer, IAdsService adsService)
             {
                 _levelStateMachineFactory = levelStateMachineFactory;
                 _container = container;
@@ -72,6 +74,7 @@ namespace Sources.Infrastructure.StateMachines.Game
                 _levelsStorage = levelsStorage;
                 _persistentProgress = persistentProgress;
                 _progressListenersContainer = progressListenersContainer;
+                _adsService = adsService;
             }
 
             public GameStateMachine Create()
@@ -87,7 +90,8 @@ namespace Sources.Infrastructure.StateMachines.Game
                     _progressContainer,
                     _levelsStorage,
                     _persistentProgress, 
-                    _progressListenersContainer);
+                    _progressListenersContainer,
+                    _adsService);
                 
                 _container.Bind<IGameStateMachine>()
                     .To<GameStateMachine>()

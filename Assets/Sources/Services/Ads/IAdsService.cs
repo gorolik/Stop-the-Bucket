@@ -4,6 +4,5 @@
     {
         void Init();
         void ShowFullscreenAd();
-        void OnFullscreenAdError();
     }
 }

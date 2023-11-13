@@ -9,11 +9,13 @@ namespace Sources.Infrastructure.PersistentProgress.Structure
     {
         public CompletedLevel[] CompletedLevels;
         public ClusterType SelectedCluster;
+        public bool TutorialComplete;
 
-        public PlayerProgress(CompletedLevel[] completedLevels, ClusterType selectedCluster)
+        public PlayerProgress(CompletedLevel[] completedLevels, ClusterType selectedCluster, bool tutorialComplete)
         {
             CompletedLevels = completedLevels;
             SelectedCluster = selectedCluster;
+            TutorialComplete = tutorialComplete;
         }
 
         public void AddCompletedLevel(CompletedLevel level)

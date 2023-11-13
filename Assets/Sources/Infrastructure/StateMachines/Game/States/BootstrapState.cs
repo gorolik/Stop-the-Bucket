@@ -2,6 +2,7 @@
 using Sources.Infrastructure.PersistentProgress;
 using Sources.Infrastructure.PersistentProgress.Services;
 using Sources.Infrastructure.StateMachines.States;
+using Sources.Services.Ads;
 using Sources.Services.LevelsStorage;
 using Sources.Services.StaticData;
 using UnityEngine;
@@ -18,6 +19,7 @@ namespace Sources.Infrastructure.StateMachines.Game.States
         private readonly Curtain _curtain;
         private readonly ILevelsStorageService _levelsStorage;
         private readonly IPersistentProgressService _persistentProgress;
+        private readonly IAdsService _adsService;
 
         public BootstrapState(
             IGameStateMachine gameStateMachine, 
@@ -25,7 +27,8 @@ namespace Sources.Infrastructure.StateMachines.Game.States
             IStaticDataService staticData, 
             Curtain curtain, 
             ILevelsStorageService levelsStorage,
-            IPersistentProgressService persistentProgress)
+            IPersistentProgressService persistentProgress,
+            IAdsService adsService)
         {
             _gameStateMachine = gameStateMachine;
             _sceneLoader = sceneLoader;
@@ -33,6 +36,7 @@ namespace Sources.Infrastructure.StateMachines.Game.States
             _curtain = curtain;
             _levelsStorage = levelsStorage;
             _persistentProgress = persistentProgress;
+            _adsService = adsService;
         }
 
         public void Enter()
@@ -41,6 +45,7 @@ namespace Sources.Infrastructure.StateMachines.Game.States
             
             _staticData.LoadData();
             _levelsStorage.Load();
+            _adsService.Init();
             
             _sceneLoader.Load(_initialSceneName, OnInitSceneLoaded);
         }
