@@ -39,6 +39,9 @@ namespace Sources.UI.Factory
         public void CreateChooseLevelMenu() => 
             InstantiateByWindowId(WindowId.ChooseLevel);
 
+        public void CreateSettingsWindow() => 
+            InstantiateByWindowId(WindowId.Settings);
+
         public void CreateWinWindow(int stars)
         {
             WinWindow winWindow = InstantiateByWindowId(WindowId.Win) as WinWindow;

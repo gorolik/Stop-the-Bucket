@@ -9,6 +9,7 @@ namespace Sources.UI.Factory
         void CreateUIRoot();
         void CreateMainMenu();
         void CreateChooseLevelMenu();
+        void CreateSettingsWindow();
         void CreateWinWindow(int stars);
         void CreateLoseWindow();
         void CreateCountingWindow(TimersHandler.Timer currentTimer);

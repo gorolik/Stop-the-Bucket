@@ -20,6 +20,9 @@ namespace Sources.UI.Services
                 case WindowId.ChooseLevel:
                     _uiFactory.CreateChooseLevelMenu();
                     break;
+                case WindowId.Settings:
+                    _uiFactory.CreateSettingsWindow();
+                    break;
                 default:
                     Debug.LogError($"Window type: {id} is not implemented or unknown");
                     break;

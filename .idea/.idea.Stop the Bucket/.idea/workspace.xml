@@ -12,6 +12,9 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/17484a9af6b944dea5cd9be4dbb0da2c171c00/2d/33f266b5/ScriptableObject.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../ASSETS/my games/unity/ПАКИ/Localization/Localization.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../ASSETS/my games/unity/ПАКИ/Localization/LocalizationData.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../ASSETS/my games/unity/ПАКИ/Localization/TextTranslator.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Flying Intruders/Assets/Sources/Infrastructure/DI/AllServices.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Flying Intruders/Assets/Sources/Infrastructure/Game.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Flying Intruders/Assets/Sources/Infrastructure/GameStateMachine.cs" root0="SKIP_HIGHLIGHTING" />
@@ -158,7 +161,7 @@
       <workItem from="1698686149070" duration="2870000" />
       <workItem from="1698689838833" duration="1084000" />
       <workItem from="1699847610862" duration="717000" />
-      <workItem from="1699850074279" duration="7236000" />
+      <workItem from="1699850074279" duration="15073000" />
     </task>
     <servers />
   </component>
