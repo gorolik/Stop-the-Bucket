@@ -3,7 +3,7 @@ using Sources.Infrastructure.Factory;
 using Sources.Infrastructure.PersistentProgress;
 using Sources.Infrastructure.StateMachines.States;
 using Sources.UI.Factory;
-using UnityEngine;
+using YG;
 
 namespace Sources.Infrastructure.StateMachines.Game.States
 {
@@ -45,6 +45,8 @@ namespace Sources.Infrastructure.StateMachines.Game.States
             InitMenu();
             InformProgressReaders();
             _curtain.Hide();
+            
+            TryInitGameReadyAPI();
         }
 
         private void InitMenu()
@@ -67,6 +69,12 @@ namespace Sources.Infrastructure.StateMachines.Game.States
         {
             foreach (ISavedProgressReader progressReader in _progressListenersContainer.SavedProgressReaders)
                 progressReader.LoadProgress(_progressContainer.PlayerProgress);
+        }
+
+        private void TryInitGameReadyAPI()
+        {
+            if (YandexGame.SDKEnabled)
+                YandexGame.GameReadyAPI();
         }
     }
 }

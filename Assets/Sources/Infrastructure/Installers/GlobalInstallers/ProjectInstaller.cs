@@ -1,10 +1,12 @@
 using Sources.Infrastructure.AssetManagement;
 using Sources.Infrastructure.Factory;
+using Sources.Infrastructure.GameInstallSettings;
 using Sources.Infrastructure.PersistentProgress;
 using Sources.Infrastructure.PersistentProgress.Services;
 using Sources.Infrastructure.PersistentProgress.Services.DataSavers;
 using Sources.Infrastructure.StateMachines.Game;
 using Sources.Infrastructure.StateMachines.Level;
+using Sources.Services.Ads;
 using Sources.Services.DataFormatters;
 using Sources.Services.Input;
 using Sources.Services.LevelResult;
@@ -21,6 +23,8 @@ namespace Sources.Infrastructure.Installers.GlobalInstallers
 {
     public class ProjectInstaller : MonoInstaller, ICoroutineRunner
     {
+        [SerializeField] private InstallData _installData;
+
         public override void InstallBindings()
         {
             BindProgressListenersContainer();
@@ -40,6 +44,7 @@ namespace Sources.Infrastructure.Installers.GlobalInstallers
             BindUIFactory();
             BindSceneDataService();
             BindLevelResultService();
+            BindAdsService();
             BindLevelStateMachineFactory();
             BindGameStateMachineFactory();
         }
@@ -87,10 +92,17 @@ namespace Sources.Infrastructure.Installers.GlobalInstallers
                 .To<JsonDataFormatter>()
                 .AsSingle();
 
-        private void BindDataSaver() =>
-            Container.Bind<IDataSaver>()
-                .To<PlayerPrefsSaver>()
-                .AsSingle();
+        private void BindDataSaver()
+        {
+            if (_installData.TargetPlatform is TargetPlatform.Itch or TargetPlatform.YandexGames)
+                Container.Bind<IDataSaver>()
+                    .To<PlayerPrefsSaver>()
+                    .AsSingle();
+            else
+                Container.Bind<IDataSaver>()
+                    .To<FileSaver>()
+                    .AsSingle();
+        }
 
         private void BindAssetProvider() =>
             Container.Bind<IAssetProvider>()
@@ -136,6 +148,14 @@ namespace Sources.Infrastructure.Installers.GlobalInstallers
             Container.Bind<ILevelResultService>()
                 .To<LevelResultService>()
                 .AsSingle();
+
+        private void BindAdsService()
+        {
+            if (_installData.TargetPlatform == TargetPlatform.YandexGames)
+                Container.Bind<IAdsService>()
+                    .To<YandexAdsService>()
+                    .AsSingle();
+        }
 
         private void BindLevelStateMachineFactory() =>
             Container.Bind<LevelStateMachine.Factory>()
