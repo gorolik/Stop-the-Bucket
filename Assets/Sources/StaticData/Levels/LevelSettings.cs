@@ -15,5 +15,12 @@ namespace Sources.StaticData.Levels
         public float SuccessLineRange => _successLineRange;
         public float BucketMaxSpeed => _bucketMaxSpeed;
         public float BucketAcceleration => _bucketAcceleration;
+
+        public LevelSettings(float successLineRange, float bucketMaxSpeed, float bucketAcceleration)
+        {
+            _successLineRange = successLineRange;
+            _bucketMaxSpeed = bucketMaxSpeed;
+            _bucketAcceleration = bucketAcceleration;
+        }
     }
 }

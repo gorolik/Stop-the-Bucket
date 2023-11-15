@@ -1,12 +1,10 @@
 ﻿using Sources.Behaviour.UI;
-using Sources.Infrastructure.PersistentProgress;
 using Sources.Infrastructure.PersistentProgress.Services;
 using Sources.Infrastructure.StateMachines.States;
 using Sources.Services.Ads;
 using Sources.Services.LevelsStorage;
 using Sources.Services.Localization;
 using Sources.Services.StaticData;
-using UnityEngine;
 
 namespace Sources.Infrastructure.StateMachines.Game.States
 {

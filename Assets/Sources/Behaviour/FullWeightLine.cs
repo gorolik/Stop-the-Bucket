@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Sources.Behaviour
 {
-    public class SuccessLine : MonoBehaviour
+    public class FullWeightLine : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer _spriteRenderer;
 

@@ -7,6 +7,7 @@ using Sources.Infrastructure.PersistentProgress.Services.DataSavers;
 using Sources.Infrastructure.StateMachines.Game;
 using Sources.Infrastructure.StateMachines.Level;
 using Sources.Services.Ads;
+using Sources.Services.AudioMixing;
 using Sources.Services.DataFormatters;
 using Sources.Services.Input;
 using Sources.Services.LevelResult;
@@ -38,6 +39,7 @@ namespace Sources.Infrastructure.Installers.GlobalInstallers
             BindDataSaver();
             BindPersistentProgressService();
             BindPersistentProgressContainer();
+            BindAudioMixerService();
             BindLevelsStorageService();
             BindWindowService();
             BindGameFactory();
@@ -117,6 +119,11 @@ namespace Sources.Infrastructure.Installers.GlobalInstallers
         private void BindPersistentProgressContainer() =>
             Container.Bind<IPersistentProgressContainer>()
                 .To<PersistentProgressContainer>()
+                .AsSingle();
+
+        private void BindAudioMixerService() =>
+            Container.Bind<IAudioMixerService>()
+                .To<AudioMixerService>()
                 .AsSingle();
 
         private void BindLevelsStorageService() =>

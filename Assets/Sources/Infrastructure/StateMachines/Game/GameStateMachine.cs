@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Sources.Behaviour;
 using Sources.Behaviour.UI;
 using Sources.Infrastructure.Factory;
 using Sources.Infrastructure.PersistentProgress;
@@ -8,6 +9,7 @@ using Sources.Infrastructure.StateMachines.Game.States;
 using Sources.Infrastructure.StateMachines.Level;
 using Sources.Infrastructure.StateMachines.States;
 using Sources.Services.Ads;
+using Sources.Services.AudioMixing;
 using Sources.Services.LevelsStorage;
 using Sources.Services.Localization;
 using Sources.Services.SceneData;
@@ -22,14 +24,14 @@ namespace Sources.Infrastructure.StateMachines.Game
         public GameStateMachine(LevelStateMachine.Factory levelStateMachineFactory, SceneLoader sceneLoader,
             IGameFactory gameFactory, ISceneDataService sceneData, IStaticDataService staticData, Curtain curtain,
             IUIFactory uiFactory, IPersistentProgressContainer progressContainer, ILevelsStorageService levelsStorage,
-            IPersistentProgressService persistentProgress, IProgressListenersContainer progressListenersContainer, 
-            IAdsService adsService, Localizator localizator)
+            IPersistentProgressService persistentProgress, IProgressListenersContainer progressListenersContainer,
+            IAdsService adsService, Localizator localizator, IAudioMixerService audioMixer, MusicPlayer musicPlayer)
         {
             _states = new Dictionary<Type, IExitableState>
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, staticData, curtain, levelsStorage, persistentProgress, adsService, localizator),
                 [typeof(LoadProgressState)] = new LoadProgressState(this, persistentProgress, progressContainer),
-                [typeof(MainMenuState)] = new MainMenuState(sceneLoader, uiFactory, gameFactory, progressContainer, curtain, progressListenersContainer),
+                [typeof(MainMenuState)] = new MainMenuState(sceneLoader, uiFactory, gameFactory, progressContainer, curtain, progressListenersContainer, audioMixer, musicPlayer),
                 [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, sceneData, curtain),
                 [typeof(LevelLoopState)] = new LevelLoopState(levelStateMachineFactory, gameFactory, uiFactory),
             };
@@ -51,6 +53,8 @@ namespace Sources.Infrastructure.StateMachines.Game
             private readonly IProgressListenersContainer _progressListenersContainer;
             private readonly IAdsService _adsService;
             private readonly Localizator _localizator;
+            private readonly IAudioMixerService _audioMixer;
+            private readonly MusicPlayer _musicPlayer;
 
             public Factory(
                 DiContainer container, 
@@ -63,7 +67,7 @@ namespace Sources.Infrastructure.StateMachines.Game
                 IPersistentProgressContainer progressContainer, 
                 ILevelsStorageService levelsStorage, 
                 IPersistentProgressService persistentProgress, 
-                IProgressListenersContainer progressListenersContainer, IAdsService adsService, Localizator localizator)
+                IProgressListenersContainer progressListenersContainer, IAdsService adsService, Localizator localizator, IAudioMixerService audioMixer, MusicPlayer musicPlayer)
             {
                 _levelStateMachineFactory = levelStateMachineFactory;
                 _container = container;
@@ -79,6 +83,8 @@ namespace Sources.Infrastructure.StateMachines.Game
                 _progressListenersContainer = progressListenersContainer;
                 _adsService = adsService;
                 _localizator = localizator;
+                _audioMixer = audioMixer;
+                _musicPlayer = musicPlayer;
             }
 
             public GameStateMachine Create()
@@ -96,7 +102,9 @@ namespace Sources.Infrastructure.StateMachines.Game
                     _persistentProgress, 
                     _progressListenersContainer,
                     _adsService,
-                    _localizator);
+                    _localizator,
+                    _audioMixer, 
+                    _musicPlayer);
                 
                 _container.Bind<IGameStateMachine>()
                     .To<GameStateMachine>()

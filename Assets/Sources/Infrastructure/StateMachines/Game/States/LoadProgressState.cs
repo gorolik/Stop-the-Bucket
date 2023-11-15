@@ -22,7 +22,7 @@ namespace Sources.Infrastructure.StateMachines.Game.States
         public void Enter()
         {
             LoadOrInitProgress();
-
+            
             _gameStateMachine.Enter<MainMenuState>();
         }
 
@@ -32,6 +32,6 @@ namespace Sources.Infrastructure.StateMachines.Game.States
             _progressContainer.PlayerProgress = _persistentProgress.LoadProgress() ?? InitProgress();
 
         private PlayerProgress InitProgress() => 
-            new PlayerProgress(new CompletedLevel[0], ClusterType.Beginner, false);
+            new PlayerProgress(new CompletedLevel[0], ClusterType.Beginner, false, 1f, 1f);
     }
 }

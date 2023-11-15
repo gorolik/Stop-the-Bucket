@@ -349,7 +349,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecadf777c67810546ad55b14948d8337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bucketFalling: {fileID: 8812420992472733368}
   _hands: {fileID: 8538485582572952115}
   _audioSource: {fileID: 7249005751975570322}
   _catchSound: {fileID: 8300000, guid: e698fa5c04bd5c0418969a2b17b926f6, type: 3}
@@ -395,7 +394,7 @@ AudioSource:
   m_GameObject: {fileID: 5804390575883102413}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -7719333642151157238, guid: ec967da549403ee4ca6aa745fc64c728, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1

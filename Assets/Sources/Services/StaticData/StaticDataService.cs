@@ -5,28 +5,26 @@ using Sources.StaticData.Settings;
 using Sources.StaticData.UI;
 using Sources.UI;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace Sources.Services.StaticData
 {
     public class StaticDataService : IStaticDataService
     {
-        private LevelsSettingsStorage _levelsSettingsStorage;
         private LevelClustersStorage _levelClustersStorage;
         private GameSettings _gameSettings;
         private StarsSettings _starsSettings;
         private Dictionary<WindowId, WindowConfig> _windows;
+        private AudioMixer _audioMixer;
 
         public void LoadData()
         {
-            LoadLevelsSettingsStorage();
             LoadLevelClustersStorage();
             LoadGameSettings();
             LoadWindowsData();
             LoadStarsSettings();
+            LoadAudioMixer();
         }
-
-        public LevelsSettingsStorage GetLevelsSettingsStorage() =>
-            _levelsSettingsStorage;
 
         public LevelClustersStorage GetClustersStorage() => 
             _levelClustersStorage;
@@ -40,15 +38,15 @@ namespace Sources.Services.StaticData
         public StarsSettings GetStarsSettings() => 
             _starsSettings;
 
-        private void LoadLevelsSettingsStorage() => 
-            _levelsSettingsStorage = Resources.Load<LevelsSettingsStorage>("StaticData/Levels/LevelsSettingsStorage");
+        public AudioMixer GetAudioMuxer() => 
+            _audioMixer;
 
         private void LoadLevelClustersStorage() => 
             _levelClustersStorage = Resources.Load<LevelClustersStorage>("StaticData/Levels/LevelClustersStorage");
 
         private void LoadGameSettings() => 
             _gameSettings = Resources.Load<GameSettings>("StaticData/Settings/GameSettings");
-        
+
         private void LoadWindowsData()
         {
             _windows = Resources
@@ -59,5 +57,8 @@ namespace Sources.Services.StaticData
 
         private void LoadStarsSettings() => 
             _starsSettings = Resources.Load<StarsSettings>("StaticData/Settings/StarsSettings");
+
+        private void LoadAudioMixer() => 
+            _audioMixer = Resources.Load<AudioMixer>("AudioMixers/MainMixer");
     }
 }

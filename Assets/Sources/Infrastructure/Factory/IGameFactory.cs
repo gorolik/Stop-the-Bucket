@@ -12,7 +12,7 @@ namespace Sources.Infrastructure.Factory
         void CreateLevelRoot();
         void CreateBucket(float maxSpeed, float acceleration);
         void CreateSuccessLine(Camera camera, float height);
-        void CreatePeople(PeopleData data);
+        void CreatePeople(PeopleData data, Camera camera);
         void CreateMainMenuHud();
         void Cleanup();
     }

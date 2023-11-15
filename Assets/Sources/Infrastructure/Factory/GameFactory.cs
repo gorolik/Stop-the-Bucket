@@ -66,21 +66,18 @@ namespace Sources.Infrastructure.Factory
 
             GameObject successLineObject = InstantiateObject(AssetsPath.SuccessLinePath, Vector2.up * successLineHeight);
 
-            SuccessLine successLine = successLineObject.GetComponent<SuccessLine>();
-            successLine.Construct(camera);
-
-            _container.Bind<SuccessLine>()
-                .FromInstance(successLine);
+            FullWeightLine fullWeightLine = successLineObject.GetComponent<FullWeightLine>();
+            fullWeightLine.Construct(camera);
         }
 
-        public void CreatePeople(PeopleData data)
+        public void CreatePeople(PeopleData data, Camera camera)
         {
             float peopleHeight = _staticData.GetGameSettings().PeopleHeight;
 
             GameObject peopleObject = InstantiateObject(AssetsPath.PeoplePath, Vector2.up * peopleHeight);
 
             People people = peopleObject.GetComponent<People>();
-            people.Init(data);
+            people.Init(data, camera);
             
             _container.Bind<People>()
                 .FromInstance(people);
@@ -92,7 +89,7 @@ namespace Sources.Infrastructure.Factory
         public void Cleanup()
         {
             _container.Unbind<People>();
-            _container.Unbind<SuccessLine>();
+            _container.Unbind<FullWeightLine>();
             _container.Unbind<BucketFalling>();
             _container.Unbind<BucketCatcher>();
 

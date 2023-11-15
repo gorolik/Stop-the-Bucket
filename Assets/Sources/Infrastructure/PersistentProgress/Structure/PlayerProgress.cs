@@ -10,12 +10,16 @@ namespace Sources.Infrastructure.PersistentProgress.Structure
         public CompletedLevel[] CompletedLevels;
         public ClusterType SelectedCluster;
         public bool TutorialComplete;
+        public float MusicVolume;
+        public float SoundsVolume;
 
-        public PlayerProgress(CompletedLevel[] completedLevels, ClusterType selectedCluster, bool tutorialComplete)
+        public PlayerProgress(CompletedLevel[] completedLevels, ClusterType selectedCluster, bool tutorialComplete, float musicVolume, float soundsVolume)
         {
             CompletedLevels = completedLevels;
             SelectedCluster = selectedCluster;
             TutorialComplete = tutorialComplete;
+            MusicVolume = musicVolume;
+            SoundsVolume = soundsVolume;
         }
 
         public void AddCompletedLevel(CompletedLevel level)

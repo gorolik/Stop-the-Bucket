@@ -10,12 +10,15 @@ using Sources.StaticData.Levels;
 using Sources.UI.Factory;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 namespace Sources.Behaviour.UI.ChooseLevelMenu
 {
     public class LevelsMap : MonoBehaviour
     {
+        [SerializeField] private Image _background;
+        [SerializeField] private RectTransform _content;
         [SerializeField] private TMP_Text _clusterLabel;
         [SerializeField] private LevelButton _levelButtonPrefab;
         [SerializeField] private Transform _levelsContainer;
@@ -57,16 +60,20 @@ namespace Sources.Behaviour.UI.ChooseLevelMenu
             if (completedLevels.Length > 0)
                 maxCompletedLevelId = completedLevels.Max(x => x.Id);
 
-            DisplayClusterName(_clustersStorage.GetDataByType(clusterType).ViewData);
+            DisplayClusterView(_clustersStorage.GetDataByType(clusterType).ViewData);
             DisplayLevelsList(clusterType, maxCompletedLevelId);
+
+            _content.transform.position = new Vector2(_content.transform.position.x, 0);
             
             OnClusterDisplayed?.Invoke(clusterType);
         }
 
-        private void DisplayClusterName(ClusterViewData clusterData)
+        private void DisplayClusterView(ClusterViewData clusterData)
         {
             _clusterLabel.text = _localizator.GetWord(clusterData.NameKey);
             _clusterLabel.color = clusterData.Color;
+            
+            _background.sprite = clusterData.Background;
         }
 
         private void OnLevelSelected(int id) =>

@@ -13,59 +13,94 @@ MonoBehaviour:
   m_Name: LevelClustersStorage
   m_EditorClassIdentifier: 
   _levelClusters:
-  - _type: 0
+  - _lineRange: 2.5
+    _startMaxSpeed: 15
+    _endMaxSpeed: 17
+    _startAcceleration: 5
+    _endAcceleration: 7
+    _type: 0
     _starsToOpen: 0
-    _levelsCount: 3
+    _levelsCount: 6
     _viewData:
       _nameKey: _beginner
       _color: {r: 0.21293166, g: 0.8207547, b: 0.23451781, a: 1}
       _background: {fileID: 21300000, guid: 3a1c2c39fd03b754fb8a591ac24b070b, type: 3}
       _people: {fileID: 11400000, guid: 9e1fbec4e4c06c446b1df9aa7e4c1e4b, type: 2}
-  - _type: 1
-    _starsToOpen: 5
-    _levelsCount: 6
+  - _lineRange: 2.2
+    _startMaxSpeed: 18
+    _endMaxSpeed: 20
+    _startAcceleration: 6
+    _endAcceleration: 8
+    _type: 1
+    _starsToOpen: 15
+    _levelsCount: 9
     _viewData:
       _nameKey: _amateur
       _color: {r: 0.84307206, g: 0.9150943, b: 0, a: 1}
       _background: {fileID: 21300000, guid: 3509d2e953b50ab4591eedca52fa63d9, type: 3}
       _people: {fileID: 11400000, guid: 955d6703b4272654aa463d0fbb4004c6, type: 2}
-  - _type: 2
-    _starsToOpen: 18
-    _levelsCount: 6
+  - _lineRange: 1.9
+    _startMaxSpeed: 22
+    _endMaxSpeed: 25
+    _startAcceleration: 8
+    _endAcceleration: 11
+    _type: 2
+    _starsToOpen: 35
+    _levelsCount: 18
     _viewData:
       _nameKey: _pro
       _color: {r: 1, g: 0.41020894, b: 0, a: 1}
       _background: {fileID: 21300000, guid: 18a06b7c32402cf4a9d5e672f40969f8, type: 3}
       _people: {fileID: 11400000, guid: 69e0c97aee0ef2048954cb12bc8fd7f3, type: 2}
-  - _type: 3
-    _starsToOpen: 30
-    _levelsCount: 9
+  - _lineRange: 1.5
+    _startMaxSpeed: 25
+    _endMaxSpeed: 30
+    _startAcceleration: 10
+    _endAcceleration: 13
+    _type: 3
+    _starsToOpen: 55
+    _levelsCount: 18
     _viewData:
       _nameKey: _specialist
       _color: {r: 0.5047741, g: 0, b: 1, a: 1}
       _background: {fileID: 21300000, guid: e855b8b3ac26893448a6e7f135d5f6ae, type: 3}
       _people: {fileID: 11400000, guid: 9e1fbec4e4c06c446b1df9aa7e4c1e4b, type: 2}
-  - _type: 4
-    _starsToOpen: 45
-    _levelsCount: 9
+  - _lineRange: 1
+    _startMaxSpeed: 30
+    _endMaxSpeed: 35
+    _startAcceleration: 12
+    _endAcceleration: 15
+    _type: 4
+    _starsToOpen: 70
+    _levelsCount: 18
     _viewData:
       _nameKey: _expert
       _color: {r: 1, g: 0.9114796, b: 0, a: 1}
       _background: {fileID: 21300000, guid: 53c0d8660c622af48a23a2ab6806ebb3, type: 3}
       _people: {fileID: 11400000, guid: 955d6703b4272654aa463d0fbb4004c6, type: 2}
-  - _type: 5
-    _starsToOpen: 60
-    _levelsCount: 15
+  - _lineRange: 0.7
+    _startMaxSpeed: 33
+    _endMaxSpeed: 40
+    _startAcceleration: 14
+    _endAcceleration: 17
+    _type: 5
+    _starsToOpen: 90
+    _levelsCount: 18
     _viewData:
       _nameKey: _master
       _color: {r: 0, g: 0.35566974, b: 1, a: 1}
       _background: {fileID: 21300000, guid: a7a65c9752eb0f04ca53ca125b8287b9, type: 3}
       _people: {fileID: 11400000, guid: 69e0c97aee0ef2048954cb12bc8fd7f3, type: 2}
-  - _type: 6
+  - _lineRange: 0.32
+    _startMaxSpeed: 35
+    _endMaxSpeed: 45
+    _startAcceleration: 15
+    _endAcceleration: 30
+    _type: 6
     _starsToOpen: 100
     _levelsCount: 3
     _viewData:
       _nameKey: _god
       _color: {r: 1, g: 0, b: 0, a: 1}
       _background: {fileID: 21300000, guid: d6f4e9d8270303c4ea2ed25fe7f42dbf, type: 3}
-      _people: {fileID: 11400000, guid: 9e1fbec4e4c06c446b1df9aa7e4c1e4b, type: 2}
+      _people: {fileID: 11400000, guid: 955d6703b4272654aa463d0fbb4004c6, type: 2}

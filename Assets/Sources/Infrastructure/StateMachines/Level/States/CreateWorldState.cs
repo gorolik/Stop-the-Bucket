@@ -44,7 +44,7 @@ namespace Sources.Infrastructure.StateMachines.Level.States
         {
             _uiFactory.CreateUIRoot();
                 
-            _gameFactory.CreatePeople(viewData.People);
+            _gameFactory.CreatePeople(viewData.People, sceneData.MainCamera);
             _gameFactory.CreateSuccessLine(sceneData.MainCamera, levelSettings.SuccessLineRange);
             _gameFactory.CreateBucket(levelSettings.BucketMaxSpeed, levelSettings.BucketAcceleration);
             
