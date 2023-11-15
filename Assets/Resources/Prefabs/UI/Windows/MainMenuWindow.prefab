@@ -86,6 +86,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3942140301419281100}
   - component: {fileID: 803218421746289491}
+  - component: {fileID: 3815077110749094237}
   - component: {fileID: 7667725270429450770}
   m_Layer: 5
   m_Name: GameLabel
@@ -122,6 +123,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4830038961241646962}
   m_CullTransparentMesh: 1
+--- !u!114 &3815077110749094237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4830038961241646962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a92cbed6c862d6e40a5dbea96c4ec223, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _key: _gameLabel
 --- !u!114 &7667725270429450770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,7 +156,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u041F\u043E\u0439\u043C\u0430\u0439 \u0412\u0435\u0434\u0440\u043E"
+  m_text: "\u041E\u0441\u0442\u0430\u043D\u043E\u0432\u0438 \u0412\u0435\u0434\u0440\u043E"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5ca33223b52112f40a44429f9eff1222, type: 2}
   m_sharedMaterial: {fileID: -5388620032122585199, guid: 5ca33223b52112f40a44429f9eff1222, type: 2}
@@ -284,6 +298,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5890123007785530833}
     m_Modifications:
+    - target: {fileID: 3973323577793584942, guid: 7a403efc7464e3441871c24f560f1412, type: 3}
+      propertyPath: _key
+      value: _play
+      objectReference: {fileID: 0}
     - target: {fileID: 4817130927751575982, guid: 7a403efc7464e3441871c24f560f1412, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -405,6 +423,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5890123007785530833}
     m_Modifications:
+    - target: {fileID: 3973323577793584942, guid: 7a403efc7464e3441871c24f560f1412, type: 3}
+      propertyPath: _key
+      value: _settings
+      objectReference: {fileID: 0}
     - target: {fileID: 4817130927751575982, guid: 7a403efc7464e3441871c24f560f1412, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

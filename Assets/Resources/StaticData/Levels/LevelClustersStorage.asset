@@ -17,17 +17,55 @@ MonoBehaviour:
     _starsToOpen: 0
     _levelsCount: 3
     _viewData:
+      _nameKey: _beginner
+      _color: {r: 0.21293166, g: 0.8207547, b: 0.23451781, a: 1}
       _background: {fileID: 21300000, guid: 3a1c2c39fd03b754fb8a591ac24b070b, type: 3}
-      _people: {fileID: 21300000, guid: 21663e01e9d6cc9489c65e0556d43b29, type: 3}
+      _people: {fileID: 11400000, guid: 9e1fbec4e4c06c446b1df9aa7e4c1e4b, type: 2}
   - _type: 1
-    _starsToOpen: 6
+    _starsToOpen: 5
     _levelsCount: 6
     _viewData:
-      _background: {fileID: 21300000, guid: 46cc1aa39e2e02a44a273678fe26bcc1, type: 3}
-      _people: {fileID: 21300000, guid: c85dbbf6f9b43cf4e9b29656042c7729, type: 3}
+      _nameKey: _amateur
+      _color: {r: 0.84307206, g: 0.9150943, b: 0, a: 1}
+      _background: {fileID: 21300000, guid: 3509d2e953b50ab4591eedca52fa63d9, type: 3}
+      _people: {fileID: 11400000, guid: 955d6703b4272654aa463d0fbb4004c6, type: 2}
   - _type: 2
-    _starsToOpen: 12
+    _starsToOpen: 18
     _levelsCount: 6
     _viewData:
-      _background: {fileID: 21300000, guid: 63fce9481c0d8ec4b94cc7ee673e3c99, type: 3}
-      _people: {fileID: 21300000, guid: 840509f14547fba409fb1d292efba8f7, type: 3}
+      _nameKey: _pro
+      _color: {r: 1, g: 0.41020894, b: 0, a: 1}
+      _background: {fileID: 21300000, guid: 18a06b7c32402cf4a9d5e672f40969f8, type: 3}
+      _people: {fileID: 11400000, guid: 69e0c97aee0ef2048954cb12bc8fd7f3, type: 2}
+  - _type: 3
+    _starsToOpen: 30
+    _levelsCount: 9
+    _viewData:
+      _nameKey: _specialist
+      _color: {r: 0.5047741, g: 0, b: 1, a: 1}
+      _background: {fileID: 21300000, guid: e855b8b3ac26893448a6e7f135d5f6ae, type: 3}
+      _people: {fileID: 11400000, guid: 9e1fbec4e4c06c446b1df9aa7e4c1e4b, type: 2}
+  - _type: 4
+    _starsToOpen: 45
+    _levelsCount: 9
+    _viewData:
+      _nameKey: _expert
+      _color: {r: 1, g: 0.9114796, b: 0, a: 1}
+      _background: {fileID: 21300000, guid: 53c0d8660c622af48a23a2ab6806ebb3, type: 3}
+      _people: {fileID: 11400000, guid: 955d6703b4272654aa463d0fbb4004c6, type: 2}
+  - _type: 5
+    _starsToOpen: 60
+    _levelsCount: 15
+    _viewData:
+      _nameKey: _master
+      _color: {r: 0, g: 0.35566974, b: 1, a: 1}
+      _background: {fileID: 21300000, guid: a7a65c9752eb0f04ca53ca125b8287b9, type: 3}
+      _people: {fileID: 11400000, guid: 69e0c97aee0ef2048954cb12bc8fd7f3, type: 2}
+  - _type: 6
+    _starsToOpen: 100
+    _levelsCount: 3
+    _viewData:
+      _nameKey: _god
+      _color: {r: 1, g: 0, b: 0, a: 1}
+      _background: {fileID: 21300000, guid: d6f4e9d8270303c4ea2ed25fe7f42dbf, type: 3}
+      _people: {fileID: 11400000, guid: 9e1fbec4e4c06c446b1df9aa7e4c1e4b, type: 2}

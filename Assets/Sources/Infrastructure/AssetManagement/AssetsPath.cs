@@ -7,5 +7,6 @@
         public const string PeoplePath = "Prefabs/People";
         public const string UIRootPath = "Prefabs/UI/UIRoot";
         public const string MainMenuPath = "Prefabs/UI/MenuHUD";
+        public const string LevelRootPath = "Prefabs/LevelRoot";
     }
 }

@@ -10,6 +10,8 @@ namespace Sources.Services.Localization
         private readonly LocalizationStorage _localizationStorage;
 
         public event Action LanguageChanged;
+
+        public bool Ready => _localizationStorage.LocalizedText != null;
         
         private List<string> _languages = new List<string>()
         {
@@ -44,7 +46,7 @@ namespace Sources.Services.Localization
                 return word;
             else
             {
-                Debug.LogError("Localized key " + key + " not found");
+                Debug.LogError("Key: " + key + " not founded in dictionary");
                 return key;
             }
         }

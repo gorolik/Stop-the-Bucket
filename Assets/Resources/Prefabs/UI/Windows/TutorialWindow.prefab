@@ -184,10 +184,10 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8242354940098307686}
+  - {fileID: 8856079601437884237}
   - {fileID: 6984711064026569373}
   - {fileID: 7295649018680531395}
-  - {fileID: 8856079601437884237}
-  - {fileID: 8242354940098307686}
   m_Father: {fileID: 0}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -365,6 +365,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6766998379412388827}
   - component: {fileID: 3916588476426838430}
+  - component: {fileID: 8629377830968139544}
   - component: {fileID: 6237898909635318839}
   m_Layer: 5
   m_Name: PeopleDescription
@@ -401,6 +402,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1611580940904228124}
   m_CullTransparentMesh: 1
+--- !u!114 &8629377830968139544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611580940904228124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a92cbed6c862d6e40a5dbea96c4ec223, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _key: _fourthTutorHint
 --- !u!114 &6237898909635318839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -577,6 +591,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3049360644097915212}
   - component: {fileID: 7949580563946389724}
+  - component: {fileID: 4459252050861864393}
   - component: {fileID: 1208425788935704323}
   m_Layer: 5
   m_Name: BucketDescription
@@ -613,6 +628,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2258495842309612624}
   m_CullTransparentMesh: 1
+--- !u!114 &4459252050861864393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2258495842309612624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a92cbed6c862d6e40a5dbea96c4ec223, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _key: _fristTutorHint
 --- !u!114 &1208425788935704323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -714,6 +742,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1003329122968959418}
   - component: {fileID: 6322009583303166300}
+  - component: {fileID: 5812781568624882219}
   - component: {fileID: 6898934403924046428}
   m_Layer: 5
   m_Name: StarsDescription
@@ -750,6 +779,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2337108108627817296}
   m_CullTransparentMesh: 1
+--- !u!114 &5812781568624882219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2337108108627817296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a92cbed6c862d6e40a5dbea96c4ec223, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _key: _thirdTutorHint
 --- !u!114 &6898934403924046428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1044,6 +1086,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8242354940098307686}
   - component: {fileID: 747291614005527452}
+  - component: {fileID: 2310400905617333597}
   - component: {fileID: 2469254424939648408}
   m_Layer: 5
   m_Name: Label
@@ -1080,6 +1123,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4060704890774651888}
   m_CullTransparentMesh: 1
+--- !u!114 &2310400905617333597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4060704890774651888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a92cbed6c862d6e40a5dbea96c4ec223, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _key: _shortTutor
 --- !u!114 &2469254424939648408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1127,7 +1183,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
+  m_fontSize: 48.75
   m_fontSizeBase: 70
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1179,6 +1235,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8856079601437884237}
   - component: {fileID: 5462105913588051313}
+  - component: {fileID: 2559766963049513934}
   - component: {fileID: 7282293916656573641}
   m_Layer: 5
   m_Name: TapToContinue
@@ -1215,6 +1272,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4691899730794557509}
   m_CullTransparentMesh: 1
+--- !u!114 &2559766963049513934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4691899730794557509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a92cbed6c862d6e40a5dbea96c4ec223, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _key: _tapToContinue
 --- !u!114 &7282293916656573641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1262,7 +1332,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
+  m_fontSize: 29.5
   m_fontSizeBase: 70
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1618,6 +1688,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1844692626917302044}
   - component: {fileID: 1567992644172761237}
+  - component: {fileID: 2624244757499990339}
   - component: {fileID: 8830930556348899872}
   m_Layer: 5
   m_Name: LineDescription
@@ -1654,6 +1725,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6555273468517978198}
   m_CullTransparentMesh: 1
+--- !u!114 &2624244757499990339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6555273468517978198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a92cbed6c862d6e40a5dbea96c4ec223, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _key: _secondTutorHint
 --- !u!114 &8830930556348899872
 MonoBehaviour:
   m_ObjectHideFlags: 0

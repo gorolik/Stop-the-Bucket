@@ -14,29 +14,31 @@ namespace Sources.Behaviour.UI
         private TMP_Text _text;
 
         [Inject]
-        public void Construct(Localizator localizator) =>
+        public void Construct(Localizator localizator)
+        {
             _localizator = localizator;
-        
-        private void Awake() => 
+
+            _localizator.LanguageChanged += OnLanguageChanged;
+        }
+
+        private void Awake() =>
             _text = GetComponent<TMP_Text>();
 
-        private void Start() => 
-            Translate();
+        private void Start()
+        {
+            if (_localizator != null && _localizator.Ready)
+                Translate();
+        }
 
-        private void OnEnable() => 
-            _localizator.LanguageChanged += OnLanguageChanged;
-
-        private void OnDisable() => 
+        private void OnDestroy() =>
             _localizator.LanguageChanged -= OnLanguageChanged;
 
-        private void OnLanguageChanged()
-        {
+        private void OnLanguageChanged() =>
             Translate();
-        }
 
         private void Translate()
         {
-            if (_localizator == null)
+            if (_localizator == null || _text == null)
                 return;
 
             _text.text = _localizator.GetWord(_key);

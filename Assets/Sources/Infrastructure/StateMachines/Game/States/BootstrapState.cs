@@ -45,13 +45,14 @@ namespace Sources.Infrastructure.StateMachines.Game.States
 
         public void Enter()
         {
-            _curtain.Show();
+            _localizator.Init();
             
+            _curtain.Show();
+
             _staticData.LoadData();
             _levelsStorage.Load();
             _adsService.Init();
-            _localizator.Init();
-            
+
             _sceneLoader.Load(_initialSceneName, OnInitSceneLoaded);
         }
 

@@ -3,7 +3,6 @@ using Sources.Infrastructure.PersistentProgress.Services;
 using Sources.Infrastructure.PersistentProgress.Structure;
 using Sources.Infrastructure.StateMachines.States;
 using Sources.StaticData.Levels;
-using UnityEngine;
 
 namespace Sources.Infrastructure.StateMachines.Game.States
 {

@@ -4,6 +4,7 @@ using Sources.Behaviour.Bucket;
 using Sources.Infrastructure.AssetManagement;
 using Sources.Infrastructure.PersistentProgress;
 using Sources.Services.StaticData;
+using Sources.StaticData.Peoples;
 using Unity.Mathematics;
 using UnityEngine;
 using Zenject;
@@ -33,14 +34,27 @@ namespace Sources.Infrastructure.Factory
             _progressListenersContainer = progressListenersContainer;
         }
 
+        public void CreateLevelRoot()
+        {
+            GameObject levelRootObject = InstantiateObject(AssetsPath.LevelRootPath, Vector2.zero);
+
+            Level levelRoot = levelRootObject.GetComponent<Level>();
+            
+            _container.Bind<Level>()
+                .FromInstance(levelRoot);
+        }
+
         public void CreateBucket(float maxSpeed, float acceleration)
         {
             float bucketHeight = _staticData.GetGameSettings().BucketHeight;
 
             GameObject bucketObject = InstantiateObject(AssetsPath.BucketPath, Vector2.up * bucketHeight);
 
-            Bucket bucket = bucketObject.GetComponent<Bucket>();
-            bucket.Init(maxSpeed, acceleration);
+            BucketFalling bucketFalling = bucketObject.GetComponent<BucketFalling>();
+            bucketFalling.Init(maxSpeed, acceleration);
+            
+            _container.Bind<BucketFalling>()
+                .FromInstance(bucketFalling);
         }
 
         public void CreateSuccessLine(Camera camera, float height)
@@ -56,14 +70,17 @@ namespace Sources.Infrastructure.Factory
                 .FromInstance(successLine);
         }
 
-        public void CreatePeople(Sprite sprite)
+        public void CreatePeople(PeopleData data)
         {
             float peopleHeight = _staticData.GetGameSettings().PeopleHeight;
 
             GameObject peopleObject = InstantiateObject(AssetsPath.PeoplePath, Vector2.up * peopleHeight);
 
             People people = peopleObject.GetComponent<People>();
-            people.Init(sprite);
+            people.Init(data);
+            
+            _container.Bind<People>()
+                .FromInstance(people);
         }
 
         public void CreateMainMenuHud() =>
@@ -71,7 +88,10 @@ namespace Sources.Infrastructure.Factory
 
         public void Cleanup()
         {
+            _container.Unbind<BucketFalling>();
             _container.Unbind<SuccessLine>();
+            _container.Unbind<People>();
+            _container.Unbind<Level>();
             
             foreach (GameObject gameObject in _createdObjects)
                 if (gameObject)

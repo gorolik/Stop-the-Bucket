@@ -86,6 +86,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5674926219453244748}
   - component: {fileID: 5619094171083619768}
+  - component: {fileID: 5718988548808362897}
   - component: {fileID: 6056715378533577283}
   m_Layer: 5
   m_Name: Label
@@ -122,6 +123,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3042378022248731476}
   m_CullTransparentMesh: 1
+--- !u!114 &5718988548808362897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3042378022248731476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a92cbed6c862d6e40a5dbea96c4ec223, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _key: _levelComplete
 --- !u!114 &6056715378533577283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1135,6 +1149,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7262450253786415590}
     m_Modifications:
+    - target: {fileID: 3973323577793584942, guid: 7a403efc7464e3441871c24f560f1412, type: 3}
+      propertyPath: _key
+      value: _continue
+      objectReference: {fileID: 0}
     - target: {fileID: 4817130927751575982, guid: 7a403efc7464e3441871c24f560f1412, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

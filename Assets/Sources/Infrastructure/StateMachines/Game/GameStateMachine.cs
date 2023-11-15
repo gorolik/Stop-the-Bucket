@@ -30,7 +30,7 @@ namespace Sources.Infrastructure.StateMachines.Game
                 [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, staticData, curtain, levelsStorage, persistentProgress, adsService, localizator),
                 [typeof(LoadProgressState)] = new LoadProgressState(this, persistentProgress, progressContainer),
                 [typeof(MainMenuState)] = new MainMenuState(sceneLoader, uiFactory, gameFactory, progressContainer, curtain, progressListenersContainer),
-                [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, sceneData),
+                [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, sceneData, curtain),
                 [typeof(LevelLoopState)] = new LevelLoopState(levelStateMachineFactory, gameFactory, uiFactory),
             };
         }

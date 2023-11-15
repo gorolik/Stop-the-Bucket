@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Sources.StaticData.Levels
@@ -10,6 +11,9 @@ namespace Sources.StaticData.Levels
         
         public List<LevelClusterData> LevelClusters => _levelClusters;
 
+        public LevelClusterData GetDataByType(ClusterType clusterType) =>
+            _levelClusters.First(x => x.Type == clusterType);
+        
         public int GetLevelsCountToCluster(ClusterType type)
         {
             int count = 0;

@@ -1,8 +1,108 @@
 {
   "items": [
     {
-      "key": "key",
-      "value": "значение"
+      "key": "_adLoading",
+      "value": "Загрузка рекламы..."
+    },
+    {
+      "key": "_loading",
+      "value": "Загрузка..."
+    },
+    {
+      "key": "_continue",
+      "value": "Продолжить"
+    },
+    {
+      "key": "_levelComplete",
+      "value": "Уровень пройден!"
+    },
+    {
+      "key": "_shortTutor",
+      "value": "Краткий туториал"
+    },
+    {
+      "key": "_tapToContinue",
+      "value": "Нажми, чтобы продолжить"
+    },
+    {
+      "key": "_fristTutorHint",
+      "value": "1. После начала уровня ведро начнёт падать"
+    },
+    {
+      "key": "_secondTutorHint",
+      "value": "2. Оно должно долететь минимум до зелёной линии"
+    },
+    {
+      "key": "_thirdTutorHint",
+      "value": "3. Чем ниже ведро будет остановлено, тем больше звёзд"
+    },
+    {
+      "key": "_fourthTutorHint",
+      "value": "4. Но не дай ведру упасть на голову!"
+    },
+    {
+      "key": "_settings",
+      "value": "Настройки"
+    },
+    {
+      "key": "_back",
+      "value": "Назад"
+    },
+    {
+      "key": "_gameLabel",
+      "value": "Останови Ведро"
+    },
+    {
+      "key": "_play",
+      "value": "Играть!"
+    },
+    {
+      "key": "_lose",
+      "value": "Проигрыш!"
+    },
+    {
+      "key": "_retry",
+      "value": "Повторить"
+    },
+    {
+      "key": "_loseDescription",
+      "value": "Ведро остановлено не вовремя"
+    },
+    {
+      "key": "_beginner",
+      "value": "Начинающий"
+    },
+    {
+      "key": "_amateur",
+      "value": "Любитель"
+    },
+    {
+      "key": "_pro",
+      "value": "ПРО"
+    },
+    {
+      "key": "_specialist",
+      "value": "Специалист"
+    },
+    {
+      "key": "_expert",
+      "value": "Эксперт"
+    },
+    {
+      "key": "_master",
+      "value": "Магистр"
+    },
+    {
+      "key": "_god",
+      "value": "БОГ"
+    },
+    {
+      "key": "_chooseLevel",
+      "value": "Выберите уровень"
+    },
+    {
+      "key": "_toMenu",
+      "value": "В меню"
     }
   ]
 }

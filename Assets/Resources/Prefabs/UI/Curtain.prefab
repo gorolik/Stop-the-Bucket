@@ -324,6 +324,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8210763317344563986}
   - component: {fileID: 4279273809188064909}
+  - component: {fileID: 6826966534680240106}
   - component: {fileID: 3690383897645297265}
   m_Layer: 5
   m_Name: Hint
@@ -360,6 +361,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9080710002069934098}
   m_CullTransparentMesh: 1
+--- !u!114 &6826966534680240106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9080710002069934098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a92cbed6c862d6e40a5dbea96c4ec223, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _key: _loading
 --- !u!114 &3690383897645297265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -380,7 +394,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0417\u0430\u0433\u0440\u0443\u0437\u043A\u0430..."
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5ca33223b52112f40a44429f9eff1222, type: 2}
   m_sharedMaterial: {fileID: -5388620032122585199, guid: 5ca33223b52112f40a44429f9eff1222, type: 2}

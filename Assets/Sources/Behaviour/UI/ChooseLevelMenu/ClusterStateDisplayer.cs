@@ -33,7 +33,7 @@ namespace Sources.Behaviour.UI.ChooseLevelMenu
         private void OnClusterDisplayer(ClusterType type)
         {
             LevelClustersStorage clustersStorage = _staticData.GetClustersStorage();
-            LevelClusterData currentCluster = clustersStorage.LevelClusters.FirstOrDefault(x => x.Type == type);
+            LevelClusterData currentCluster = clustersStorage.GetDataByType(type);
 
             int playerStars = _progressContainer.PlayerProgress.GetPlayerStarsCount();
 

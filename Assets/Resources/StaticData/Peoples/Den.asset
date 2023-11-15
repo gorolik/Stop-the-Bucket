@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d33649321df89a245891fb6022fd1113, type: 3}
+  m_Name: Den
+  m_EditorClassIdentifier: 
+  _waitEmotion: {fileID: 21300000, guid: d24f4695921b79e459eb66bae64df342, type: 3}
+  _winEmotion: {fileID: 21300000, guid: 1aae23b0fc2260f48b0bbe0a4348be6d, type: 3}
+  _loseEmotion: {fileID: 21300000, guid: ac1cc44f2500a2b4f9f6f855b704f449, type: 3}

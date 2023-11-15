@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7130388833595907905}
   - component: {fileID: 6016810061851496158}
+  - component: {fileID: 7315081719461690352}
   - component: {fileID: 6696339568610377349}
   m_Layer: 5
   m_Name: Description
@@ -46,6 +47,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 989266134857306136}
   m_CullTransparentMesh: 1
+--- !u!114 &7315081719461690352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 989266134857306136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a92cbed6c862d6e40a5dbea96c4ec223, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _key: _loseDescription
 --- !u!114 &6696339568610377349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,6 +313,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1685629360851443655}
   - component: {fileID: 920901806188538531}
+  - component: {fileID: 9200482250821631378}
   - component: {fileID: 7315548544894714700}
   m_Layer: 5
   m_Name: Label
@@ -335,6 +350,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6947709581752549459}
   m_CullTransparentMesh: 1
+--- !u!114 &9200482250821631378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6947709581752549459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a92cbed6c862d6e40a5dbea96c4ec223, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _key: _lose
 --- !u!114 &7315548544894714700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -780,6 +808,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4156038700982674676}
     m_Modifications:
+    - target: {fileID: 3973323577793584942, guid: 7a403efc7464e3441871c24f560f1412, type: 3}
+      propertyPath: _key
+      value: _retry
+      objectReference: {fileID: 0}
     - target: {fileID: 4817130927751575982, guid: 7a403efc7464e3441871c24f560f1412, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

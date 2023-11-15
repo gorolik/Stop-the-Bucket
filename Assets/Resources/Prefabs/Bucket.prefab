@@ -349,11 +349,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecadf777c67810546ad55b14948d8337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bucket: {fileID: 8812420992472733368}
+  _bucketFalling: {fileID: 8812420992472733368}
   _hands: {fileID: 8538485582572952115}
   _audioSource: {fileID: 7249005751975570322}
   _catchSound: {fileID: 8300000, guid: e698fa5c04bd5c0418969a2b17b926f6, type: 3}
-  _winSound: {fileID: 8300000, guid: 52320e590bf774734a288886eba557ba, type: 3}
 --- !u!114 &443885076652332843
 MonoBehaviour:
   m_ObjectHideFlags: 0

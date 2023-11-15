@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Sources.Behaviour.UI.ChooseLevelMenu;
 using Sources.Infrastructure.AssetManagement;
+using Sources.Services.Localization;
 using Sources.Services.SceneData;
 using Sources.Services.StaticData;
 using Sources.Services.Timer;
@@ -17,17 +18,19 @@ namespace Sources.UI.Factory
         private readonly IAssetProvider _assetProvider;
         private readonly IStaticDataService _staticData;
         private readonly ISceneDataService _sceneData;
+        private readonly Localizator _localizator;
 
         private readonly List<WindowBase> _createdWindows = new List<WindowBase>();
 
         public Transform UIRoot { get; private set; }
 
-        public UIFactory(DiContainer container, IAssetProvider assetProvider, IStaticDataService staticData, ISceneDataService sceneData)
+        public UIFactory(DiContainer container, IAssetProvider assetProvider, IStaticDataService staticData, ISceneDataService sceneData, Localizator localizator)
         {
             _container = container;
             _assetProvider = assetProvider;
             _staticData = staticData;
             _sceneData = sceneData;
+            _localizator = localizator;
         }
 
         public void CreateUIRoot() => 
@@ -54,7 +57,7 @@ namespace Sources.UI.Factory
         public void CreateCountingWindow(TimersHandler.Timer currentTimer)
         {
             CountingWindow countingWindow = InstantiateByWindowId(WindowId.Counting) as CountingWindow;
-            countingWindow.Construct(_sceneData);
+            countingWindow.Construct(_sceneData, _localizator);
             countingWindow.Init(currentTimer);
         }
 

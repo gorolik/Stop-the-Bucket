@@ -4,6 +4,7 @@ using System.Linq;
 using Sources.Infrastructure.PersistentProgress;
 using Sources.Infrastructure.PersistentProgress.Structure;
 using Sources.Services.LevelsStorage;
+using Sources.Services.Localization;
 using Sources.Services.StaticData;
 using Sources.StaticData.Levels;
 using Sources.UI.Factory;
@@ -23,7 +24,9 @@ namespace Sources.Behaviour.UI.ChooseLevelMenu
         private IPersistentProgressContainer _progressContainer;
         private ILevelsStorageService _levelsStorage;
         private IUIFactory _uiFactory;
-        
+        private Localizator _localizator;
+        private LevelClustersStorage _clustersStorage;
+
         private List<LevelButton> _levelButtons = new List<LevelButton>();
 
         public event Action<int> LevelSelected;
@@ -31,12 +34,14 @@ namespace Sources.Behaviour.UI.ChooseLevelMenu
 
         [Inject]
         private void Construct(IStaticDataService staticData, IPersistentProgressContainer progressContainer,
-            ILevelsStorageService levelsStorage, IUIFactory uiFactory)
+            ILevelsStorageService levelsStorage, IUIFactory uiFactory, Localizator localizator)
         {
+            _localizator = localizator;
             _levelsStorage = levelsStorage;
             _staticData = staticData;
             _progressContainer = progressContainer;
             _uiFactory = uiFactory;
+            _clustersStorage = staticData.GetClustersStorage();
         }
 
         private void OnDestroy() =>
@@ -52,14 +57,17 @@ namespace Sources.Behaviour.UI.ChooseLevelMenu
             if (completedLevels.Length > 0)
                 maxCompletedLevelId = completedLevels.Max(x => x.Id);
 
-            DisplayClusterName(clusterType);
+            DisplayClusterName(_clustersStorage.GetDataByType(clusterType).ViewData);
             DisplayLevelsList(clusterType, maxCompletedLevelId);
             
             OnClusterDisplayed?.Invoke(clusterType);
         }
 
-        private void DisplayClusterName(ClusterType clusterType) =>
-            _clusterLabel.text = clusterType.ToString();
+        private void DisplayClusterName(ClusterViewData clusterData)
+        {
+            _clusterLabel.text = _localizator.GetWord(clusterData.NameKey);
+            _clusterLabel.color = clusterData.Color;
+        }
 
         private void OnLevelSelected(int id) =>
             LevelSelected?.Invoke(id);

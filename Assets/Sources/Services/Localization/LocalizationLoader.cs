@@ -20,9 +20,9 @@ namespace Sources.Services.Localization
             _coroutineRunner = coroutineRunner;
         }
 
-        public void Load(string langName, Action loaded) =>
+        public void Load(string langName, Action loaded) => 
             _coroutineRunner.StartCoroutine(LoadLocalizedText(langName, loaded));
-        
+
         private IEnumerator LoadLocalizedText(string langName, Action loaded)
         {
             string path = Path.Combine(LocalizationPath.FolderPath, langName + _fileExtension);

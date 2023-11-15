@@ -1,4 +1,5 @@
 ﻿
+using Sources.Services.Localization;
 using Sources.Services.SceneData;
 using Sources.Services.Timer;
 using TMPro;
@@ -12,9 +13,13 @@ namespace Sources.UI.Windows
         [SerializeField] private TMP_Text _counting;
 
         private ISceneDataService _sceneData;
+        private Localizator _localizator;
 
-        public void Construct(ISceneDataService sceneData) =>
+        public void Construct(ISceneDataService sceneData, Localizator localizator)
+        {
             _sceneData = sceneData;
+            _localizator = localizator;
+        }
 
         public void Init(TimersHandler.Timer currentTimer)
         {
@@ -22,8 +27,11 @@ namespace Sources.UI.Windows
             currentTimer.TimeUpdated += OnTimeUpdated;
         }
 
-        protected override void OnStart() => 
-            _label.text = _sceneData.LevelData.Cluster + " - " + (_sceneData.LevelData.Id + 1);
+        protected override void OnStart()
+        {
+            _label.text = _localizator.GetWord(_sceneData.ClusterViewData.NameKey) + " - " + (_sceneData.LevelData.Id + 1);
+            _label.color = _sceneData.ClusterViewData.Color;
+        }
 
         private void OnTimeUpdated(float time) => 
             _counting.text = Mathf.Round(time + 1).ToString();

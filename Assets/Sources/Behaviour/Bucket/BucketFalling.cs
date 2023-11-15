@@ -1,20 +1,17 @@
 using Sources.Infrastructure;
-using Sources.Infrastructure.StateMachines.Level;
-using Sources.Infrastructure.StateMachines.Level.States;
-using Sources.Services.LevelResult;
 using UnityEngine;
 using Zenject;
 
 namespace Sources.Behaviour.Bucket
 {
-    public class Bucket : MonoBehaviour, IGameStartListener, IGameEndListener
+    public class BucketFalling : MonoBehaviour, IGameStartListener, IGameEndListener
     {
         [SerializeField] private BucketAnimator _bucketAnimator;
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private AudioClip _hitSound;
         
-        private ILevelResultService _levelResult;
-        private ILevelStateMachine _levelStateMachine;
+        private People _people;
+        private Level _level;
 
         private float _maxFallSpeed;
         private float _fallAcceleration;
@@ -22,10 +19,10 @@ namespace Sources.Behaviour.Bucket
         private float _fallVelocity;
 
         [Inject]
-        public void Construct(ILevelResultService levelResult, ILevelStateMachine levelStateMachine)
+        public void Construct(People people, Level level)
         {
-            _levelResult = levelResult;
-            _levelStateMachine = levelStateMachine;
+            _people = people;
+            _level = level;
         }
 
         public void Init(float maxSpeed, float acceleration)
@@ -56,13 +53,16 @@ namespace Sources.Behaviour.Bucket
 
         private void TryFail()
         {
-            if (_levelResult.IsLose(transform.position.y))
+            if (HitPeople())
             {
-                _levelStateMachine.Enter<LoseState>();
+                _level.PeopleHit();
                 
                 _audioSource.PlayOneShot(_hitSound);
                 _bucketAnimator.Hit();
             }
         }
+
+        private bool HitPeople() => 
+            transform.position.y <= _people.transform.position.y;
     }
 }

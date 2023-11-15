@@ -1,8 +1,108 @@
 {
   "items": [
     {
-      "key": "key",
-      "value": "value"
+      "key": "_adLoading",
+      "value": "Loading advertisement..."
+    },
+    {
+      "key": "_loading",
+      "value": "Loading..."
+    },
+    {
+      "key": "_continue",
+      "value": "Continue"
+    },
+    {
+      "key": "_levelComplete",
+      "value": "Level Complete!"
+    },
+    {
+      "key": "_shortTutor",
+      "value": "Brief Tutorial"
+    },
+    {
+      "key": "_tapToContinue",
+      "value": "Tap to continue"
+    },
+    {
+      "key": "_fristTutorHint",
+      "value": "1. After the start of the level the bucket will start to fall"
+    },
+    {
+      "key": "_secondTutorHint",
+      "value": "2. It must reach at least the green line"
+    },
+    {
+      "key": "_thirdTutorHint",
+      "value": "3. The lower the bucket is stopped, the more stars"
+    },
+    {
+      "key": "_fourthTutorHint",
+      "value": "4. But don't let the bucket fall on your head!"
+    },
+    {
+      "key": "_settings",
+      "value": "Settings"
+    },
+    {
+      "key": "_back",
+      "value": "Back"
+    },
+    {
+      "key": "_gameLabel",
+      "value": "Stop the Bucket"
+    },
+    {
+      "key": "_play",
+      "value": "Play!"
+    },
+    {
+      "key": "_lose",
+      "value": "Lose!"
+    },
+    {
+      "key": "_retry",
+      "value": "Retry"
+    },
+    {
+      "key": "_loseDescription",
+      "value": "The bucket was stopped at the wrong time"
+    },
+    {
+      "key": "_beginner",
+      "value": "Beginner"
+    },
+    {
+      "key": "_amateur",
+      "value": "Amateur"
+    },
+    {
+      "key": "_pro",
+      "value": "PRO"
+    },
+    {
+      "key": "_specialist",
+      "value": "Specialist"
+    },
+    {
+      "key": "_expert",
+      "value": "Expert"
+    },
+    {
+      "key": "_master",
+      "value": "Master"
+    },
+    {
+      "key": "_god",
+      "value": "GOD"
+    },
+    {
+      "key": "_chooseLevel",
+      "value": "Select level"
+    },
+    {
+      "key": "_toMenu",
+      "value": "To menu"
     }
   ]
 }

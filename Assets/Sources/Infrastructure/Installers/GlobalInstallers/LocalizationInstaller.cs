@@ -12,16 +12,16 @@ namespace Sources.Infrastructure.Installers.GlobalInstallers
             BindLocalizator();
         }
 
-        private void BindLocalizator() =>
-            Container.Bind<Localizator>()
+        private void BindLocalizationStorage() =>
+            Container.Bind<LocalizationStorage>()
                 .AsSingle();
 
         private void BindLocalizationLoader() =>
             Container.Bind<LocalizationLoader>()
                 .AsSingle();
 
-        private void BindLocalizationStorage() =>
-            Container.Bind<LocalizationStorage>()
+        private void BindLocalizator() =>
+            Container.Bind<Localizator>()
                 .AsSingle();
     }
 }

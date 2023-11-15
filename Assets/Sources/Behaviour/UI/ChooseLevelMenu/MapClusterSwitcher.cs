@@ -42,7 +42,7 @@ namespace Sources.Behaviour.UI.ChooseLevelMenu
 
         private void OnClusterSwitched(ClusterType cluster)
         {
-            LevelClusterData clusterData = _clustersStorage.LevelClusters.Find(x => x.Type == cluster);
+            LevelClusterData clusterData = _clustersStorage.GetDataByType(cluster);
             _currentClusterId = _clustersStorage.LevelClusters.IndexOf(clusterData);
 
             UpdateArrows();
