@@ -1,3 +1,4 @@
+using System;
 using Sources.Infrastructure;
 using Sources.Services.Input;
 using UnityEngine;
@@ -7,21 +8,18 @@ namespace Sources.Behaviour.Bucket
 {
     public class BucketCatcher : MonoBehaviour, IGameStartListener, IGameEndListener
     {
-        [SerializeField] private BucketFalling _bucketFalling;
         [SerializeField] private GameObject _hands;
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private AudioClip _catchSound;
 
         private IInputService _inputService;
-        private Level _level;
         private bool _canCatch;
 
+        public event Action<float> BucketCatched; 
+
         [Inject]
-        public void Construct(IInputService inputService, Level level)
-        {
+        public void Construct(IInputService inputService) => 
             _inputService = inputService;
-            _level = level;
-        }
 
         private void Awake() =>
             _hands.SetActive(false);
@@ -44,7 +42,7 @@ namespace Sources.Behaviour.Bucket
                 return;
 
             _canCatch = false;
-            _level.CatchBucket(_bucketFalling.transform.position.y);
+            BucketCatched?.Invoke(transform.position.y);
 
             _audioSource.PlayOneShot(_catchSound);
             _hands.SetActive(true);

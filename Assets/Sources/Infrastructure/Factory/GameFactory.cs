@@ -39,9 +39,7 @@ namespace Sources.Infrastructure.Factory
             GameObject levelRootObject = InstantiateObject(AssetsPath.LevelRootPath, Vector2.zero);
 
             Level levelRoot = levelRootObject.GetComponent<Level>();
-            
-            _container.Bind<Level>()
-                .FromInstance(levelRoot);
+            levelRoot.Init();
         }
 
         public void CreateBucket(float maxSpeed, float acceleration)
@@ -52,9 +50,14 @@ namespace Sources.Infrastructure.Factory
 
             BucketFalling bucketFalling = bucketObject.GetComponent<BucketFalling>();
             bucketFalling.Init(maxSpeed, acceleration);
+
+            BucketCatcher bucketCatcher = bucketObject.GetComponent<BucketCatcher>();
             
             _container.Bind<BucketFalling>()
                 .FromInstance(bucketFalling);
+            
+            _container.Bind<BucketCatcher>()
+                .FromInstance(bucketCatcher);
         }
 
         public void CreateSuccessLine(Camera camera, float height)
@@ -88,11 +91,11 @@ namespace Sources.Infrastructure.Factory
 
         public void Cleanup()
         {
-            _container.Unbind<BucketFalling>();
-            _container.Unbind<SuccessLine>();
             _container.Unbind<People>();
-            _container.Unbind<Level>();
-            
+            _container.Unbind<SuccessLine>();
+            _container.Unbind<BucketFalling>();
+            _container.Unbind<BucketCatcher>();
+
             foreach (GameObject gameObject in _createdObjects)
                 if (gameObject)
                     Object.Destroy(gameObject);

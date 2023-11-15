@@ -43,10 +43,12 @@ namespace Sources.Infrastructure.StateMachines.Level.States
         private void InitGameWorld(LevelSceneData sceneData, LevelSettings levelSettings, ClusterViewData viewData)
         {
             _uiFactory.CreateUIRoot();
+                
             _gameFactory.CreatePeople(viewData.People);
             _gameFactory.CreateSuccessLine(sceneData.MainCamera, levelSettings.SuccessLineRange);
-            _gameFactory.CreateLevelRoot();
             _gameFactory.CreateBucket(levelSettings.BucketMaxSpeed, levelSettings.BucketAcceleration);
+            
+            _gameFactory.CreateLevelRoot();
 
             sceneData.Background.sprite = viewData.Background;
         }

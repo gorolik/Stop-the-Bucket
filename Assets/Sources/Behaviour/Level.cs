@@ -1,4 +1,5 @@
-﻿using Sources.Infrastructure.StateMachines.Level;
+﻿using Sources.Behaviour.Bucket;
+using Sources.Infrastructure.StateMachines.Level;
 using Sources.Infrastructure.StateMachines.Level.States;
 using Sources.Services.LevelResult;
 using UnityEngine;
@@ -13,17 +14,34 @@ namespace Sources.Behaviour
         
         private ILevelStateMachine _levelStateMachine;
         private ILevelResultService _levelResult;
+        private BucketFalling _bucketFalling;
+        private BucketCatcher _bucketCatcher;
         private People _people;
 
         [Inject]
-        public void Construct(ILevelStateMachine levelStateMachine, ILevelResultService levelResult, People people)
+        public void Construct(ILevelStateMachine levelStateMachine, ILevelResultService levelResult, 
+            BucketFalling bucketFalling, BucketCatcher bucketCatcher, People people)
         {
             _levelStateMachine = levelStateMachine;
             _levelResult = levelResult;
+            _bucketCatcher = bucketCatcher;
+            _bucketFalling = bucketFalling;
             _people = people;
         }
 
-        public void CatchBucket(float height)
+        public void Init()
+        {
+            _bucketCatcher.BucketCatched += OnBucketCatched;
+            _bucketFalling.HitPeople += OnHitPeople;
+        }
+        
+        private void OnDestroy()
+        {
+            _bucketCatcher.BucketCatched -= OnBucketCatched;
+            _bucketFalling.HitPeople -= OnHitPeople;
+        }
+
+        private void OnBucketCatched(float height)
         {
             if (_levelResult.IsWin(height))
             {
@@ -39,7 +57,7 @@ namespace Sources.Behaviour
             _people.PlayWinEmotion();
         }
         
-        public void PeopleHit()
+        private void OnHitPeople()
         {
             _levelStateMachine.Enter<LoseState>();
             

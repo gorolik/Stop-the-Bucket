@@ -1,3 +1,4 @@
+using System;
 using Sources.Infrastructure;
 using UnityEngine;
 using Zenject;
@@ -11,19 +12,17 @@ namespace Sources.Behaviour.Bucket
         [SerializeField] private AudioClip _hitSound;
         
         private People _people;
-        private Level _level;
 
         private float _maxFallSpeed;
         private float _fallAcceleration;
         private bool _isFalling;
         private float _fallVelocity;
 
+        public event Action HitPeople;
+
         [Inject]
-        public void Construct(People people, Level level)
-        {
+        public void Construct(People people) => 
             _people = people;
-            _level = level;
-        }
 
         public void Init(float maxSpeed, float acceleration)
         {
@@ -53,16 +52,16 @@ namespace Sources.Behaviour.Bucket
 
         private void TryFail()
         {
-            if (HitPeople())
+            if (IsHitPeople())
             {
-                _level.PeopleHit();
+                HitPeople?.Invoke();
                 
                 _audioSource.PlayOneShot(_hitSound);
                 _bucketAnimator.Hit();
             }
         }
 
-        private bool HitPeople() => 
+        private bool IsHitPeople() => 
             transform.position.y <= _people.transform.position.y;
     }
 }
