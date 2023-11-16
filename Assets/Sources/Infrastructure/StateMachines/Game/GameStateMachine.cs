@@ -9,6 +9,7 @@ using Sources.Infrastructure.StateMachines.Game.States;
 using Sources.Infrastructure.StateMachines.Level;
 using Sources.Infrastructure.StateMachines.States;
 using Sources.Services.Ads;
+using Sources.Services.Analytics;
 using Sources.Services.AudioMixing;
 using Sources.Services.LevelsStorage;
 using Sources.Services.Localization;
@@ -25,11 +26,12 @@ namespace Sources.Infrastructure.StateMachines.Game
             IGameFactory gameFactory, ISceneDataService sceneData, IStaticDataService staticData, Curtain curtain,
             IUIFactory uiFactory, IPersistentProgressContainer progressContainer, ILevelsStorageService levelsStorage,
             IPersistentProgressService persistentProgress, IProgressListenersContainer progressListenersContainer,
-            IAdsService adsService, Localizator localizator, IAudioMixerService audioMixer, MusicPlayer musicPlayer)
+            IAdsService adsService, Localizator localizator, IAudioMixerService audioMixer, MusicPlayer musicPlayer,
+            IAnalyticsService analytics)
         {
             _states = new Dictionary<Type, IExitableState>
             {
-                [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, staticData, curtain, levelsStorage, persistentProgress, adsService, localizator),
+                [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, staticData, curtain, levelsStorage, adsService, localizator, analytics),
                 [typeof(LoadProgressState)] = new LoadProgressState(this, persistentProgress, progressContainer),
                 [typeof(MainMenuState)] = new MainMenuState(sceneLoader, uiFactory, gameFactory, progressContainer, curtain, progressListenersContainer, audioMixer, musicPlayer),
                 [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, sceneData, curtain),
@@ -55,6 +57,7 @@ namespace Sources.Infrastructure.StateMachines.Game
             private readonly Localizator _localizator;
             private readonly IAudioMixerService _audioMixer;
             private readonly MusicPlayer _musicPlayer;
+            private readonly IAnalyticsService _analytics;
 
             public Factory(
                 DiContainer container, 
@@ -67,7 +70,7 @@ namespace Sources.Infrastructure.StateMachines.Game
                 IPersistentProgressContainer progressContainer, 
                 ILevelsStorageService levelsStorage, 
                 IPersistentProgressService persistentProgress, 
-                IProgressListenersContainer progressListenersContainer, IAdsService adsService, Localizator localizator, IAudioMixerService audioMixer, MusicPlayer musicPlayer)
+                IProgressListenersContainer progressListenersContainer, IAdsService adsService, Localizator localizator, IAudioMixerService audioMixer, MusicPlayer musicPlayer, IAnalyticsService analytics)
             {
                 _levelStateMachineFactory = levelStateMachineFactory;
                 _container = container;
@@ -85,6 +88,7 @@ namespace Sources.Infrastructure.StateMachines.Game
                 _localizator = localizator;
                 _audioMixer = audioMixer;
                 _musicPlayer = musicPlayer;
+                _analytics = analytics;
             }
 
             public GameStateMachine Create()
@@ -104,7 +108,8 @@ namespace Sources.Infrastructure.StateMachines.Game
                     _adsService,
                     _localizator,
                     _audioMixer, 
-                    _musicPlayer);
+                    _musicPlayer, 
+                    _analytics);
                 
                 _container.Bind<IGameStateMachine>()
                     .To<GameStateMachine>()

@@ -1,4 +1,0 @@
-﻿namespace Sources.Services.Analytics
-{
-    
-}

@@ -6,6 +6,7 @@ using Sources.Infrastructure.PersistentProgress;
 using Sources.Infrastructure.PersistentProgress.Services;
 using Sources.Infrastructure.PersistentProgress.Structure;
 using Sources.Infrastructure.StateMachines.States;
+using Sources.Services.Analytics;
 using Sources.Services.SceneData;
 using Sources.UI.Factory;
 using UnityEngine;
@@ -22,10 +23,12 @@ namespace Sources.Infrastructure.StateMachines.Level.States
         private readonly IPersistentProgressContainer _progressContainer;
         private readonly ICoroutineRunner _coroutineRunner;
         private readonly IGameFactory _gameFactory;
+        private readonly IAnalyticsService _analytics;
 
 
         public WinState(ISceneDataService sceneData, IPersistentProgressService persistentProgress, IUIFactory uiFactory,
-            IPersistentProgressContainer progressContainer, ICoroutineRunner coroutineRunner, IGameFactory gameFactory)
+            IPersistentProgressContainer progressContainer, ICoroutineRunner coroutineRunner, IGameFactory gameFactory,
+            IAnalyticsService analytics)
         {
             _sceneData = sceneData;
             _persistentProgress = persistentProgress;
@@ -33,6 +36,7 @@ namespace Sources.Infrastructure.StateMachines.Level.States
             _progressContainer = progressContainer;
             _coroutineRunner = coroutineRunner;
             _gameFactory = gameFactory;
+            _analytics = analytics;
         }
 
         public void Enter(int stars)
@@ -55,6 +59,8 @@ namespace Sources.Infrastructure.StateMachines.Level.States
 
         private void UpdateProgress(PlayerProgress progress, int stars)
         {
+            _analytics.LevelPassed(_sceneData.LevelData.Id, stars);
+            
             foreach (CompletedLevel level in progress.CompletedLevels)
             {
                 if (level.Id == _sceneData.LevelData.Id)
@@ -70,7 +76,9 @@ namespace Sources.Infrastructure.StateMachines.Level.States
             
             CompletedLevel completedLevel = new CompletedLevel(_sceneData.LevelData.Id, stars);
             progress.AddCompletedLevel(completedLevel);
-
+            
+            _analytics.LevelPassedFirst(_sceneData.LevelData.Id);
+            
             _persistentProgress.SaveProgress();
         }
     }

@@ -17,6 +17,7 @@
     <setting file="file://$PROJECT_DIR$/../../../ASSETS/my games/unity/ПАКИ/Localization/LocalizationData.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../ASSETS/my games/unity/ПАКИ/Localization/TextTranslator.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Armored Tanks/Assets/Scripts/UnityAnalitics/Analytics.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Armored Tanks/Assets/Scripts/UnityAnalitics/AnalyticsCollector.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Arrows/Assets/Sources/Scripts/Settings.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Arrows/Assets/Sources/Scripts/SoundsVolume.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Arrows/Assets/Sources/Scripts/UI/SettingsScreenView.cs" root0="SKIP_HIGHLIGHTING" />
@@ -31,6 +32,8 @@
     <setting file="file://$PROJECT_DIR$/Assets/Sources/Infrastructure/StateMachines/IStateMachine.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Sources/StaticData/Levels/LevelData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Sources/UI/WindowId.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.services.analytics@5.0.1/Runtime/Runtime/Dispatcher.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_FontAsset.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -169,7 +172,9 @@
       <workItem from="1699847610862" duration="717000" />
       <workItem from="1699850074279" duration="21315000" />
       <workItem from="1699974420676" duration="880000" />
-      <workItem from="1700028546039" duration="15800000" />
+      <workItem from="1700028546039" duration="18012000" />
+      <workItem from="1700115533228" duration="1983000" />
+      <workItem from="1700135389091" duration="1567000" />
     </task>
     <servers />
   </component>

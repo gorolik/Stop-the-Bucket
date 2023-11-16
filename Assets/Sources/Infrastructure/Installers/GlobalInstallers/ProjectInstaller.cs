@@ -7,6 +7,7 @@ using Sources.Infrastructure.PersistentProgress.Services.DataSavers;
 using Sources.Infrastructure.StateMachines.Game;
 using Sources.Infrastructure.StateMachines.Level;
 using Sources.Services.Ads;
+using Sources.Services.Analytics;
 using Sources.Services.AudioMixing;
 using Sources.Services.DataFormatters;
 using Sources.Services.Input;
@@ -31,6 +32,7 @@ namespace Sources.Infrastructure.Installers.GlobalInstallers
             BindProgressListenersContainer();
             BindCoroutineRunner();
             BindTimersHandler();
+            BindAnalyticsService();
             BindStaticDataService();
             BindSceneLoader();
             BindInputService();
@@ -64,6 +66,11 @@ namespace Sources.Infrastructure.Installers.GlobalInstallers
         private void BindTimersHandler() =>
             Container.Bind<ITimersHandler>()
                 .To<TimersHandler>()
+                .AsSingle();
+
+        private void BindAnalyticsService() =>
+            Container.Bind<IAnalyticsService>()
+                .To<UnityAnalyticsService>()
                 .AsSingle();
 
         private void BindStaticDataService() =>

@@ -2,6 +2,7 @@
 using Sources.Infrastructure.PersistentProgress.Services;
 using Sources.Infrastructure.StateMachines.States;
 using Sources.Services.Ads;
+using Sources.Services.Analytics;
 using Sources.Services.LevelsStorage;
 using Sources.Services.Localization;
 using Sources.Services.StaticData;
@@ -17,9 +18,9 @@ namespace Sources.Infrastructure.StateMachines.Game.States
         private readonly IStaticDataService _staticData;
         private readonly Curtain _curtain;
         private readonly ILevelsStorageService _levelsStorage;
-        private readonly IPersistentProgressService _persistentProgress;
         private readonly IAdsService _adsService;
         private readonly Localizator _localizator;
+        private IAnalyticsService _analytics;
 
         public BootstrapState(
             IGameStateMachine gameStateMachine, 
@@ -27,18 +28,18 @@ namespace Sources.Infrastructure.StateMachines.Game.States
             IStaticDataService staticData, 
             Curtain curtain, 
             ILevelsStorageService levelsStorage,
-            IPersistentProgressService persistentProgress,
             IAdsService adsService,
-            Localizator localizator)
+            Localizator localizator,
+            IAnalyticsService analytics)
         {
             _gameStateMachine = gameStateMachine;
             _sceneLoader = sceneLoader;
             _staticData = staticData;
             _curtain = curtain;
             _levelsStorage = levelsStorage;
-            _persistentProgress = persistentProgress;
             _adsService = adsService;
             _localizator = localizator;
+            _analytics = analytics;
         }
 
         public void Enter()
@@ -50,6 +51,8 @@ namespace Sources.Infrastructure.StateMachines.Game.States
             _staticData.LoadData();
             _levelsStorage.Load();
             _adsService.Init();
+            
+            _analytics.Init(AnalyticsEnvironment.production);
 
             _sceneLoader.Load(_initialSceneName, OnInitSceneLoaded);
         }
